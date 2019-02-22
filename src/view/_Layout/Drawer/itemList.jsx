@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Routers from '../../Routers'
+import { SidebarRouter } from '../../_Routers'
 import { withRouter, Link } from 'react-router-dom'
 
 //Material UI
@@ -13,7 +13,7 @@ const ItemList = ({ classes, location: { pathname } }) =>
         </Hidden>
 
         <List disablePadding>
-            {Routers.map((route) => {
+            {SidebarRouter.map((route) => {
                 return (
                     <ListItem key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
                         <ListItemIcon>

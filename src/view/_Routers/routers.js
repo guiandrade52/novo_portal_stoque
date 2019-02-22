@@ -10,7 +10,7 @@ import Tasks from '../Task'
 import About from '../About'
 import NewTask from '../NewTask'
 
-export default [
+export const SidebarRouter = [
     {
         path: "/",
         name: "Dashboard",
@@ -35,5 +35,5 @@ export default [
         name: "Sobre",
         icon: LiveHelp,
         component: About,
-    },
+    }
 ]

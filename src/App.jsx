@@ -10,12 +10,12 @@ import { appActions } from './redux-flow/_actions/app.actions';
 
 import { createBrowserHistory } from 'history'
 import { Router, Switch, Route } from 'react-router-dom'
-import Routers from './view/Routers'
+import { SidebarRouter } from './view/_Routers'
 
 
 //Configure Temes
 import { themes } from './assets/config';
-import { Layout } from './view/Layout';
+import { Layout } from './view/_Layout';
 
 
 const hist = createBrowserHistory()
@@ -37,7 +37,9 @@ class App extends Component {
             <Layout>
               <Switch>
                 {
-                  Routers.map((prop, key) => <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />)
+                  SidebarRouter.map((prop, key) => {
+                    return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
+                  })
                 }
                 <Route render={() => <h1>Not Fold</h1>} />
               </Switch>
