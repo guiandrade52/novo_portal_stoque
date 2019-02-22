@@ -11,7 +11,6 @@ const style = {
 const GridContainer = ({ classes, children, ...rest }) =>
     <Grid container {...rest} className={classes.grid}>
         {children}
-        {console.log(classes)}
     </Grid>
 
 export default withStyles(style)(GridContainer)

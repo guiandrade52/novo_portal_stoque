@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 
-//Material  UI
-import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
-
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -13,8 +10,6 @@ import { Router, Switch, Route } from 'react-router-dom'
 import { SidebarRouter } from './view/_Routers'
 
 
-//Configure Temes
-import { themes } from './assets/config';
 import { Layout } from './view/_Layout';
 
 
@@ -31,21 +26,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MuiThemeProvider theme={themes.themeProvider}>
-          <CssBaseline />
-          <Router history={hist}>
-            <Layout>
-              <Switch>
-                {
-                  SidebarRouter.map((prop, key) => {
-                    return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
-                  })
-                }
-                <Route render={() => <h1>Not Fold</h1>} />
-              </Switch>
-            </Layout>
-          </Router>
-        </MuiThemeProvider>
+        <Router history={hist}>
+          <Layout>
+            <Switch>
+              {
+                SidebarRouter.map((prop, key) => {
+                  return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
+                })
+              }
+              <Route render={() => <h1>Not Fold</h1>} />
+            </Switch>
+          </Layout>
+        </Router>
       </div>
     )
   }

@@ -11,12 +11,12 @@ import { Provider } from 'react-redux'
 import configureStore from './redux-flow/_helpers/configure-store'
 
 //CoreComponents
-import App from './App';
+import Security from './security'
 
 const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Security />
     </Provider>,
     document.getElementById('root'));
