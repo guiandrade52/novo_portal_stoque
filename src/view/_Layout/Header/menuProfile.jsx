@@ -6,6 +6,11 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
 
+//Redux
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { authActions } from '../../../redux-flow/_actions/auth.action';
+
 // @material-ui/icons
 import AccountCircle from '@material-ui/icons/AccountCircle'
 
@@ -49,6 +54,7 @@ class MenuProfile extends Component {
     render() {
         const { anchorEl } = this.state
         const open = Boolean(anchorEl)
+        const { logout } = this.props
         return (
             <GridItem>
                 <IconButton aria-owns={open ? 'menu-profile' : null} aria-haspopup="true" onClick={this.handleClick} color="inherit">
@@ -62,7 +68,7 @@ class MenuProfile extends Component {
                     onClose={this.handleClose}
                 >
                     <MenuItem onClick={this.handleClose}>Minha conta</MenuItem>
-                    <MenuItem onClick={() => console.log('me desenvolva')}>Sair</MenuItem>
+                    <MenuItem onClick={() => logout()}>Sair</MenuItem>
                 </Menu>
             </GridItem>
         )
@@ -73,6 +79,6 @@ MenuProfile.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators(authActions, dispatch)
 
-
-export default withStyles(styles)(MenuProfile)
+export default connect(null, mapDispatchToProps)(withStyles(styles)(MenuProfile))

@@ -19,7 +19,12 @@ const login = (username, password) => dispatch => {
 }
 
 
-const logout = () => ({ type: authConstants.LOGOUT })
+const logout = () => dispatch => {
+    dispatch(toastrActions.warning('Obrigado pela visita, sempre que necessario retorne para acompanhar sua ocorrência'))
+    setTimeout(() => {
+        dispatch({ type: authConstants.LOGOUT })
+    }, 3000);
+}
 
 const token_validated = token => dispatch => {
     authService.validatedToken(token)
