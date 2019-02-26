@@ -6,6 +6,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
+// Core Css
+import './assets/css/app.css'
+import 'semantic-ui-css/semantic.min.css'
+
 //Redux config
 import { Provider } from 'react-redux'
 import configureStore from './redux-flow/_helpers/configure-store'

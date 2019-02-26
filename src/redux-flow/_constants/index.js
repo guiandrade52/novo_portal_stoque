@@ -1,3 +1,5 @@
 export * from './app.constants'
 export * from './auth.constants'
 export * from './toastr.constants'
+export * from './contato.constants'
+export * from './newTask.constants'

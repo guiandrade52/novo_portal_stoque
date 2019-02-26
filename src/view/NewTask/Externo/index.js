@@ -1,3 +1,5 @@
-import Externo from './externo'
+import Externo from './_MainExterno'
 
-export default Externo
+export {
+    Externo
+}

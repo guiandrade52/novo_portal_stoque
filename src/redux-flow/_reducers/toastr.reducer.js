@@ -8,7 +8,7 @@ const INITIAL_STATE = {
     vertical: 'bottom',
     horizontal: 'right',
     variant: 'success',
-    autoHideDuration: 6000
+    autoHideDuration: 10000
 }
 
 export const toastr = createReducer(INITIAL_STATE, {
