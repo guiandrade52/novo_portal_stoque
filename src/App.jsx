@@ -15,6 +15,15 @@ import { Layout } from './view/_Layout';
 
 const hist = createBrowserHistory()
 
+const switchRoutes = (
+  <Switch>
+      {SidebarRouter.map((prop, key) => {
+          return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
+      })}
+      <Route render={() => <h1>Not Fold</h1>} />
+  </Switch>
+)
+
 class App extends Component {
 
   componentWillMount() {
@@ -29,11 +38,7 @@ class App extends Component {
         <Router history={hist}>
           <Layout>
             <Switch>
-              {
-                SidebarRouter.map((prop, key) => {
-                  return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
-                })
-              }
+              {switchRoutes}
               <Route render={() => <h1>Not Fold</h1>} />
             </Switch>
           </Layout>

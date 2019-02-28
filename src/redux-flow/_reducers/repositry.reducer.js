@@ -1,12 +1,13 @@
 import createReducer from "../_helpers/create-reducer";
 import { serieConstants } from "../_constants/serie.constants";
-import { contatoConstants } from "../_constants";
+import { contatoConstants, contratoConstants } from "../_constants";
 
 const INITIAL_STATE = {
     isFetching: false,
     series: [],
     contatos: [],
-    serieDetails: {}
+    serieDetails: {},
+    contratos: []
 
 }
 
@@ -21,6 +22,10 @@ export const repositoryReducer = createReducer(INITIAL_STATE, {
 
     [contatoConstants.REQUEST]: (state) => ({ ...state, contatos: [], isFetching: true }),
     [contatoConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, contatos: action.payload }),
-    [contatoConstants.FAILURE]: () => ({ contatos: {}, isFetching: false })
+    [contatoConstants.FAILURE]: () => ({ contatos: {}, isFetching: false }),
+
+    [contratoConstants.REQUEST]: (state) => ({ ...state, contratos: [], isFetching: true }),
+    [contratoConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, contratos: action.payload }),
+    [contratoConstants.FAILURE]: () => ({ contratos: {}, isFetching: false })
 
 })

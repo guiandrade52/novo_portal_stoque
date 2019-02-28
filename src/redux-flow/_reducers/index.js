@@ -9,6 +9,8 @@ import { repositoryReducer as repository } from './repositry.reducer'
 import { inputFiles } from './inputFiles.reducer'
 import { reducer as form } from 'redux-form'
 import { newTaskReducer as newTask } from './newTask.reducer'
+import { taskListReducer as taskList } from './taskList.reducer'
+import { filterReducer as filter } from './filter.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -18,5 +20,7 @@ export const rootReducers = combineReducers({
     repository,
     inputFiles,
     form,
-    newTask
+    newTask,
+    taskList,
+    filter
 })

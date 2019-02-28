@@ -1,3 +1,3 @@
-import Task from './task'
+import Task from './_mainTask'
 
 export default Task

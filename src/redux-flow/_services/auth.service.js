@@ -25,7 +25,7 @@ const validatedToken = token => {
 function handleResponse(response) {
     return response.status === 200
         ? axios.defaults.headers.common['Authorization'] = 'bearer ' + response.data.access_token
-        : Promise.reject(response.response.data.error_description)
+        : Promise.reject(response)
 }
 
 function handleValidatedToken(response) {

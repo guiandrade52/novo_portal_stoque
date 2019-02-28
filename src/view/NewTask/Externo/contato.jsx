@@ -13,7 +13,7 @@ import { serieActions } from '../../../redux-flow/_actions';
 import { LinearProgress } from '@material-ui/core';
 
 //Core Components
-import { SelectAutoComplete } from '../../../components/Fields'
+import { Select } from '../../../components/Fields'
 import Actions from './actions';
 import { Message } from 'semantic-ui-react';
 
@@ -37,7 +37,7 @@ class Contatos extends Component {
             <form onSubmit={e => { e.preventDefault() }}>
                 < Field
                     name="contato"
-                    component={SelectAutoComplete}
+                    component={Select}
                     label="Contato"
                     placeholder='Selecione o Contato'
                     options={

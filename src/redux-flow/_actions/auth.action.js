@@ -13,7 +13,7 @@ const login = (username, password) => dispatch => {
         .then(token => dispatch(success(token)),
             error => {
                 dispatch(failure(error))
-                dispatch(toastrActions.error(error))
+                helpersActions.checkErrorResponse(error, dispatch)
             }
         )
 }

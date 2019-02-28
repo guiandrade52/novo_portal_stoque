@@ -9,7 +9,7 @@ import { serieActions } from '../../../redux-flow/_actions/serie.actions';
 import { bindActionCreators } from 'redux'
 
 //coreComponents
-import { SelectAutoComplete } from '../../../components/Fields'
+import { Select } from '../../../components/Fields'
 import Actions from './actions';
 
 //Materia UI
@@ -40,7 +40,7 @@ class Serie extends Component {
             <form onSubmit={e => { e.preventDefault() }}>
                 <Field
                     name="serie"
-                    component={SelectAutoComplete}
+                    component={Select}
                     label="Serie"
                     placeholder='Selecione a Serie/Licença'
                     options={
