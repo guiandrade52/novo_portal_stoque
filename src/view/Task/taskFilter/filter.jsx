@@ -44,14 +44,14 @@ let wait = true
 class TaskFilter extends Component {
 
     handleChange = async (value) => {
-        await this.props.change('search', value)
+        await this.props.changeInputFilter(value)
         if (wait) {
             wait = false
-            this.props.fetch(this.props.filter)
+            this.props.fetchTasks(this.props.filter)
             setTimeout(() => {
                 wait = true
                 if (this.props.filter.search !== value) {
-                    this.props.fetch(this.props.filter)
+                    this.props.fetchTasks(this.props.filter)
                 }
             }, 1500)
         }

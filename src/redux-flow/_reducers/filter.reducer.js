@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     dateInit: '',
     dateFinal: '',
     contrato: '',
+    contato: '',
     serie: '',
     servico: '',
     usuarioPortal: '',
@@ -18,5 +19,7 @@ const INITIAL_STATE = {
 }
 
 export const filterReducer = createReducer(INITIAL_STATE, {
-    [filterConstants.CHANGE]: (state, action) => ({ ...state, [action.payload.key]: action.payload.value })
+    [filterConstants.CHANGE]: (state, action) => ({ ...state, ...action.payload, ativo: true }),
+    [filterConstants.CHANGEINPUT]: (state, action) => ({ ...state, search: action.payload, ativo: true }),
+    [filterConstants.RESET]: () => ({ ...INITIAL_STATE }),
 })

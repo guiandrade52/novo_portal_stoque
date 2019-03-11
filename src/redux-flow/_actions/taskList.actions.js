@@ -7,7 +7,7 @@ const success = tasks => ({ type: taskListConstants.SUCCESS, payload: tasks })
 const failure = () => ({ type: taskListConstants.FAILURE })
 
 
-const fetch = filter => dispatch => {
+const fetchTasks = filter => dispatch => {
     dispatch(request())
     requestServices.get('Task', filter)
         .then(resp => {
@@ -26,6 +26,6 @@ const showDetailsTask = (action) => ({ type: taskListConstants.SHOW_TASK_DETAILS
 
 export const taskListActions = {
     selected,
-    fetch,
+    fetchTasks,
     showDetailsTask
 }

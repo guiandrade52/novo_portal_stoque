@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react'
 
 //Redux
 import { connect } from 'react-redux'
+import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
+import { bindActionCreators } from 'redux';
+import { contratoActions, filterActions, taskListActions, serieActions, servicoActions, contatoActions } from '../../../../redux-flow/_actions';
 
-//Redux-form
-import { reduxForm, Field, reset } from 'redux-form'
 
 // @material-ui-icons
 import DoneIcon from '@material-ui/icons/Done'
@@ -18,13 +19,14 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 
 
+
 //Core Components
 import { GridItem, GridContainer } from '../../../../components/Grids';
 import { Field as TextField } from '../../../../components/Fields';
 import Select from '../../../../components/Fields/Select';
-import { bindActionCreators } from 'redux';
-import { contratoActions } from '../../../../redux-flow/_actions/contrato.actions';
 import Toastr from '../../../../components/Alerts';
+import { usuarioPortalActions } from '../../../../redux-flow/_actions/usuarioPortal.actions';
+import { parceirosActions } from '../../../../redux-flow/_actions/parceiros.actions';
 
 const validate = values => {
     const errors = {}
@@ -37,31 +39,28 @@ const validate = values => {
 
 class Form extends Component {
     componentWillMount() {
-        console.log(this.props)
-        this.props.fetchContrato()
-        //     this.props.LoadingContratos()
-        //     this.props.LoadingSeries()
-        //     this.props.LoadingServicos()
-        //     this.props.LoadingContatos()
-        //     this.props.LoadingUsuPrl()
-        //     this.props.LoadingParceiroAb()
-        //     this.props.LoadingParceiroAt()
+        this.props.fetchContratos()
+        this.props.fetchSeries()
+        this.props.fetchServicos()
+        this.props.fetchContatos()
+        this.props.fetchUsuariosPortal()
+        this.props.fetchParceiroAb()
+        this.props.fetchParceiroAt()
     }
 
-    resetForm = () => {
-        this.props.handleClearFilter(this.props.compFilter.initial)
+    resetForm = async () => {
         this.props.handleOpenOrClose()
+        await this.props.resetFilter()
+        this.props.fetchTasks(this.props.filter)
+        this.props.reset()
     }
 
-    handleApplyFilter = () => {
+    handleApplyFilter = async () => {
         this.props.handleOpenOrClose()
-        this.props.applyFilter(this.props.compFilter)
+        await this.props.applyFilter(this.props.valuesForm)
+        this.props.fetchTasks(this.props.filter)
     }
 
-    handleSearchContrato = e => {
-        console.log(this.props)
-        this.props.fetchContrato(e.target.value)
-    }
 
     render() {
         const { classes, handleOpenOrClose, submitting, repository } = this.props
@@ -104,7 +103,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) contrato(s)'
                                     options={repository.contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
-                                    onKeyDown={this.handleSearchContrato}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchContratos(e.target.value)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -114,8 +113,8 @@ class Form extends Component {
                                     label="Série"
                                     isMulti
                                     placeholder='Selecione a(s) série(s)'
-                                    options={repository.series}
-                                    handleSearchDB={() => console.log('teste')}
+                                    options={repository.series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchSeries(e.target.value)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -125,7 +124,7 @@ class Form extends Component {
                                     label="Serviço"
                                     isMulti
                                     placeholder='Selecione o(s) serviço(s)'
-                                    options={repository.servicos}
+                                    options={repository.servicos.map(item => ({ label: item.Nome, value: item.CodServico }))}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -135,8 +134,8 @@ class Form extends Component {
                                     label="Contato"
                                     isMulti
                                     placeholder='Selecione o(s) contato(s)'
-                                    options={repository.contatos}
-                                    handleSearchDB={this.props.LoadingContatos}
+                                    options={repository.contatos.map(item => ({ label: item.Nome, value: item.CodContato }))}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchContatos(e.target.value)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -146,8 +145,8 @@ class Form extends Component {
                                     label="Usuário Portal"
                                     isMulti
                                     placeholder='Selecione o(s) usuário(s) portal'
-                                    options={repository.usuprl}
-                                    handleSearchDB={this.props.LoadingUsuPrl}
+                                    options={repository.usuarioPortal.map(item => ({ label: item.Nome, value: item.IdUsuario }))}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchUsuariosPortal(e.target.value)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -157,8 +156,8 @@ class Form extends Component {
                                     label="Parceiro Abertura"
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) abertura'
-                                    options={repository.parceiroAb}
-                                    handleSearchDB={this.props.LoadingParceiroAb}
+                                    options={repository.parceiroAb.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchParceiroAb(e.target.value)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -168,8 +167,8 @@ class Form extends Component {
                                     label="Parceiro Atendido"
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) atendido'
-                                    options={repository.parceiroAt}
-                                    handleSearchDB={this.props.LoadingParceiroAt}
+                                    options={repository.parceiroAt.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
+                                    onKeyDown={e => e.target.value !== '' && this.props.fetchParceiroAt(e.target.value)}
                                 />
                             </GridItem>
                         </GridContainer>
@@ -194,28 +193,30 @@ class Form extends Component {
 }
 
 Form = reduxForm({
-    form: 'search',
+    form: 'formFilter',
     validate,
     destroyOnUnmount: false
 })(Form)
 
+const selector = formValueSelector('formFilter')
+
 const mapStateToProps = state => ({
-    repository: state.repository
+    repository: state.repository,
+    valuesForm: selector(state, 'contrato', 'serie', 'dateInit', 'dateFinal', 'contato', 'servico', 'usuarioPortal', 'parceiroAt', 'parceiroAb'),
+    filter: state.filter
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(contratoActions, dispatch)
-// handleClearFilter: initialValues => {
-//     dispatch(filterActions.clearAllFilter(initialValues))
-//     dispatch(reset('search'))
-// },
-// LoadingContratos: e => e !== undefined ? dispatch(fetchContrato(e.target.value)) : dispatch(fetchContrato('')),
-// LoadingSeries: e => e !== undefined ? dispatch(fetchSeries(e.target.value)) : dispatch(fetchSeries('')),
-// LoadingServicos: () => dispatch(getServicos()),
-// LoadingContatos: e => e !== undefined ? dispatch(getContatos(e.target.value)) : dispatch(getContatos('')),
-// LoadingUsuPrl: e => e !== undefined ? dispatch(getUsuPrl(e.target.value)) : dispatch(getUsuPrl('')),
-// LoadingParceiroAb: e => e !== undefined ? dispatch(getParceiroAb(e.target.value)) : dispatch(getParceiroAb('')),
-// LoadingParceiroAt: e => e !== undefined ? dispatch(getParceiroAt(e.target.value)) : dispatch(getParceiroAt('')),
-// applyFilter: filter => dispatch(filterActions.applyFilter(filter))
+const mapDispatchToProps = dispatch => bindActionCreators({
+    ...taskListActions,
+    ...filterActions,
+    ...contratoActions,
+    ...serieActions,
+    ...servicoActions,
+    ...contatoActions,
+    ...usuarioPortalActions,
+    ...parceirosActions
+}, dispatch)
+
 
 Form = connect(mapStateToProps, mapDispatchToProps)(Form)
 

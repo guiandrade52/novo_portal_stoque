@@ -179,7 +179,7 @@ class SelectAuto extends React.Component {
     };
 
     render() {
-        const { classes, theme, options, isMulti, placeholder, label, input: { value } } = this.props;
+        const { classes, theme, options, isMulti, placeholder, label, input: { value }, onKeyDown } = this.props;
 
         const selectStyles = {
             input: base => ({
@@ -204,6 +204,7 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isClearable
+                            onKeyDown={onKeyDown}
                         />
                     }
                     <div className={classes.divider} />
@@ -223,6 +224,7 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isMulti
+                            onKeyDown={onKeyDown}
                         />
                     }
                 </NoSsr>

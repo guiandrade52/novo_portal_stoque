@@ -3,8 +3,8 @@ import { authActions } from "../_actions/auth.action";
 
 
 function checkErrorResponse(error, dispatch) {
-    if (!error.response && error.message === 'Network Error') {
-        dispatch(toastrActions.error(`${error.message}: O servidor remoto encontra-se offiline, gentileza entrar em contato com suporte.`))
+    if (!error.response && error.status !== 401) {
+        dispatch(toastrActions.error(`O servidor remoto encontrou um erro fatal, gentileza entrar em contato com suporte.`))
         return
     }
 
@@ -18,7 +18,7 @@ function checkErrorResponse(error, dispatch) {
         dispatch(toastrActions.error(error.response.data.error_description))
     }
     else
-        dispatch(toastrActions.error(error.response.data.MessageDetail))
+        dispatch(toastrActions.error(error.response.data.Message))
 }
 
 export const helpersActions = {

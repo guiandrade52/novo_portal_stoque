@@ -6,7 +6,7 @@ const request = () => ({ type: contratoConstants.REQUEST })
 const success = contratos => ({ type: contratoConstants.SUCCESS, payload: contratos })
 const failure = () => ({ type: contratoConstants.FAILURE })
 
-const fetchContrato = (search = '') => dispatch => {
+const fetchContratos = (search = '') => dispatch => {
     dispatch(request())
     requestServices.get('Contrato', { search })
         .then(resp => dispatch(success(resp.data)))
@@ -27,6 +27,6 @@ const fetchContratoDetails = (contrato) => dispatch => {
 }
 
 export const contratoActions = {
-    fetchContrato,
+    fetchContratos,
     fetchContratoDetails
 }

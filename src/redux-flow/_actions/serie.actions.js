@@ -6,6 +6,10 @@ const request = () => ({ type: serieConstants.REQUEST })
 const success = (series) => ({ type: serieConstants.SUCCESS, payload: series })
 const failure = () => ({ type: serieConstants.FAILURE })
 
+const requestDetails = () => ({ type: serieConstants.REQUEST_DETAILS })
+const successDetails = (series) => ({ type: serieConstants.SUCCESS_DETAILS, payload: series })
+const failureDetails = () => ({ type: serieConstants.FAILURE_DETAILS })
+
 const fetchSeries = (search = '') => dispatch => {
     dispatch(request())
     requestServices.get('Serie', { search })
@@ -18,9 +22,6 @@ const fetchSeries = (search = '') => dispatch => {
         })
 }
 
-const requestDetails = () => ({ type: serieConstants.REQUEST_DETAILS })
-const successDetails = (series) => ({ type: serieConstants.SUCCESS_DETAILS, payload: series })
-const failureDetails = () => ({ type: serieConstants.FAILURE_DETAILS })
 
 const fetchSerieDetails = serie => dispatch => {
     dispatch(requestDetails())

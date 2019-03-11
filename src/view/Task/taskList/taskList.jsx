@@ -21,7 +21,8 @@ import FilterListIcon from '@material-ui/icons/FilterList'
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { taskListActions } from '../../../redux-flow/_actions';
+import { taskListActions, filterActions } from '../../../redux-flow/_actions';
+import {reset} from 'redux-form'
 
 
 import IconRefresh from '@material-ui/icons/Refresh'
@@ -48,20 +49,22 @@ class TaskList extends Component {
 
     handleFetchTask = (e, { activePage = 1 }) => {
         this.props.filter.activePage = activePage
-        this.props.fetch(this.props.filter)
+        this.props.fetchTasks(this.props.filter)
     }
 
     handleFetchTaskSelect = (value) => {
         this.props.filter.activePage = value
-        this.props.fetch(this.props.filter)
+        this.props.fetchTasks(this.props.filter)
     }
 
-    clearAllFilter = () => {
-        this.props.clearAllFilter(this.props.initialValue.initial)
+    handleResetFilter = async () => {
+        await this.props.resetFilter()
+        this.props.fetchTasks(this.props.filter)
+        this.props.reset('formFilter')
     }
 
     componentWillMount() {
-        this.props.fetch(this.props.filter)
+        this.props.fetchTasks(this.props.filter)
     }
 
     render() {
@@ -92,7 +95,7 @@ class TaskList extends Component {
                                 }
                                 {ativo &&
                                     <Tooltip title='Limpar Filtro'>
-                                        <IconButton className={classes.buttonOnFilter} onClick={this.clearAllFilter} >
+                                        <IconButton className={classes.buttonOnFilter} onClick={this.handleResetFilter} >
                                             <FilterListIcon color='error' />
                                         </IconButton>
                                     </Tooltip>
@@ -162,5 +165,5 @@ const mapStateToProps = state => ({
     filter: state.filter
 })
 
-const mapDispatchToprops = dispatch => bindActionCreators(taskListActions, dispatch)
+const mapDispatchToprops = dispatch => bindActionCreators({ ...taskListActions, ...filterActions,reset }, dispatch)
 export default connect(mapStateToProps, mapDispatchToprops)(withStyles(styles, { withTheme: true })(TaskList))

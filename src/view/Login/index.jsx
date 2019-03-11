@@ -72,7 +72,7 @@ class Login extends Component {
                         <Paper>
                             <div className={classes.container}>
                                 <Typography variant='h3' align='center' color='primary'>
-                                    {title}
+ {title}
                                 </Typography>
                                 <form name="form" onSubmit={e => this.handleSubmit(e)}>
                                     <GridItem>

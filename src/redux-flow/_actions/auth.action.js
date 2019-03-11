@@ -18,7 +18,6 @@ const login = (username, password) => dispatch => {
         )
 }
 
-
 const logout = () => dispatch => {
     dispatch(toastrActions.warning('Obrigado pela visita, sempre que necessario retorne para acompanhar sua ocorrência'))
     setTimeout(() => {
