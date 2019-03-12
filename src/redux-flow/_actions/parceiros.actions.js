@@ -34,6 +34,7 @@ const fetchParceiroAt = (search = '') => dispatch => {
             helpersActions.checkErrorResponse(error, dispatch)
         })
 }
+
 export const parceirosActions = {
     fetchParceiroAb,
     fetchParceiroAt

@@ -24,7 +24,7 @@ import Resumo from './resumo';
 import Descricao from './descricao';
 import { Grow } from '../../../components/Transitions';
 import { Breadcrumb } from 'semantic-ui-react';
-import { LinearProgress } from '@material-ui/core';
+import { bindActionCreators } from '../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
 
 
 
@@ -67,7 +67,6 @@ function getStepContent(step) {
 }
 
 class Externo extends React.Component {
-
     render() {
         const { classes, activeStep, home, isFetching, ocorrencia } = this.props
         const steps = getSteps(this.props)
@@ -104,7 +103,7 @@ class Externo extends React.Component {
                                 <Paper square elevation={0} className={classes.resetContainer}>
                                     {!isFetching && !ocorrencia && < Typography >* Confirme as informações no resumo, caso estejam corretas finalize a requisição</Typography>}
                                     {!isFetching && ocorrencia && <Typography variant='subtitle2'>Ocorrência registrada com sucesso, número: {ocorrencia}</Typography>}
-                                    <Actions hidden={false} handleBack={() => this.props.dispatch(reset('resumo'))} />
+                                    <Actions hidden={false} handleBack={() => this.props.reset('resumo')} />
                                 </Paper>
                             )}
                         </Paper>
@@ -131,6 +130,6 @@ const mapStateToProps = state => ({
     ...state.newTask
 })
 
+const mapDispatchToProps = dispatch => bindActionCreators({ reset }, dispatch)
 
-
-export default connect(mapStateToProps)(withStyles(styles)(Externo))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Externo))

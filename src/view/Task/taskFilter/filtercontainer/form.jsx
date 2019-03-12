@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 //Redux
 import { connect } from 'react-redux'
-import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { bindActionCreators } from 'redux';
 import { contratoActions, filterActions, taskListActions, serieActions, servicoActions, contatoActions } from '../../../../redux-flow/_actions';
 

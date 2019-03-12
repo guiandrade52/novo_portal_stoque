@@ -1,5 +1,5 @@
 import createReducer from "../_helpers/create-reducer";
-import { serieConstants, usuarioPortalConstants, parceiroAbConstants, parceiroAtConstants } from "../_constants";
+import { serieConstants, usuarioPortalConstants, parceiroAbConstants, parceiroAtConstants, grupoProdutosConstants, produtosConstants } from "../_constants";
 import { contatoConstants, contratoConstants, servicoConstants } from "../_constants";
 
 const INITIAL_STATE = {
@@ -11,8 +11,9 @@ const INITIAL_STATE = {
     servicos: [],
     usuarioPortal: [],
     parceiroAb: [],
-    parceiroAt: []
-
+    parceiroAt: [],
+    grupoProdutos: [],
+    produtos: []
 }
 
 export const repositoryReducer = createReducer(INITIAL_STATE, {
@@ -47,4 +48,12 @@ export const repositoryReducer = createReducer(INITIAL_STATE, {
     [parceiroAtConstants.REQUEST]: (state) => ({ ...state, parceiroAt: [], isFetching: true }),
     [parceiroAtConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, parceiroAt: action.payload }),
     [parceiroAtConstants.FAILURE]: (state) => ({ ...state, parceiroAt: [], isFetching: false }),
+
+    [grupoProdutosConstants.REQUEST]: (state) => ({ ...state, grupoProdutos: [], isFetching: true }),
+    [grupoProdutosConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, grupoProdutos: action.payload }),
+    [grupoProdutosConstants.FAILURE]: (state) => ({ ...state, grupoProdutos: [], isFetching: false }),
+
+    [produtosConstants.REQUEST]: (state) => ({ ...state, produtos: [], isFetching: true }),
+    [produtosConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, produtos: action.payload }),
+    [produtosConstants.FAILURE]: (state) => ({ ...state, produtos: [], isFetching: false }),
 })

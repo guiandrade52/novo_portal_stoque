@@ -16,7 +16,7 @@ import { TaskContainer } from './taskContainer';
 const styles = theme => ({
     noSelect: {
         ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
+        paddingTop: theme.spacing.unit * 1,
         paddingBottom: theme.spacing.unit * 2,
     },
     container: {

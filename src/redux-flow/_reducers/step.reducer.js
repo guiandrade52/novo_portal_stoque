@@ -2,7 +2,7 @@ import createReducer from "../_helpers/create-reducer";
 import { stepConstants } from "../_constants/step.constants";
 
 const INITIAL_STATE = {
-    activeStep: 0
+    activeStep: 0,
 }
 
 export const steppersReducer = createReducer(INITIAL_STATE, {

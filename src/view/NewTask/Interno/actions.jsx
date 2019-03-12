@@ -36,7 +36,7 @@ class Actions extends Component {
 
     handleReset = () => {
         this.props.reset()
-        this.props.resetReduxForm('formExterno')
+        this.props.resetReduxForm('formInterno')
 
     }
 
@@ -88,7 +88,7 @@ Actions.defaultProps = {
     hidden: true
 }
 
-const selector = formValueSelector('formExterno')
+const selector = formValueSelector('formInterno')
 
 const mapStateToProps = state => ({
     activeStep: state.step.activeStep,

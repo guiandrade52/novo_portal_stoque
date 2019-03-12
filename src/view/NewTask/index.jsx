@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 
+//Redux
+import { connect } from 'react-redux'
+import { destroy as resetForm } from 'redux-form'
+import { bindActionCreators } from 'redux';
+
+// @material-ui-core/style
+import { withStyles } from '@material-ui/core/styles'
+
 //CoreComponents
 import { GridContainer, GridItem } from '../../components/Grids';
 import { MediaCard } from '../../components/Cards';
@@ -7,9 +15,15 @@ import { Externo } from './Externo';
 import { Interno } from './Interno';
 import { Formularios } from './Formularios';
 import { Grow } from '../../components/Transitions';
+import { stepActions, newTaskActions } from '../../redux-flow/_actions';
 
 
-
+const styles = ({
+    root: {
+        margin: 7,
+        width: '100%'
+    }
+})
 
 class Dash extends Component {
 
@@ -23,6 +37,10 @@ class Dash extends Component {
     }
 
     handleSelected = id => {
+        this.props.resetForm('formInterno')
+        this.props.resetForm('formExterno')
+        this.props.updateDataResumo(undefined)
+        this.props.reset()
         this.setState({
             id
         })
@@ -30,33 +48,38 @@ class Dash extends Component {
 
     render() {
         const { options, id } = this.state
+        const { classes } = this.props
         return (
-            <Grow>
-                <GridContainer justify="center" spacing={24} >
+            <div className={classes.root}>
+                <Grow>
+                    <GridContainer justify="center" spacing={24} >
 
-                    {id === 0 &&
-                        options.map(item => {
-                            return (
-                                <GridItem key={item.label}>
-                                    <MediaCard
-                                        title={item.label}
-                                        icon={item}
-                                        onClick={() => this.handleSelected(item.id)}
-                                    />
-                                </GridItem>
-                            )
-                        })
-                    }
-                    <GridItem xs={12} sm={12} md={12}>
-                        {id === 1 && <Interno home={this.handleSelected} />}
-                        {id === 2 && <Externo home={this.handleSelected} />}
-                        {id === 3 && <Formularios home={this.handleSelected} />}
-                    </GridItem>
+                        {id === 0 &&
+                            options.map(item => {
+                                return (
+                                    <GridItem key={item.label}>
+                                        <MediaCard
+                                            title={item.label}
+                                            icon={item}
+                                            onClick={() => this.handleSelected(item.id)}
+                                        />
+                                    </GridItem>
+                                )
+                            })
+                        }
+                        <GridItem xs={12} sm={12} md={12}>
+                            {id === 1 && <Interno home={this.handleSelected} />}
+                            {id === 2 && <Externo home={this.handleSelected} />}
+                            {id === 3 && <Formularios home={this.handleSelected} />}
+                        </GridItem>
 
-                </GridContainer>
-            </Grow>
+                    </GridContainer>
+                </Grow>
+            </div>
         )
     }
 }
 
-export default Dash
+const mapDispatchToProps = dispatch => bindActionCreators({ ...stepActions, resetForm, ...newTaskActions }, dispatch)
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Dash))

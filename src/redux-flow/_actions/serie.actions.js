@@ -1,6 +1,8 @@
 import { requestServices } from "../_services";
 import { serieConstants } from "../_constants/serie.constants";
 import { helpersActions } from "../_helpers";
+import axios from 'axios'
+import { appConfig } from "../../appConfig";
 
 const request = () => ({ type: serieConstants.REQUEST })
 const success = (series) => ({ type: serieConstants.SUCCESS, payload: series })
@@ -23,6 +25,18 @@ const fetchSeries = (search = '') => dispatch => {
 }
 
 
+const fetchSeriesStepp = (contrato, codProd, codGrupo) => dispatch => {
+    dispatch(request())
+    axios.get(`${appConfig.URL_BASE}/api/Serie`, { params: { contrato, codProd, codGrupo } })
+        .then(resp => {
+            dispatch(success(resp.data))
+        })
+        .catch(error => {
+            dispatch(failure())
+            helpersActions.checkErrorResponse(error, dispatch)
+        })
+}
+
 const fetchSerieDetails = serie => dispatch => {
     dispatch(requestDetails())
     requestServices.get('Serie', { serie })
@@ -37,5 +51,6 @@ const fetchSerieDetails = serie => dispatch => {
 
 export const serieActions = {
     fetchSeries,
-    fetchSerieDetails
+    fetchSerieDetails,
+    fetchSeriesStepp
 }

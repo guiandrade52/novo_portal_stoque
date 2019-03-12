@@ -1,4 +1,4 @@
-import Interno from './interno'
+import Interno from './_MainInterno'
 
 export {
     Interno

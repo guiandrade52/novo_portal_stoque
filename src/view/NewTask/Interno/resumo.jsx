@@ -286,7 +286,7 @@ Resumo = reduxForm({
     form: 'formResumo'
 })(Resumo)
 
-const selector = formValueSelector('formExterno')
+const selector = formValueSelector('formInterno')
 
 const mapStateToProps = state => ({
     contatos: state.repository.contatos,
