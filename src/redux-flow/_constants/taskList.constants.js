@@ -4,5 +4,6 @@ export const taskListConstants = {
     FAILURE: 'taskList::FAILURE',
 
     SELECTED: 'taskList::SELECTED',
-    SHOW_TASK_DETAILS: 'taskList::SHOW_TASK_DETAILS'
+    SHOW_TASK_DETAILS: 'taskList::SHOW_TASK_DETAILS',
+    CLOSE_VIEW_MOBILE: 'taskList::CLOSE_VIEW_MOBILE',
 }

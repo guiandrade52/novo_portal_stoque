@@ -8,9 +8,9 @@ const request = () => ({ type: contatoConstants.REQUEST })
 const success = contatos => ({ type: contatoConstants.SUCCESS, payload: contatos })
 const failure = () => ({ type: contatoConstants.FAILURE })
 
-const fetchContatoSemSerie = (contrato, codParc) => dispatch => {
+const fetchContatoSemSerie = (contrato, codParc, search = '') => dispatch => {
     dispatch(request())
-    requestServices.get('contato', { contrato, codParc })
+    requestServices.get('contato', { contrato, codParc, search })
         .then(resp => {
             dispatch(success(resp.data))
         })

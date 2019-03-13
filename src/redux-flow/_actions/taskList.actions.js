@@ -23,9 +23,12 @@ const selected = executionId => ({ type: taskListConstants.SELECTED, payload: ex
 
 const showDetailsTask = (action) => ({ type: taskListConstants.SHOW_TASK_DETAILS, payload: action })
 
+const closeDetailsMobile = () => ({ type: taskListConstants.CLOSE_VIEW_MOBILE })
+
 
 export const taskListActions = {
     selected,
     fetchTasks,
-    showDetailsTask
+    showDetailsTask,
+    closeDetailsMobile
 }

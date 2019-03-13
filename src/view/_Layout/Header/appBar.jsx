@@ -37,11 +37,11 @@ const styles = theme => ({
     },
 })
 
-const Header = ({ classes, title }) =>
+const Header = ({ classes, title, handleDrawerToogle }) =>
     <AppBar position="fixed" className={classes.appBar}>
         <Toastr />
         <Toolbar>
-            <IconButton color="inherit" aria-label="Open drawer" className={classes.menuButton} >
+            <IconButton color="inherit" aria-label="Open drawer" className={classes.menuButton} onClick={handleDrawerToogle} >
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow} noWrap>

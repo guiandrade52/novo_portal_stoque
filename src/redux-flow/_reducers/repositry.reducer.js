@@ -1,12 +1,13 @@
 import createReducer from "../_helpers/create-reducer";
-import { serieConstants, usuarioPortalConstants, parceiroAbConstants, parceiroAtConstants, grupoProdutosConstants, produtosConstants } from "../_constants";
+import { serieConstants, usuarioPortalConstants, parceiroAbConstants, parceiroAtConstants, grupoProdutosConstants, produtosConstants, newTaskConstants } from "../_constants";
 import { contatoConstants, contratoConstants, servicoConstants } from "../_constants";
 
 const INITIAL_STATE = {
     isFetching: false,
     series: [],
     contatos: [],
-    serieDetails: {},
+    serieDetails: undefined,
+    contratoDetails: undefined,
     contratos: [],
     servicos: [],
     usuarioPortal: [],
@@ -33,6 +34,10 @@ export const repositoryReducer = createReducer(INITIAL_STATE, {
     [contratoConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, contratos: action.payload }),
     [contratoConstants.FAILURE]: (state) => ({ ...state, contratos: [], isFetching: false }),
 
+    [contratoConstants.REQUEST_DETAILS]: (state) => ({ ...state, contratoDetails: [], isFetching: true }),
+    [contratoConstants.SUCCESS_DETAILS]: (state, action) => ({ ...state, isFetching: false, contratoDetails: action.payload }),
+    [contratoConstants.FAILURE_DETAILS]: (state) => ({ ...state, contratoDetails: [], isFetching: false }),
+
     [servicoConstants.REQUEST]: (state) => ({ ...state, servicos: [], isFetching: true }),
     [servicoConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, servicos: action.payload }),
     [servicoConstants.FAILURE]: (state) => ({ ...state, servicos: [], isFetching: false }),
@@ -56,4 +61,6 @@ export const repositoryReducer = createReducer(INITIAL_STATE, {
     [produtosConstants.REQUEST]: (state) => ({ ...state, produtos: [], isFetching: true }),
     [produtosConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, produtos: action.payload }),
     [produtosConstants.FAILURE]: (state) => ({ ...state, produtos: [], isFetching: false }),
+
+    [newTaskConstants.RESET_NEWTASK]: () => (INITIAL_STATE)
 })

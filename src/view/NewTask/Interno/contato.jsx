@@ -6,7 +6,7 @@ import { reduxForm, Field, change, formValueSelector } from 'redux-form'
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { contatoActions } from '../../../redux-flow/_actions';
+import { contatoActions, contratoActions } from '../../../redux-flow/_actions';
 import { serieActions } from '../../../redux-flow/_actions';
 
 //Material UI
@@ -20,15 +20,28 @@ import { Message } from 'semantic-ui-react';
 class Contatos extends Component {
 
     componentWillMount() {
-        const { fetchContatoComSerie, fetchSerieDetails, serie: { value } } = this.props
-        fetchContatoComSerie(value)
-        fetchSerieDetails(value)
+        const { fetchContatoComSerie, fetchSerieDetails, serie, contrato, fetchContatoSemSerie, contratos, fetchContratoDetails } = this.props
+        if (serie && serie.value) {
+            fetchContatoComSerie(serie.value)
+            fetchSerieDetails(serie.value)
+        }
+        else {
+            const parceiro = contratos.find(item => item.CodContrato === contrato.value)
+            fetchContatoSemSerie(contrato.value, parceiro.CodParc)
+            fetchContratoDetails(contrato.value)
+        }
     }
 
     stateAction = () => this.props.selected ? false : true
 
     handleBack = () => {
         this.props.dispatch(change('formInterno', 'contato', ''))
+    }
+
+    handleSearchContato = search => {
+        const { contratos, contrato, fetchContatoSemSerie } = this.props
+        const parceiro = contratos.find(item => item.CodContrato === contrato.value)
+        fetchContatoSemSerie(contrato.value, parceiro.CodParc, search)
     }
 
     render() {
@@ -45,6 +58,7 @@ class Contatos extends Component {
                             ? contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato }))
                             : undefined
                     }
+                    onKeyDown={e => this.handleSearchContato(e.target.value)}
                 />
 
                 {isFetching &&
@@ -73,11 +87,14 @@ const selector = formValueSelector('formInterno')
 
 const mapStateToProps = state => ({
     serie: selector(state, 'serie'),
+    selected: selector(state, 'contato'),
+    contrato: selector(state, 'contrato'),
     contatos: state.repository.contatos,
+    contratos: state.repository.contratos,
     isFetching: state.repository.isFetching,
-    selected: selector(state, 'contato')
+
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ ...contatoActions, ...serieActions }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...contatoActions, ...serieActions, ...contratoActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contatos)

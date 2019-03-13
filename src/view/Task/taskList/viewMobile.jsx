@@ -20,7 +20,7 @@ class ViewMobile extends React.Component {
         const { children } = this.props
         return (
             <div>
-                <Dialog fullScreen={true} open={this.props.open} onClose={() => this.props.showDetailsTask(false)} aria-labelledby="responsive-dialog-title">
+                <Dialog fullScreen={true} open={this.props.open} onClose={() => this.props.closeDetailsMobile()} aria-labelledby="responsive-dialog-title">
                     <DialogTitle id="responsive-dialog-title">
                         Detalhes da ocorrência
                     </DialogTitle>
@@ -28,7 +28,7 @@ class ViewMobile extends React.Component {
                         {children}
                     </DialogContent>
                     <DialogActions>
-                        <Button animated='fade' basic onClick={() => this.props.showDetailsTask(false)}>
+                        <Button animated='fade' basic onClick={() => this.props.closeDetailsMobile()}>
                             <Button.Content visible>Fechar</Button.Content>
                             <Button.Content hidden><Icon name='close' /></Button.Content>
                         </Button>
@@ -40,7 +40,7 @@ class ViewMobile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    open: state.task.open
+    open: state.taskList.viewMobile
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(taskListActions, dispatch)

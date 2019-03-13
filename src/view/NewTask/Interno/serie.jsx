@@ -14,11 +14,12 @@ import Actions from './actions';
 
 //Materia UI
 import { LinearProgress } from '@material-ui/core';
+import { stepActions } from '../../../redux-flow/_actions';
 
 class Serie extends Component {
 
     componentWillMount() {
-        this.props.fetchSeriesStepp(this.props.contrato.value, this.props.produto.value, this.props.grupoProduto.value)
+        this.props.fetchSeriesSteppInterno(this.props.contrato.value, this.props.produto.value, this.props.grupoProduto.value)
     }
 
     handleBack = () => {
@@ -29,7 +30,6 @@ class Serie extends Component {
 
     render() {
         const { series, isFetching } = this.props
-
         return (
             <form onSubmit={e => { e.preventDefault() }}>
                 <Field
@@ -42,6 +42,8 @@ class Serie extends Component {
                             ? series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))
                             : undefined}
                 />
+
+
                 {isFetching &&
                     <LinearProgress />
                 }
@@ -65,9 +67,10 @@ const mapStateToProps = state => ({
     selected: selector(state, 'serie'),
     contrato: selector(state, 'contrato'),
     produto: selector(state, 'produto'),
-    grupoProduto: selector(state, 'grupoProduto')
+    grupoProduto: selector(state, 'grupoProduto'),
+    activeStep: state.step.active
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(serieActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...serieActions, ...stepActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Serie)

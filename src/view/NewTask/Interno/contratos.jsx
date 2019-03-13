@@ -13,6 +13,7 @@ import { Select } from '../../../components/Fields'
 import Actions from './actions';
 
 class Contratos extends Component {
+
   componentWillMount() {
     this.props.fetchContratos()
   }
@@ -32,8 +33,8 @@ class Contratos extends Component {
           component={Select}
           label="Contrato"
           placeholder='Selecionar um contrato'
-          onKeyDown={e => this.handleSearchContrato(e.target.value)}
           options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
+          onKeyDown={e => this.handleSearchContrato(e.target.value)}
         />
         <Actions disabled={this.stateAction()} />
       </form>

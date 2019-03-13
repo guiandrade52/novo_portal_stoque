@@ -35,16 +35,14 @@ class Actions extends Component {
     }
 
     handleReset = () => {
-        this.props.reset()
-        this.props.resetReduxForm('formInterno')
-
+        this.props.resetNewTask()
     }
 
     handleSave = () => {
-        const { serieDetails, contato, descricao, contatos, files } = this.props
+        const { serieDetails, produto, contato, descricao, contatos, files, contratoDetails } = this.props
         const filterContato = contatos.find(item => item.CodContato === contato.value)
-
-        this.props.save({ ...serieDetails, ...filterContato, descricao, files })
+        const data = serieDetails ? serieDetails : contratoDetails
+        this.props.save({ ...data, CodProduto: produto.value, ...filterContato, descricao, files })
     }
 
     handleCreateNewTask = () => {
@@ -93,10 +91,12 @@ const selector = formValueSelector('formInterno')
 const mapStateToProps = state => ({
     activeStep: state.step.activeStep,
     serieDetails: state.repository.serieDetails,
+    contratoDetails: state.repository.contratoDetails,
     contatos: state.repository.contatos,
     serie: selector(state, 'serie'),
     contato: selector(state, 'contato'),
     descricao: selector(state, 'descricao'),
+    produto: selector(state, 'produto'),
     ...state.newTask,
     files: state.inputFiles,
 })

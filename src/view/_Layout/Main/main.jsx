@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react'
 
 //CoreComponents
 import { GridContainer } from '../../../components/Grids';
@@ -19,18 +19,34 @@ const styles = theme => ({
     }
 })
 
-const Main = ({ classes, children }) =>
-    <Fragment>
-        <div className={classes.root}>
-            <Header />
-            <Drawer />
-            <div className={classes.content}>
-                <div className={classes.toolbar}></div>
-                <GridContainer>
-                    {children}
-                </GridContainer>
-            </div>
-        </div>
-    </Fragment>
+class Main extends Component {
+
+    state = {
+        drawer: false
+    }
+
+    handleDrawerToogle = () => {
+        this.setState({ drawer: !this.state.drawer })
+    }
+
+    render() {
+        const { classes, children } = this.props
+        return (
+            <Fragment>
+                <div className={classes.root}>
+                    <Header handleDrawerToogle={this.handleDrawerToogle} />
+                    <Drawer handleDrawerToogle={this.handleDrawerToogle} drawer={this.state.drawer} />
+                    <div className={classes.content}>
+                        <div className={classes.toolbar}></div>
+                        <GridContainer>
+                            {children}
+                        </GridContainer>
+                    </div>
+                </div>
+            </Fragment>
+        )
+    }
+}
+
 
 export default withStyles(styles)(Main)

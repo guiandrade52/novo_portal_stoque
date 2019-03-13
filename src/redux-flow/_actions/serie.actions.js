@@ -3,6 +3,7 @@ import { serieConstants } from "../_constants/serie.constants";
 import { helpersActions } from "../_helpers";
 import axios from 'axios'
 import { appConfig } from "../../appConfig";
+import { stepActions } from "./step.actions";
 
 const request = () => ({ type: serieConstants.REQUEST })
 const success = (series) => ({ type: serieConstants.SUCCESS, payload: series })
@@ -25,11 +26,13 @@ const fetchSeries = (search = '') => dispatch => {
 }
 
 
-const fetchSeriesStepp = (contrato, codProd, codGrupo) => dispatch => {
+const fetchSeriesSteppInterno = (contrato, codProd, codGrupo) => dispatch => {
     dispatch(request())
     axios.get(`${appConfig.URL_BASE}/api/Serie`, { params: { contrato, codProd, codGrupo } })
         .then(resp => {
             dispatch(success(resp.data))
+            if (!resp.data[0].Controle)
+                dispatch(stepActions.next(3))
         })
         .catch(error => {
             dispatch(failure())
@@ -52,5 +55,5 @@ const fetchSerieDetails = serie => dispatch => {
 export const serieActions = {
     fetchSeries,
     fetchSerieDetails,
-    fetchSeriesStepp
+    fetchSeriesSteppInterno
 }

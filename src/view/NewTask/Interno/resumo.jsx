@@ -31,9 +31,10 @@ const styles = theme => ({
 class Resumo extends Component {
 
     componentDidMount() {
-        const { serie, serieDetails, contratosDetails, descricao, contato, contatos } = this.props
+        const { serieDetails, contratoDetails, descricao, contato, contatos, produto } = this.props
         const contatoData = contatos.find(item => item.CodContato === contato.value)
-        const data = serie
+
+        const data = serieDetails
             ? {
                 produto: serieDetails.DescrProd,
                 serie: serieDetails.Controle,
@@ -52,20 +53,20 @@ class Resumo extends Component {
                 descricao: descricao
             }
             : {
-                produto: contratosDetails.DescrProd,
-                serie: contratosDetails.Controle,
-                cliente: contratosDetails.RazaoSocial,
-                contrato: contratosDetails.Contrato,
-                descrServico: contratosDetails.DescrNat,
+                produto: produto.label,
+                serie: contratoDetails.Controle === undefined ? 'Sem Série' : contratoDetails.Controle,
+                cliente: contratoDetails.RazaoSocial,
+                contrato: contratoDetails.Contrato,
+                descrServico: contratoDetails.DescrNat,
                 contato: contatoData.Nome,
                 telefone: contatoData.Telefone,
                 email: contatoData.Email,
-                endereco: contratosDetails.Endereco,
-                numero: contratosDetails.Numero,
-                complemento: contratosDetails.Complemento,
-                cep: contratosDetails.Cep,
-                bairro: contratosDetails.Bairro,
-                cidade: contratosDetails.Cidade,
+                endereco: contratoDetails.Endereco,
+                numero: contratoDetails.Numero,
+                complemento: contratoDetails.Complemento,
+                cep: contratoDetails.Cep,
+                bairro: contratoDetails.Bairro,
+                cidade: contratoDetails.Cidade,
                 descricao: descricao
             }
         this.props.dispatch(newTaskActions.updateDataResumo(data))
@@ -74,45 +75,41 @@ class Resumo extends Component {
     stateAction = () => this.props.selected ? false : true
 
     render() {
-        const { classes, serieDetails } = this.props
+        const { classes } = this.props
         return (
             <div>
-                {serieDetails &&
-                    <Fragment>
-                        <Typography variant='h5' className={classes.subHader}>
-                            Resumo da solicitação
+                <Fragment>
+                    <Typography variant='h5' className={classes.subHader}>
+                        Resumo da solicitação
                         </Typography>
-                        <Divider />
-                    </Fragment>
-                }
+                    <Divider />
+                </Fragment>
                 <form className={classes.form}>
                     <GridContainer spacing={16}>
-                        {serieDetails &&
-                            <Fragment>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <Field
-                                        name="produto"
-                                        component={TextField}
-                                        label="Produto"
-                                        fullWidth
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
-                                    />
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={6}>
-                                    <Field
-                                        name="serie"
-                                        component={TextField}
-                                        label="Série"
-                                        fullWidth
-                                        InputProps={{
-                                            readOnly: true,
-                                        }}
-                                    />
-                                </GridItem>
-                            </Fragment>
-                        }
+                        <Fragment>
+                            <GridItem xs={12} sm={12} md={6}>
+                                <Field
+                                    name="produto"
+                                    component={TextField}
+                                    label="Produto"
+                                    fullWidth
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+                            </GridItem>
+                            <GridItem xs={12} sm={12} md={6}>
+                                <Field
+                                    name="serie"
+                                    component={TextField}
+                                    label="Série"
+                                    fullWidth
+                                    InputProps={{
+                                        readOnly: true,
+                                    }}
+                                />
+                            </GridItem>
+                        </Fragment>
                         <GridItem xs={12} sm={12} md={12}>
                             <Typography variant='h6' className={classes.subHader}>
                                 Informações do cliente
@@ -291,9 +288,10 @@ const selector = formValueSelector('formInterno')
 const mapStateToProps = state => ({
     contatos: state.repository.contatos,
     contato: selector(state, 'contato'),
-    serie: selector(state, 'serie'),
     descricao: selector(state, 'descricao'),
+    produto: selector(state, 'produto'),
     serieDetails: state.repository.serieDetails,
+    contratoDetails: state.repository.contratoDetails,
     initialValues: state.newTask.data
 })
 

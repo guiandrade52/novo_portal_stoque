@@ -37,10 +37,7 @@ class Dash extends Component {
     }
 
     handleSelected = id => {
-        this.props.resetForm('formInterno')
-        this.props.resetForm('formExterno')
-        this.props.updateDataResumo(undefined)
-        this.props.reset()
+        this.props.resetNewTask()
         this.setState({
             id
         })

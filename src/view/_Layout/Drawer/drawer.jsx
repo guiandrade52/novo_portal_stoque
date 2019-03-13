@@ -24,14 +24,14 @@ const styles = theme => ({
     },
 })
 
-const Navbar = ({ classes, container, mobileOpen, handleDrawerToggle }) => (
+const Navbar = ({ classes, container, drawer, handleDrawerToogle }) => (
     <nav className={classes.drawer}>
         <Hidden smUp implementation="css">
             <Drawer
                 container={container}
                 variant="temporary"
-                open={false}
-                onClose={handleDrawerToggle}
+                open={drawer}
+                onClose={handleDrawerToogle}
                 classes={{
                     paper: classes.drawerPaper,
                 }}
