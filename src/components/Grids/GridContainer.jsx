@@ -5,7 +5,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 
 const style = {
-    grid: { width: '100%' }
+    grid: { width: '100%' },
 }
 
 const GridContainer = ({ classes, children, ...rest }) =>

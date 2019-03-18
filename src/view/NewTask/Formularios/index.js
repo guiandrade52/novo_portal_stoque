@@ -1,3 +1,3 @@
-import Formularios from './formularios'
+import Formularios from './_MainFormulario'
 
 export { Formularios }

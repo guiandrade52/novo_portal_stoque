@@ -11,6 +11,7 @@ import { reducer as form } from 'redux-form'
 import { newTaskReducer as newTask } from './newTask.reducer'
 import { taskListReducer as taskList } from './taskList.reducer'
 import { filterReducer as filter } from './filter.reducer'
+import { chartReducer as charts } from './charts.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -22,5 +23,6 @@ export const rootReducers = combineReducers({
     form,
     newTask,
     taskList,
-    filter
+    filter,
+    charts
 })

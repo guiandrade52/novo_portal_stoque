@@ -16,7 +16,6 @@ const reset = () => ({ type: newTaskConstants.RESET_NEWTASK })
 const uploadFile = (files, ocorrencia) => dispatch => {
     const upload = new FormData()
     files.forEach(file => upload.append('file', file))
-
     axios.post(`${appConfig.URL_BASE}/UploadFile?executionId=${ocorrencia}`, upload, { headers: { 'content-type': 'multipart/form-data' } })
         .catch(error => {
             dispatch(failure())

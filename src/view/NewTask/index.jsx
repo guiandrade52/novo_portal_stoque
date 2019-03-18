@@ -21,7 +21,7 @@ import { stepActions, newTaskActions } from '../../redux-flow/_actions';
 const styles = ({
     root: {
         margin: 7,
-        width: '100%'
+        width: '100%',
     }
 })
 
