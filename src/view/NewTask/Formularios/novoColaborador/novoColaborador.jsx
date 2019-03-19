@@ -38,7 +38,6 @@ class NovoColaborador extends Component {
 
     render() {
         const { handleSubmit, classes, submitting, pristine, submitFailed } = this.props
-        console.log(this.props)
         return (
             <GridItem xs={12} sm={12} md={12}>
                 <form onSubmit={handleSubmit}>

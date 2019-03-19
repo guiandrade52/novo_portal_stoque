@@ -6,6 +6,7 @@ import Header from '../Header';
 import Drawer from '../Drawer';
 
 import withStyles from '@material-ui/core/styles/withStyles'
+import { Usuario } from '../../Usuario';
 
 const styles = theme => ({
     toolbar: theme.mixins.toolbar,
@@ -43,6 +44,7 @@ class Main extends Component {
                         </GridContainer>
                     </div>
                 </div>
+                <Usuario />
             </Fragment>
         )
     }

@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { authActions } from '../../../redux-flow/_actions/auth.action';
+import { authActions, usuarioActions } from '../../../redux-flow/_actions';
 
 // @material-ui/icons
 import AccountCircle from '@material-ui/icons/AccountCircle'
@@ -51,6 +51,11 @@ class MenuProfile extends Component {
         this.setState({ anchorEl: null });
     };
 
+    handleMyAccount = () => {
+        this.setState({ anchorEl: null });
+        this.props.openDetailsUsuario()
+    }
+
     render() {
         const { anchorEl } = this.state
         const open = Boolean(anchorEl)
@@ -67,7 +72,7 @@ class MenuProfile extends Component {
                     open={open}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={this.handleClose}>Minha conta</MenuItem>
+                    <MenuItem onClick={this.handleMyAccount}>Minha conta</MenuItem>
                     <MenuItem onClick={() => logout()}>Sair</MenuItem>
                 </Menu>
             </GridItem>
@@ -79,6 +84,6 @@ MenuProfile.propTypes = {
     classes: PropTypes.object.isRequired,
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators(authActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...authActions, ...usuarioActions }, dispatch)
 
 export default connect(null, mapDispatchToProps)(withStyles(styles)(MenuProfile))

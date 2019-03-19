@@ -11,16 +11,17 @@ import { SidebarRouter } from './view/_Routers'
 
 
 import { Layout } from './view/_Layout';
+import { usuarioActions } from './redux-flow/_actions';
 
 
 const hist = createBrowserHistory()
 
 const switchRoutes = (
   <Switch>
-      {SidebarRouter.map((prop, key) => {
-          return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
-      })}
-      <Route render={() => <h1>Not Fold</h1>} />
+    {SidebarRouter.map((prop, key) => {
+      return <Route exact={prop.exact} path={prop.path} component={prop.component} key={key} />
+    })}
+    <Route render={() => <h1>Not Fold</h1>} />
   </Switch>
 )
 
@@ -28,6 +29,7 @@ class App extends Component {
 
   componentWillMount() {
     this.props.changeTitle('Stoque')
+    this.props.fetchUsuario()
   }
 
 
@@ -52,6 +54,6 @@ const mapStateToProps = state => ({
   ...state.app
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(appActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...appActions, ...usuarioActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

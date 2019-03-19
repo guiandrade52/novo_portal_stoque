@@ -50,7 +50,6 @@ const Header = ({ classes, title, handleDrawerToogle }) =>
 
             <MenuNotify />
             <MenuProfile />
-
         </Toolbar>
     </AppBar>
 

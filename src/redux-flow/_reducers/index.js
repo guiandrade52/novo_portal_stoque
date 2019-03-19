@@ -12,6 +12,7 @@ import { newTaskReducer as newTask } from './newTask.reducer'
 import { taskListReducer as taskList } from './taskList.reducer'
 import { filterReducer as filter } from './filter.reducer'
 import { chartReducer as charts } from './charts.reducer'
+import { usuarioReducer as usuario } from './usuario.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -24,5 +25,6 @@ export const rootReducers = combineReducers({
     newTask,
     taskList,
     filter,
-    charts
+    charts,
+    usuario
 })
