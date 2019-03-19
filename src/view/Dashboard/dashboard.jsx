@@ -8,16 +8,13 @@ import { chartsActions } from '../../redux-flow/_actions/charts.actions';
 const getDataChartRound = dataChart => {
     const labels = [];
     const data = [];
-
-    if (dataChart.length > 0) {
-        if (dataChart[12].TotalFechadas > 0) {
-            labels.push('Concluidas')
-            data.push(dataChart[12].TotalFechadas)
-        }
-        if (dataChart[12].TotalAbertas > 0) {
-            labels.push('Abertas')
-            data.push(dataChart[12].TotalAbertas)
-        }
+    if (dataChart.TotalFechadas > 0) {
+        labels.push('Concluidas')
+        data.push(dataChart.TotalFechadas)
+    }
+    if (dataChart.TotalAbertas > 0) {
+        labels.push('Abertas')
+        data.push(dataChart.TotalAbertas)
     }
     return {
         labels,
@@ -81,7 +78,7 @@ class Dashboard extends Component {
                     <Line data={getDataChartLine(this.props.chartLine)} />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                    <Doughnut data={getDataChartRound(this.props.chartLine)} />
+                    <Doughnut data={getDataChartRound(this.props.chartRound)} />
                 </GridItem>
             </GridContainer>
         )

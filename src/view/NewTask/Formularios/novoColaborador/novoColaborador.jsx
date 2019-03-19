@@ -410,7 +410,7 @@ class NovoColaborador extends Component {
 NovoColaborador = reduxForm({
     form: 'formNovoColaborador',
     destroyOnUnmount: false,
-    //validate
+    validate
 })(NovoColaborador)
 
 export default withStyles(styles)(NovoColaborador)
