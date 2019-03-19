@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 }
 
 export const filterReducer = createReducer(INITIAL_STATE, {
-    [filterConstants.CHANGE]: (state, action) => ({ ...state, ...action.payload, ativo: true }),
-    [filterConstants.CHANGEINPUT]: (state, action) => ({ ...state, search: action.payload, ativo: true }),
+    [filterConstants.CHANGE]: (state, action) => ({ ...state, ...action.payload, ativo: true, activePage: 1 }),
+    [filterConstants.CHANGEINPUT]: (state, action) => ({ ...state, search: action.payload, ativo: true, activePage: 1 }),
     [filterConstants.RESET]: () => ({ ...INITIAL_STATE }),
 })

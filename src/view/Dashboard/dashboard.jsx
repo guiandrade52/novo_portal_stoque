@@ -5,22 +5,34 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { chartsActions } from '../../redux-flow/_actions/charts.actions';
 
-const data = {
-    labels: [
-        'Abertas',
-        'Encerradas',
-    ],
-    datasets: [{
-        data: [300, 50],
-        backgroundColor: [
-            '#46e00e',
-            '#e03b3b',
-        ],
-        hoverBackgroundColor: [
-            '#40ce0c',
-            '#c63333',
-        ]
-    }]
+const getDataChartRound = dataChart => {
+    const labels = [];
+    const data = [];
+
+    if (dataChart.length > 0) {
+        if (dataChart[12].TotalFechadas > 0) {
+            labels.push('Concluidas')
+            data.push(dataChart[12].TotalFechadas)
+        }
+        if (dataChart[12].TotalAbertas > 0) {
+            labels.push('Abertas')
+            data.push(dataChart[12].TotalAbertas)
+        }
+    }
+    return {
+        labels,
+        datasets: [{
+            data,
+            backgroundColor: [
+                '#46e00e',
+                '#e03b3b',
+            ],
+            hoverBackgroundColor: [
+                '#40ce0c',
+                '#c63333',
+            ]
+        }]
+    }
 };
 
 const getDataChartLine = chartData => {
@@ -69,7 +81,7 @@ class Dashboard extends Component {
                     <Line data={getDataChartLine(this.props.chartLine)} />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
-                    <Doughnut data={data} />
+                    <Doughnut data={getDataChartRound(this.props.chartLine)} />
                 </GridItem>
             </GridContainer>
         )
