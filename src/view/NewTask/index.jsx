@@ -15,7 +15,7 @@ import { Externo } from './Externo';
 import { Interno } from './Interno';
 import { Formularios } from './Formularios';
 import { Grow } from '../../components/Transitions';
-import { stepActions, newTaskActions } from '../../redux-flow/_actions';
+import { stepActions, newTaskActions, usuarioActions } from '../../redux-flow/_actions';
 
 
 const styles = ({
@@ -79,4 +79,8 @@ class Dash extends Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({ ...stepActions, resetForm, ...newTaskActions }, dispatch)
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Dash))
+const mapStateToProps = state => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dash))

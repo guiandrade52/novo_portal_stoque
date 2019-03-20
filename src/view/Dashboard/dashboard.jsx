@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { GridContainer, GridItem } from '../../components/Grids';
 import { Doughnut, Line } from 'react-chartjs-2'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { chartsActions } from '../../redux-flow/_actions/charts.actions';
+import { Message } from 'semantic-ui-react';
 
 const getDataChartRound = dataChart => {
     const labels = [];
@@ -72,21 +73,36 @@ class Dashboard extends Component {
     }
 
     render() {
+        const { contratos, isFetch } = this.props
         return (
             <GridContainer>
-                <GridItem xs={12} sm={12} md={8}>
-                    <Line data={getDataChartLine(this.props.chartLine)} />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                    <Doughnut data={getDataChartRound(this.props.chartRound)} />
-                </GridItem>
+                {contratos && !isFetch &&
+                    <Fragment>
+                        <GridItem xs={12} sm={12} md={8}>
+                            <Line data={getDataChartLine(this.props.chartLine)} />
+                        </GridItem>
+                        <GridItem xs={12} sm={12} md={4}>
+                            <Doughnut data={getDataChartRound(this.props.chartRound)} />
+                        </GridItem>
+                    </Fragment>
+                }
+                {!contratos && !isFetch &&
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Message warning>
+                            <Message.Header>Desculpe!</Message.Header>
+                            <p>Você não possui nenhum contrato cadastrado no momento, entre em contato com suporte e solicite o cadastro.</p>
+                        </Message>
+                    </GridItem>
+                }
             </GridContainer>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    ...state.charts
+    ...state.charts,
+    contratos: state.usuario.dados.contratos,
+    isFetch: state.usuario.isFetch
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(chartsActions, dispatch)

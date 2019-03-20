@@ -114,7 +114,7 @@ FormUsuario = reduxForm({
 const mapStateToProps = state => ({
     initialValues: state.usuario.dados,
     edit: state.usuario.edit,
-    contratos: state.usuario.dados ? state.usuario.dados.contratos : []
+    contratos: state.usuario.dados.contratos ? state.usuario.dados.contratos : []
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(FormUsuario))

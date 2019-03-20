@@ -2,11 +2,13 @@ import React from 'react'
 
 import { SidebarRouter } from '../../_Routers'
 import { withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 //Material UI
 import { List, Hidden, ListItem, ListItemIcon } from '@material-ui/core';
 
-const ItemList = ({ classes, location: { pathname } }) =>
+
+const ItemList = ({ classes, location: { pathname }, contratos }) =>
     <div>
         <Hidden xsDown>
             <div className={classes.toolbar} />
@@ -15,7 +17,7 @@ const ItemList = ({ classes, location: { pathname } }) =>
         <List disablePadding>
             {SidebarRouter.map((route) => {
                 return (
-                    <ListItem key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
+                    <ListItem disabled={!contratos} key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
                         <ListItemIcon>
                             {<route.icon fontSize="large" />}
                         </ListItemIcon>
@@ -25,5 +27,8 @@ const ItemList = ({ classes, location: { pathname } }) =>
         </List>
     </div>
 
+const mapStateToProps = state => ({
+    contratos: state.usuario.dados.contratos
+})
 
-export default withRouter(ItemList)
+export default connect(mapStateToProps)(withRouter(ItemList))

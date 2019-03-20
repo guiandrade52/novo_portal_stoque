@@ -16,7 +16,7 @@ export const SidebarRouter = [
         name: "Dashboard",
         icon: Home,
         component: Dashboard,
-        exact: true
+        exact: true,
     },
     {
         path: "/NewTask",

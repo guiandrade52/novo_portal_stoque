@@ -92,7 +92,7 @@ class Interno extends React.Component {
         const { classes, activeStep, home, sending } = this.props
         const steps = getSteps(this.props)
         return (
-            <GridContainer >
+            <GridContainer spacing={8}>
                 <Grow>
                     <GridContainer>
                         <GridItem xs={12} sm={12} md={12}>
