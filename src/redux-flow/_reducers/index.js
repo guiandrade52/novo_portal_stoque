@@ -13,6 +13,7 @@ import { taskListReducer as taskList } from './taskList.reducer'
 import { filterReducer as filter } from './filter.reducer'
 import { chartReducer as charts } from './charts.reducer'
 import { usuarioReducer as usuario } from './usuario.reducer'
+import { dialogReducer as dialog } from './dialog.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -26,5 +27,6 @@ export const rootReducers = combineReducers({
     taskList,
     filter,
     charts,
-    usuario
+    usuario,
+    dialog
 })

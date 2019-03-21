@@ -48,7 +48,8 @@ function serialize(data) {
         ...data.Usuario,
         perfil: data.Permissoes.Perfil,
         registraOcor: data.Permissoes.RgtOcorrencia === 'S' ? true : false,
-        contratos: data.Contratos
+        contratos: data.Contratos,
+        clienteInterno: data.Permissoes.ClienteInterno
 
     }
 }

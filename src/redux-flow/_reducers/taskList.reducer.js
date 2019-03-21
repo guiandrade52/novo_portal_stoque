@@ -4,11 +4,12 @@ import { taskListConstants } from "../_constants";
 const INITIAL_STATE = {
     isFetching: false,
     tasks: [],
-    viewMobile: true
+    viewMobile: true,
+    selected: undefined
 }
 
 export const taskListReducer = createReducer(INITIAL_STATE, {
-    [taskListConstants.REQUEST]: (state) => ({ ...state, tasks: [], isFetching: true }),
+    [taskListConstants.REQUEST]: (state) => ({ ...state, tasks: [], isFetching: true, selected: undefined }),
     [taskListConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, ...action.payload }),
     [taskListConstants.FAILURE]: () => ({ ...INITIAL_STATE }),
     [taskListConstants.SELECTED]: (state, action) => ({ ...state, viewMobile: true, selected: state.tasks.find(x => x.ExecutionId === action.payload) }),

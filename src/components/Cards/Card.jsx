@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { Tooltip } from '@material-ui/core';
 import { Loading } from '../Loading';
-import { Dialogs } from '../Dialogs';
+import { Dialog } from '../Dialogs';
 import { appConfig } from '../../appConfig';
 
 const styles = {
@@ -52,7 +52,7 @@ class ImgMediaCard extends Component {
                     </Tooltip>
                 </CardActions>
                 <CardActions>
-                    <Dialogs button='Visualizar' title={title} url={url} tipo={tipo} />
+                    <Dialog button='Visualizar' title={title} url={url} tipo={tipo} />
                     <Typography variant="overline" className={classes.date}>
                         {subTitle !== undefined ? subTitle.trim() : subTitle}
                     </Typography>

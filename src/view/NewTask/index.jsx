@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 //Redux
 import { connect } from 'react-redux'
@@ -15,7 +15,7 @@ import { Externo } from './Externo';
 import { Interno } from './Interno';
 import { Formularios } from './Formularios';
 import { Grow } from '../../components/Transitions';
-import { stepActions, newTaskActions, usuarioActions } from '../../redux-flow/_actions';
+import { stepActions, newTaskActions } from '../../redux-flow/_actions';
 
 
 const styles = ({
@@ -45,24 +45,34 @@ class Dash extends Component {
 
     render() {
         const { options, id } = this.state
-        const { classes } = this.props
+        const { classes, clienteInterno } = this.props
         return (
             <div className={classes.root}>
                 <Grow>
                     <GridContainer justify="center" spacing={24} >
 
                         {id === 0 &&
-                            options.map(item => {
-                                return (
-                                    <GridItem key={item.label}>
-                                        <MediaCard
-                                            title={item.label}
-                                            icon={item}
-                                            onClick={() => this.handleSelected(item.id)}
-                                        />
-                                    </GridItem>
-                                )
-                            })
+                            <Fragment>
+                                {
+                                    clienteInterno === 'S'
+                                        ? options.map(item =>
+                                            <GridItem key={item.label}>
+                                                <MediaCard
+                                                    title={item.label}
+                                                    icon={item}
+                                                    onClick={() => this.handleSelected(item.id)}
+                                                />
+                                            </GridItem>
+                                        )
+                                        : <GridItem>
+                                            <MediaCard
+                                                title={options[1].label}
+                                                icon={options[1]}
+                                                onClick={() => this.handleSelected(options[1].id)}
+                                            />
+                                        </GridItem>
+                                }
+                            </Fragment>
                         }
                         <GridItem xs={12} sm={12} md={12}>
                             {id === 1 && <Interno home={this.handleSelected} />}
@@ -80,7 +90,7 @@ class Dash extends Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ ...stepActions, resetForm, ...newTaskActions }, dispatch)
 
 const mapStateToProps = state => ({
-
+    clienteInterno: state.usuario.dados.clienteInterno
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dash))

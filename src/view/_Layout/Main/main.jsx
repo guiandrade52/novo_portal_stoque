@@ -1,12 +1,14 @@
 import React, { Fragment, Component } from 'react'
 
+//Material UI
+import withStyles from '@material-ui/core/styles/withStyles'
+
 //CoreComponents
 import { GridContainer } from '../../../components/Grids';
 import Header from '../Header';
 import Drawer from '../Drawer';
-
-import withStyles from '@material-ui/core/styles/withStyles'
 import { Usuario } from '../../Usuario';
+import { Modal } from '../../../components/Dialogs';
 
 const styles = theme => ({
     toolbar: theme.mixins.toolbar,
@@ -45,6 +47,7 @@ class Main extends Component {
                     </div>
                 </div>
                 <Usuario />
+                <Modal />
             </Fragment>
         )
     }
