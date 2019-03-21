@@ -21,7 +21,7 @@ const Modal = ({ open, hideDialog, selected: { title } }) =>
             scroll='paper'
             aria-labelledby="scroll-dialog-title"
         >
-            <DialogTitle id="scroll-dialog-title">{title}</DialogTitle>
+            {title && < DialogTitle id="scroll-dialog-title">{title}</DialogTitle>}
             <DialogContent>
                 <DialogContentText>
                     Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
@@ -68,7 +68,8 @@ const Modal = ({ open, hideDialog, selected: { title } }) =>
                 </Button>
             </DialogActions>
         </Dialog>
-    </div>
+    </div >
+
 
 const mapStateToProps = state => ({ ...state.dialog })
 

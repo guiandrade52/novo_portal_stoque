@@ -91,6 +91,7 @@ class FormUsuario extends Component {
                                         avatar={<Avatar>{contrato.Contrato}</Avatar>}
                                         label={`${contrato.CodParc} - ${contrato.Nome}`}
                                         className={classes.chip}
+                                        key={contrato.Contrato}
                                     />
                                 )}
                                 {this.props.contratos.length === 0 &&
