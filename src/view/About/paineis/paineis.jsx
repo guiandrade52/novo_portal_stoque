@@ -14,6 +14,7 @@ import TaskExterno from '../../../assets/videos/TaskExterno.mp4'
 import HomePage from '../../../assets/videos/HomePage.mp4'
 import ViewTask from '../../../assets/videos/ViewTask.mp4'
 import Filtro from '../../../assets/videos/Filtro.mp4'
+import { appConfig } from '../../../appConfig';
 
 const styles = theme => ({
     root: {
@@ -175,17 +176,33 @@ class Paineis extends React.Component {
                         </div>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                {/* <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
+                <ExpansionPanel expanded={expanded === 'panel4'} onChange={this.handleChange('panel4')}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography className={classes.heading}>Personal data</Typography>
+                        <Typography className={classes.heading}>Outros</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Typography>
-                            Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-                            eros, vitae egestas augue. Duis vel est augue.
-                        </Typography>
+                        <div className={classes.root}>
+                            <ExpansionPanel>
+                                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                                    <Typography className={classes.heading}>Gabarito de cores no status das ocorrências</Typography>
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    <div className={classes.root}>
+                                        <Typography variant='h6'>
+                                            Gabarito das cores nos cards de ocorrências
+                                        </Typography>
+                                        <Typography >
+                                            Aqui temos o gabarito das cores nos status das ocorrências.
+                                        </Typography>
+                                        {appConfig.statusSituacao.map(item =>
+                                            <span style={{ padding: 10, margin: 5, borderRadius: 100, float: 'left', background: item.color, }}>{item.label}</span>
+                                        )}
+                                    </div>
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
+                        </div>
                     </ExpansionPanelDetails>
-                </ExpansionPanel> */}
+                </ExpansionPanel>
             </div>
         );
     }

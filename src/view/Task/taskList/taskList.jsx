@@ -22,7 +22,7 @@ import FilterListIcon from '@material-ui/icons/FilterList'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { taskListActions, filterActions } from '../../../redux-flow/_actions';
-import {reset} from 'redux-form'
+import { reset } from 'redux-form'
 
 
 import IconRefresh from '@material-ui/icons/Refresh'
@@ -57,8 +57,8 @@ class TaskList extends Component {
         this.props.fetchTasks(this.props.filter)
     }
 
-    handleResetFilter = async () => {
-        await this.props.resetFilter()
+    handleResetFilter = () => {
+        this.props.resetFilter()
         this.props.fetchTasks(this.props.filter)
         this.props.reset('formFilter')
     }
@@ -165,5 +165,5 @@ const mapStateToProps = state => ({
     filter: state.filter
 })
 
-const mapDispatchToprops = dispatch => bindActionCreators({ ...taskListActions, ...filterActions,reset }, dispatch)
+const mapDispatchToprops = dispatch => bindActionCreators({ ...taskListActions, ...filterActions, reset }, dispatch)
 export default connect(mapStateToProps, mapDispatchToprops)(withStyles(styles, { withTheme: true })(TaskList))

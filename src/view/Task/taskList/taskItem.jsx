@@ -16,6 +16,7 @@ import BeenhereIcon from '@material-ui/icons/Beenhere'
 
 //Redux
 import { connect } from 'react-redux'
+import { appConfig } from '../../../appConfig';
 
 const styles = {
     typography: {
@@ -61,77 +62,15 @@ const styles = {
 class TaskItem extends Component {
 
     handleColorStatus(idSituacao) {
-        switch (idSituacao) {
-            case 1:
-                //Aguardando Classificação
-                return '#ff9933'
-            case 2:
-                //Em Andamento
-                return '#ffff00'
-            case 3:
-                //Aguardando Cliente
-                return '#3333cc'
-            case 4:
-                //Aguardando Terceiros
-                return '#7070db'
-            case 5:
-                //Cliente Cancelou Ocorrencia
-                return '#ff0000'
-            case 6:
-                //Service Desk Cancelou a Ocorrencia
-                return '#ff0066'
-            case 7:
-                //Central de Atendimento Cancelou Ocorrência
-                return '#cc0099'
-            case 8:
-                //Concluida
-                return '#33cc33'
-            case 9:
-                //Aguardando Peças
-                return '#993333'
-            case 11:
-                //Solução Proposta
-                return '#ff9966'
-            case 12:
-                //Cancelado - Aguarando Avaliação
-                return '#ff5050'
-            case 13:
-                //Aguardando Atribuição
-                return '#66ffff'
-            case 14:
-                //Reclassificar Ocorrência
-                return '#cc6699'
-            case 15:
-                //Despachado
-                return '#003300'
-            case 16:
-                //Conclusão Serviço
-                return '#336600'
-            case 17:
-                //Ag. Pc. No Local
-                return '#996600'
-            case 18:
-                //Concluida - Validação Negada
-                return '#0066ff'
-            case 19:
-                //Concluida - Garantia Fab.
-                return '#000066'
-            case 20:
-                //Concluida Solucionado Backup
-                return '#339933'
-            case 21:
-                //Aguardando Atendimento
-                return '#669999'
-            default:
-                return '#FFF'
-        }
+        const item = appConfig.statusSituacao.find(item => item.id === idSituacao && item.color)
+        return item.color
     }
 
     render() {
         const { classes, task, selected } = this.props
 
         return (
-            <Card className={classes.card}>
+            <Card on={() => console.log('entrei')} className={classes.card}>
                 <CardActionArea className={selected && (selected.ExecutionId === task.ExecutionId) ? classes.cardSelected : ''} >
                     <CardContent>
                         <Typography className={classes.typography} noWrap >
