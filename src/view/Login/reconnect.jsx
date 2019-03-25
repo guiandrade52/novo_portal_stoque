@@ -25,28 +25,30 @@ const styles = {
 class Reconnect extends Component {
 
     state = {
-        wait: 20
+        time: 20,
+        await: false
     }
 
-    componentWillMount() {
-        if (this.props.expired) {
+    timeAwait = () => {
+        if (this.props.expired && !this.state.await) {
             const interval = setInterval(() => {
-                if (this.state.wait === 1) {
-                    //this.props.logout()
+                if (this.state.time === 1) {
+                    this.props.logout()
                     clearInterval(interval)
+                    this.setState({ time: 20, await: false })
                 }
-                this.setState({ wait: this.state.wait - 1 })
+                this.setState({ time: this.state.time - 1, await: true })
             }, 1000);
         }
     }
 
     handleSim = () => {
-        debugger
         const user = JSON.parse(localStorage.getItem(localStorageKey))
         const username = cryptoServices.decrypt(user.username)
         const password = cryptoServices.decrypt(user.password)
         this.props.login(username, password)
         this.props.sectionExpired()
+        window.location.reload()
     }
 
     handleNao = () => {
@@ -55,6 +57,7 @@ class Reconnect extends Component {
 
     render() {
         const { classes, expired } = this.props
+        expired && this.timeAwait()
         return (
             <Dialog open={expired}>
                 <div className={classes.root}>
@@ -63,7 +66,7 @@ class Reconnect extends Component {
                         Deseja continuar conectado?
                      </Typography>
                     <Typography variant='h6' align='center'>
-                        {this.state.wait}
+                        {this.state.time}
                     </Typography>
                     <div align="center">
                         <Button size='large' onClick={this.handleSim}>Sim</Button>

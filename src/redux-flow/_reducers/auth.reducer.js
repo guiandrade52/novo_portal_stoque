@@ -7,7 +7,7 @@ import { localStorageKey } from "../../appConfig";
 let user = JSON.parse(localStorage.getItem(localStorageKey))
 
 const INITIAL_STATE = user
-    ? { user, loggedIn: true, error: false, loading: false, expired: true }
+    ? { user, loggedIn: true, error: false, loading: false, expired: false }
     : {}
 
 export const auth = createReducer(INITIAL_STATE, {

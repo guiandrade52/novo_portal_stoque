@@ -45,7 +45,7 @@ const Header = ({ classes, title, handleDrawerToogle }) =>
                 <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" className={classes.grow} noWrap>
-                Portal {title}
+                {title}
             </Typography>
 
             <MenuNotify />

@@ -28,11 +28,8 @@ const switchRoutes = (
 class App extends Component {
 
   componentWillMount() {
-    this.props.changeTitle('Stoque')
     this.props.fetchUsuario()
   }
-
-
 
   render() {
     return (
