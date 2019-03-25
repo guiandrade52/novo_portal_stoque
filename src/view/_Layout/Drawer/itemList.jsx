@@ -16,6 +16,7 @@ const ItemList = ({ classes, location: { pathname }, contratos }) =>
 
         <List disablePadding>
             {SidebarRouter.map((route) => {
+                debugger
                 return (
                     <ListItem disabled={!contratos} key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
                         <ListItemIcon>

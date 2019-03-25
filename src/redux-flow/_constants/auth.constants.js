@@ -4,5 +4,6 @@ export const authConstants = {
     FAILURE: 'auth::FAILURE',
 
     LOGIN: 'auth::LOGIN',
-    LOGOUT: 'auth::LOGOUT'
+    LOGOUT: 'auth::LOGOUT',
+    SECTION: 'auth::SECTION'
 }

@@ -1,4 +1,4 @@
-
+// const URL_BASE = 'http://10.10.11.61:8092'
 const URL_BASE = 'http://localhost:64966'
 
 const EXTENSIONS = {
@@ -10,6 +10,8 @@ const VIEWS = {
     microsoft: 'https://view.officeapps.live.com/op/view.aspx?src=',
     google: 'https://docs.google.com/viewerng/viewer?url='
 }
+
+export const localStorageKey = 'portal_keyData'
 
 const statusSituacao = [
     { id: 1, label: 'Aguardando Classificação', color: '#ff9933' },
