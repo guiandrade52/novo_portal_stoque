@@ -19,7 +19,6 @@ import { withStyles } from '@material-ui/core/styles'
 //CoreComponents
 import MenuProfile from './menuProfile'
 import MenuNotify from './menuNotify'
-import Toastr from '../../../components/Alerts';
 
 const styles = theme => ({
     appBar: {
@@ -39,7 +38,6 @@ const styles = theme => ({
 
 const Header = ({ classes, title, handleDrawerToogle }) =>
     <AppBar position="fixed" className={classes.appBar}>
-        <Toastr />
         <Toolbar>
             <IconButton color="inherit" aria-label="Open drawer" className={classes.menuButton} onClick={handleDrawerToogle} >
                 <MenuIcon />

@@ -15,7 +15,7 @@ import { Divider } from 'semantic-ui-react';
 
 //Core Components
 import { GridContainer, GridItem } from '../../../components/Grids';
-import { Field as TextField } from '../../../components/Fields';
+import { TextField } from '../../../components/Fields';
 import { newTaskActions } from '../../../redux-flow/_actions/newTask.actions';
 
 

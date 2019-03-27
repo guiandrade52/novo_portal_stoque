@@ -22,9 +22,9 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 
 //Core Components
 import { GridItem, GridContainer } from '../../../../components/Grids';
-import { Field as TextField } from '../../../../components/Fields';
+import { TextField } from '../../../../components/Fields';
 import Select from '../../../../components/Fields/Select';
-import Toastr from '../../../../components/Alerts';
+// import Toastr from '../../../../components/Alerts';
 import { usuarioPortalActions } from '../../../../redux-flow/_actions/usuarioPortal.actions';
 import { parceirosActions } from '../../../../redux-flow/_actions/parceiros.actions';
 
@@ -66,7 +66,7 @@ class Form extends Component {
         const { classes, handleOpenOrClose, submitting, repository } = this.props
         return (
             <Fragment>
-                <Toastr />
+                {/* <Toastr /> */}
                 <DialogTitle id="scroll-dialog-title">Filtro Avançado</DialogTitle>
                 <DialogContent>
                     <form >

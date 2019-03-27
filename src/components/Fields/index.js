@@ -1,11 +1,11 @@
 import InputFile from './InputFile'
-import Field from './Field'
+import TextField from './TextField'
 import Select from './Select'
 import Checkbox from './checkbox'
 
 export {
     InputFile,
-    Field,
+    TextField,
     Select,
     Checkbox
 }

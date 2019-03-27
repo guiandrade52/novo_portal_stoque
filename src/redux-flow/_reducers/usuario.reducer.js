@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     isFetch: false,
     openDetails: false,
     edit: false,
-    dados: {}
+    dados: {},
+    isSendMail: false,
 }
 
 export const usuarioReducer = createReducer(INITIAL_STATE, {
@@ -14,4 +15,5 @@ export const usuarioReducer = createReducer(INITIAL_STATE, {
     [usuarioConstants.FAILURE]: () => ({ ...INITIAL_STATE }),
     [usuarioConstants.OPEN_DETAILS]: (state, action) => ({ ...state, openDetails: action.payload }),
     [usuarioConstants.EDIT]: (state) => ({ ...state, edit: !state.edit }),
+    [usuarioConstants.SEND_MAIL]: (state, action) => ({ ...state, isSendMail: action.payload }),
 })

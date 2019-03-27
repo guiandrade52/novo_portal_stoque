@@ -14,6 +14,8 @@ import { filterReducer as filter } from './filter.reducer'
 import { chartReducer as charts } from './charts.reducer'
 import { usuarioReducer as usuario } from './usuario.reducer'
 import { dialogReducer as dialog } from './dialog.reducer'
+import { loginReducer as login } from './login.reducer'
+import { cronometroReducer as cronometro } from './cronometro.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -28,5 +30,7 @@ export const rootReducers = combineReducers({
     filter,
     charts,
     usuario,
-    dialog
+    dialog,
+    login,
+    cronometro
 })

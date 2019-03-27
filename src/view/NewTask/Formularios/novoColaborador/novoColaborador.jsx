@@ -9,12 +9,12 @@ import { Paper, Typography, Button } from '@material-ui/core';
 import { Divider } from 'semantic-ui-react';
 
 //Normalize Redux From
-import normalizePhone from '../../../../components/NormalizeReduxForm/normalizePhone';
+import { normalizePhone } from '../../../../components/NormalizeReduxForm';
 import { validate } from './validate'
 
 //CoreComponents
 import { GridItem, GridContainer } from '../../../../components/Grids';
-import { Field as TextField, Checkbox } from '../../../../components/Fields';
+import { TextField, Checkbox } from '../../../../components/Fields';
 
 
 const styles = theme => ({

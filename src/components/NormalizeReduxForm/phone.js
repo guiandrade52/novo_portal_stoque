@@ -1,4 +1,4 @@
-const normalizePhone = value => {
+export const normalizePhone = value => {
     if (!value) {
         return value
     }
@@ -18,5 +18,3 @@ const normalizePhone = value => {
     }
     return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 6)}-${onlyNums.slice(6, 10)}`
 }
-
-export default normalizePhone

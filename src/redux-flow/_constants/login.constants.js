@@ -1,0 +1,16 @@
+export const loginConstants = {
+    REQUEST_MAIL: 'login::REQUEST_MAIL',
+    SUCCESS_MAIL: 'login::SUCCESS_MAIL',
+    FAILURE_MAIL: 'login::FAILURE_MAIL',
+
+    REQUEST_PASSWORD: 'login::REQUEST_PASSWORD',
+    SUCCESS_PASSWORD: 'login::SUCCESS_PASSWORD',
+    FAILURE_PASSWORD: 'login::FAILURE_PASSWORD',
+
+    REQUEST_COD: 'login::REQUEST_COD',
+    SUCCESS_COD: 'login::SUCCESS_COD',
+    FAILURE_COD: 'login::FAILURE_COD',
+
+    CANCELL: 'login::CANCELL',
+    CHANGE_WINDOW: 'login::CHANGE_WINDOW'
+}

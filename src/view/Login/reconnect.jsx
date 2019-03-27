@@ -42,13 +42,13 @@ class Reconnect extends Component {
         }
     }
 
-    handleSim = () => {
+    handleSim = async () => {
         const user = JSON.parse(localStorage.getItem(localStorageKey))
-        const username = cryptoServices.decrypt(user.username)
-        const password = cryptoServices.decrypt(user.password)
-        this.props.login(username, password)
-        this.props.sectionExpired()
-        window.location.reload()
+        this.props.login(cryptoServices.decrypt(user.username), cryptoServices.decrypt(user.password))
+        await this.props.sectionExpired()
+        setTimeout(() => {
+            window.location.reload()
+        }, 1000);
     }
 
     handleNao = () => {
@@ -72,6 +72,9 @@ class Reconnect extends Component {
                         <Button size='large' onClick={this.handleSim}>Sim</Button>
                         <Button size='large' onClick={this.handleNao}>Não</Button>
                     </div>
+                    <Typography align='center'>
+                        Se optar por continuar a página será recarregada.
+                     </Typography>
                 </div>
             </Dialog>
         )

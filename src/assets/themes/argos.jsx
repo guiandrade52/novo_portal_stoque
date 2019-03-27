@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core'
+import bkgLogin from "../../assets/img/bkgLogin.jpg";
 
 const theme = createMuiTheme({
     typography: {
@@ -8,9 +9,7 @@ const theme = createMuiTheme({
         primary: { main: '#aaa' },
         secondary: { main: '#11cb5f' }
     },
-    teste: {
-        text: 'teste'
-    }
+    login_background: `url(${bkgLogin})`
 })
 
 export default theme

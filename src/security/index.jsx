@@ -6,7 +6,7 @@ import { authActions } from '../redux-flow/_actions/auth.action';
 import { appActions } from '../redux-flow/_actions/app.actions';
 
 //CoreComponents
-import Login from '../view/Login'
+import { Login } from '../view/Login'
 import App from '../App'
 
 //Material  UI
@@ -15,6 +15,7 @@ import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 //Configure Temes
 import { themes } from '../assets/config';
 import '../assets/css/app.css'
+import Toastr from '../components/Alerts';
 
 class AuthOrApp extends Component {
 
@@ -30,6 +31,7 @@ class AuthOrApp extends Component {
         return (
             <MuiThemeProvider theme={themes.themeProvider}>
                 <CssBaseline />
+                <Toastr />
                 {loggedIn && <App />}
                 {!loggedIn && <Login />}
             </MuiThemeProvider>

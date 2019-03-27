@@ -9,9 +9,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { Chip, Typography, Paper, Avatar } from '@material-ui/core';
 
 //CoreComponents
-import { Field as TextField, Checkbox } from '../../components/Fields';
+import { TextField, Checkbox } from '../../components/Fields';
 import { GridContainer, GridItem } from '../../components/Grids';
-import normalizePhone from '../../components/NormalizeReduxForm/normalizePhone';
+import { normalizePhone } from '../../components/NormalizeReduxForm';
 
 const styles = theme => ({
     root: { margin: 10 },

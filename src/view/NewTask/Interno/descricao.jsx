@@ -11,7 +11,7 @@ import { Typography } from '@material-ui/core';
 
 //Core Components
 import Actions from './actions';
-import { Field as FieldText, InputFile } from '../../../components/Fields';
+import { TextField, InputFile } from '../../../components/Fields';
 class Descricao extends Component {
 
     stateAction = () => this.props.descricao && this.props.descricao.length >= 5 ? false : true
@@ -21,7 +21,7 @@ class Descricao extends Component {
             <form onSubmit={e => { e.preventDefault() }}>
                 <Field
                     name="descricao"
-                    component={FieldText}
+                    component={TextField}
                     label="Descrição"
                     fullWidth
                     multiline

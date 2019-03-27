@@ -4,5 +4,6 @@ export const usuarioConstants = {
     FAILURE: 'usuario::FAILURE',
 
     OPEN_DETAILS: 'usuario::OPEN_DETAILS',
-    EDIT: 'usuario::EDIT'
+    EDIT: 'usuario::EDIT',
+    SEND_MAIL: 'usuario::SEND_MAIL',
 }
