@@ -1,0 +1,17 @@
+export const adminConstants = {
+    REQUEST_SYNC: 'admin::REQUEST_SYNC',
+    SUCCESS_SYNC: 'admin::SUCCESS_SYNC',
+    FAILURE_SYNC: 'admin::FAILURE_SYNC',
+
+    REQUEST_LIST: 'admin::REQUEST_LIST',
+    SUCCESS_LIST: 'admin::SUCCESS_LIST',
+    FAILURE_LIST: 'admin::FAILURE_LIST',
+
+    REQUEST_DELETE: 'admin::REQUEST_DELETE',
+    SUCCESS_DELETE: 'admin::SUCCESS_DELETE',
+    FAILURE_DELETE: 'admin::FAILURE_DELETE',
+
+    SAVE_SYNC_CONTRATO: 'admin::SAVE_SYNC_CONTRATO',
+    DELETE_CONTRATO: 'admin::DELETE_CONTRATO'
+
+}

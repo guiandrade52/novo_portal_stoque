@@ -24,7 +24,7 @@ const styles = {
 const MediaCard = props => {
     const { classes, image, title, descricao, onClick, icon } = props;
     const matches = useMediaQuery('(min-width:1400px)')
-    const styleCard = matches ? { minWidth: 700 } : { minWidth: 350 }
+    const styleCard = matches ? { minWidth: 700, } : { minWidth: 350 }
 
     return (
         <Card style={styleCard} onClick={onClick}>

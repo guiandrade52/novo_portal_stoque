@@ -195,7 +195,7 @@ class Paineis extends React.Component {
                                             Aqui temos o gabarito das cores nos status das ocorrências.
                                         </Typography>
                                         {appConfig.statusSituacao.map(item =>
-                                            <span style={{ padding: 10, margin: 5, borderRadius: 100, float: 'left', background: item.color, }}>{item.label}</span>
+                                            <span key={item.id} style={{ padding: 10, margin: 5, borderRadius: 100, float: 'left', background: item.color, }}>{item.label}</span>
                                         )}
                                     </div>
                                 </ExpansionPanelDetails>

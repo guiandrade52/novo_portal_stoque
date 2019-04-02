@@ -14,14 +14,16 @@ const ItemList = ({ classes, location: { pathname } }) =>
         </Hidden>
 
         <List disablePadding>
-            {SidebarRouter.map((route) => {
-                return (
-                    <ListItem key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
-                        <ListItemIcon>
-                            {<route.icon fontSize="large" />}
-                        </ListItemIcon>
-                    </ListItem>
-                )
+            {SidebarRouter.map(route => {
+                if (route.enable === true)
+                    return (
+                        <ListItem key={route.name} button component={Link} to={route.path} selected={route.path === pathname} >
+                            <ListItemIcon>
+                                {<route.icon fontSize="large" />}
+                            </ListItemIcon>
+                        </ListItem>
+                    )
+                return null
             })}
         </List>
     </div>

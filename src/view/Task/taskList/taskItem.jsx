@@ -70,7 +70,7 @@ class TaskItem extends Component {
         const { classes, task, selected } = this.props
 
         return (
-            <Card on={() => console.log('entrei')} className={classes.card}>
+            <Card className={classes.card}>
                 <CardActionArea className={selected && (selected.ExecutionId === task.ExecutionId) ? classes.cardSelected : ''} >
                     <CardContent>
                         <Typography className={classes.typography} noWrap >

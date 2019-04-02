@@ -35,7 +35,20 @@ const fetchParceiroAt = (search = '') => dispatch => {
         })
 }
 
+const fetchParceiroPContrato = contratos => dispatch => {
+    dispatch(requestAt())
+    axios.get(`${appConfig.URL_BASE}/api/ParceiroAt`, { params: { contratos } })
+        .then(resp => {
+            dispatch(successAt(resp.data))
+        })
+        .catch(error => {
+            dispatch(failureAt())
+            helpersActions.checkErrorResponse(error, dispatch)
+        })
+}
+
 export const parceirosActions = {
     fetchParceiroAb,
-    fetchParceiroAt
+    fetchParceiroAt,
+    fetchParceiroPContrato
 }

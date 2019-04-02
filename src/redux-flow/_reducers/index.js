@@ -16,6 +16,7 @@ import { usuarioReducer as usuario } from './usuario.reducer'
 import { dialogReducer as dialog } from './dialog.reducer'
 import { loginReducer as login } from './login.reducer'
 import { cronometroReducer as cronometro } from './cronometro.reducer'
+import { adminReducer as admin } from './admin.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -32,5 +33,6 @@ export const rootReducers = combineReducers({
     usuario,
     dialog,
     login,
-    cronometro
+    cronometro,
+    admin
 })

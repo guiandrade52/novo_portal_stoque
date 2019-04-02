@@ -54,10 +54,9 @@ class Login extends React.Component {
         e.preventDefault();
         this.setState({ submitted: true });
         const { username, password } = this.state
-        const { dispatch } = this.props
 
         if (username && password) {
-            dispatch(authActions.login(username, password))
+            this.props.login(username, password)
         }
     }
     render() {
@@ -119,6 +118,6 @@ const mapStateToProps = state => ({
     ...state.auth
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(loginActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...loginActions, ...authActions }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Login))
