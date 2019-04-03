@@ -46,6 +46,10 @@ export const repositoryReducer = createReducer(INITIAL_STATE, {
     [usuarioPortalConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, usuarioPortal: action.payload }),
     [usuarioPortalConstants.FAILURE]: (state) => ({ ...state, usuarioPortal: [], isFetching: false }),
 
+    [usuarioPortalConstants.REQUEST_CLONE]: (state) => ({ ...state, isFetching: true }),
+    [usuarioPortalConstants.SUCCESS_CLONE]: (state) => ({ ...state, isFetching: false }),
+    [usuarioPortalConstants.FAILURE_CLONE]: (state) => ({ ...state, isFetching: false }),
+
     [parceiroAbConstants.REQUEST]: (state) => ({ ...state, parceiroAb: [], isFetching: true }),
     [parceiroAbConstants.SUCCESS]: (state, action) => ({ ...state, isFetching: false, parceiroAb: action.payload }),
     [parceiroAbConstants.FAILURE]: (state) => ({ ...state, parceiroAb: [], isFetching: false }),

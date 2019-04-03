@@ -37,10 +37,10 @@ class UsuarioPortal extends Component {
                         placeholder='Selecionar um Usuário'
                         options={usuarios.map(item => ({ label: `${item.Nome}`, value: item.IdUsuario }))}
                         onInputChange={e => fetchUsuariosPortal(e)}
-                        onChange={e => listaContratoPUsuario(e.value)}
+                        onChange={e => listaContratoPUsuario(e)}
                     />
 
-                    <Slide direction="left" in={contratos && contratos.length ? true : false} mountOnEnter unmountOnExit >
+                    <Slide direction="left" in={contratos && contratos.length && selected ? true : false} mountOnEnter unmountOnExit >
                         <GridItem xs={12} sm={12} md={12}>
                             <Typography variant='subtitle1'>Abaixo está todos contratos cadastrados para o usuário a cima</Typography>
                             {isFetchingContrato && <LinearProgress />}

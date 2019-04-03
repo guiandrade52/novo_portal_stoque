@@ -205,6 +205,12 @@ class SelectAuto extends React.Component {
                             placeholder={placeholder}
                             isClearable
                             onInputChange={onInputChange}
+                            textFieldProps={{
+                                label,
+                                InputLabelProps: {
+                                    shrink: true,
+                                },
+                            }}
                         />
                     }
                     <div className={classes.divider} />

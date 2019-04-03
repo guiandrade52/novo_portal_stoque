@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Paper, Typography, Table, TableHead, TableBody, TableCell, TableRow, Chip } from '@material-ui/core';
+import { Paper, Typography, Table, TableHead, TableBody, TableCell, TableRow } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
 import { GridContainer, GridItem } from '../../../../components/Grids';
 import { Divider } from 'semantic-ui-react';
 //Redux-form
 import { connect } from 'react-redux'
-import { reduxForm, Field, formValueSelector } from 'redux-form'
+import { reduxForm, Field, } from 'redux-form'
 import { Select } from '../../../../components/Fields';
 import { bindActionCreators } from 'redux';
 import { serieActions } from '../../../../redux-flow/_actions';
@@ -87,14 +87,9 @@ class VerificarSerie extends Component {
                                         <TableCell>{`${selectedSerie.CodParcCon} - ${selectedSerie.NomeParcCon}`}</TableCell>
                                         <TableCell>{`${selectedSerie.CodParcAtendido} - ${selectedSerie.NomeParcAtendido}`}</TableCell>
                                         <TableCell>
-                                            {
-                                                // eslint-disable-next-line
-                                                selectedSerie.Situacao === 'A' && 'Ativo' ||
-                                                // eslint-disable-next-line
-                                                selectedSerie.Situacao === 'C' && 'Cancelado' ||
-                                                // eslint-disable-next-line
-                                                selectedSerie.Situacao === 'S' && 'Suspenso'
-                                            }
+                                            {                                                selectedSerie.Situacao === 'A' && 'Ativo'}
+                                                {selectedSerie.Situacao === 'C' && 'Cancelado' }
+                                                {selectedSerie.Situacao === 'S' && 'Suspenso'                                            }
                                         </TableCell>
                                     </TableRow>
                                 </TableBody>

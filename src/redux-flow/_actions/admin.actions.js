@@ -41,8 +41,11 @@ const saveSyncContrato = values => dispatch => {
 }
 
 const listaContratoPUsuario = idUsuario => dispatch => {
+    if (!idUsuario)
+        return
+
     dispatch(request_list())
-    axios.get(`${appConfig.URL_BASE}/api/Contrato`, { params: { idUsuario } })
+    axios.get(`${appConfig.URL_BASE}/api/Contrato`, { params: { idUsuario: idUsuario.value } })
         .then(resp => dispatch(success_list(resp.data)))
         .catch(error => {
             dispatch(failure_list())
