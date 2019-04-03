@@ -58,7 +58,7 @@ class Contatos extends Component {
                             ? contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato }))
                             : undefined
                     }
-                    onKeyDown={e => this.handleSearchContato(e.target.value)}
+                    onInputChange={e => this.handleSearchContato(e)}
                 />
 
                 {isFetching &&

@@ -36,7 +36,7 @@ class UsuarioPortal extends Component {
                         label="Usuário Portal"
                         placeholder='Selecionar um Usuário'
                         options={usuarios.map(item => ({ label: `${item.Nome}`, value: item.IdUsuario }))}
-                        onKeyDown={e => fetchUsuariosPortal(e.target.value)}
+                        onInputChange={e => fetchUsuariosPortal(e)}
                         onChange={e => listaContratoPUsuario(e.value)}
                     />
 

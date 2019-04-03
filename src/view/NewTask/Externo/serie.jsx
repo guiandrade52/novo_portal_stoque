@@ -47,7 +47,7 @@ class Serie extends Component {
                         series
                             ? series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))
                             : undefined}
-                    onKeyDown={e => this.handleSearchSerie(e.target.value)}
+                    onInputChange={e => this.handleSearchSerie(e)}
                 />
                 {isFetching &&
                     <LinearProgress />

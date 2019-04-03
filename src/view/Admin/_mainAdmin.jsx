@@ -5,6 +5,8 @@ import { Breadcrumb } from 'semantic-ui-react';
 import DashAdmin from './window/dash';
 import { Slide } from '@material-ui/core';
 import { VincularContrato } from './window/vincularContrato';
+import { ClonarUsuario } from './window/clonarUsuario';
+import { VerificarSerie } from './window/verificarSerie';
 
 class Admin extends Component {
     INITIAL_STATE = {
@@ -31,7 +33,7 @@ class Admin extends Component {
 
 
     render() {
-        const { dash, contrato, breadCroumbOptions, breadcrumb } = this.state
+        const { dash, contrato, breadCroumbOptions, breadcrumb, usuario, serie } = this.state
         return (
             <Grow>
                 <Fragment>
@@ -55,6 +57,12 @@ class Admin extends Component {
                     </Slide>
                     <Slide direction="left" in={contrato} mountOnEnter unmountOnExit style={{ transitionDelay: contrato ? '400ms' : '0ms' }}>
                         <VincularContrato />
+                    </Slide>
+                    <Slide direction="left" in={usuario} mountOnEnter unmountOnExit style={{ transitionDelay: usuario ? '400ms' : '0ms' }}>
+                        <ClonarUsuario />
+                    </Slide>
+                    <Slide direction="left" in={serie} mountOnEnter unmountOnExit style={{ transitionDelay: serie ? '400ms' : '0ms' }}>
+                        <VerificarSerie />
                     </Slide>
                 </Fragment>
             </Grow>

@@ -40,6 +40,18 @@ const fetchSeriesSteppInterno = (contrato, codProd, codGrupo) => dispatch => {
         })
 }
 
+const fetchSerieParcCon = (serieParcCon = '') => dispatch => {
+    dispatch(request())
+    axios.get(`${appConfig.URL_BASE}/api/Serie`, { params: { serieParcCon } })
+        .then(resp => {
+            dispatch(success(resp.data))
+        })
+        .catch(error => {
+            dispatch(failure())
+            helpersActions.checkErrorResponse(error, dispatch)
+        })
+}
+
 const fetchSerieDetails = serie => dispatch => {
     dispatch(requestDetails())
     requestServices.get('Serie', { serie })
@@ -55,5 +67,6 @@ const fetchSerieDetails = serie => dispatch => {
 export const serieActions = {
     fetchSeries,
     fetchSerieDetails,
-    fetchSeriesSteppInterno
+    fetchSeriesSteppInterno,
+    fetchSerieParcCon
 }

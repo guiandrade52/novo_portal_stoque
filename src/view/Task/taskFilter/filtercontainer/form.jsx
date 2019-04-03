@@ -66,7 +66,6 @@ class Form extends Component {
         const { classes, handleOpenOrClose, submitting, repository } = this.props
         return (
             <Fragment>
-                {/* <Toastr /> */}
                 <DialogTitle id="scroll-dialog-title">Filtro Avançado</DialogTitle>
                 <DialogContent>
                     <form >
@@ -103,7 +102,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) contrato(s)'
                                     options={repository.contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchContratos(e.target.value)}
+                                    onInputChange={e => this.props.fetchContratos(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -114,7 +113,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione a(s) série(s)'
                                     options={repository.series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchSeries(e.target.value)}
+                                    onInputChange={e => this.props.fetchSeries(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -135,7 +134,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) contato(s)'
                                     options={repository.contatos.map(item => ({ label: item.Nome, value: item.CodContato }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchContatos(e.target.value)}
+                                    onInputChange={e => this.props.fetchContatos(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -146,7 +145,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) usuário(s) portal'
                                     options={repository.usuarioPortal.map(item => ({ label: item.Nome, value: item.IdUsuario }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchUsuariosPortal(e.target.value)}
+                                    onInputChange={e => this.props.fetchUsuariosPortal(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -157,7 +156,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) abertura'
                                     options={repository.parceiroAb.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchParceiroAb(e.target.value)}
+                                    onInputChange={e => this.props.fetchParceiroAb(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -168,7 +167,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) atendido'
                                     options={repository.parceiroAt.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
-                                    onKeyDown={e => e.target.value !== '' && this.props.fetchParceiroAt(e.target.value)}
+                                    onInputChange={e => this.props.fetchParceiroAt(e)}
                                 />
                             </GridItem>
                         </GridContainer>
