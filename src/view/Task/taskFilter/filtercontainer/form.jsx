@@ -102,7 +102,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) contrato(s)'
                                     options={repository.contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
-                                    onInputChange={e => this.props.fetchContratos(e)}
+                                    onKeyDown={e => this.props.fetchContratos(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -113,7 +113,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione a(s) série(s)'
                                     options={repository.series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))}
-                                    onInputChange={e => this.props.fetchSeries(e)}
+                                    onKeyDown={e => this.props.fetchSeries(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -134,7 +134,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) contato(s)'
                                     options={repository.contatos.map(item => ({ label: item.Nome, value: item.CodContato }))}
-                                    onInputChange={e => this.props.fetchContatos(e)}
+                                    onKeyDown={e => this.props.fetchContatos(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -145,7 +145,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) usuário(s) portal'
                                     options={repository.usuarioPortal.map(item => ({ label: item.Nome, value: item.IdUsuario }))}
-                                    onInputChange={e => this.props.fetchUsuariosPortal(e)}
+                                    onKeyDown={e => this.props.fetchUsuariosPortal(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -156,7 +156,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) abertura'
                                     options={repository.parceiroAb.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
-                                    onInputChange={e => this.props.fetchParceiroAb(e)}
+                                    onKeyDown={e => this.props.fetchParceiroAb(e)}
                                 />
                             </GridItem>
                             <GridItem xs={12} sm={4} md={6}>
@@ -167,7 +167,7 @@ class Form extends Component {
                                     isMulti
                                     placeholder='Selecione o(s) parceiro(s) atendido'
                                     options={repository.parceiroAt.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
-                                    onInputChange={e => this.props.fetchParceiroAt(e)}
+                                    onKeyDown={e => this.props.fetchParceiroAt(e)}
                                 />
                             </GridItem>
                         </GridContainer>

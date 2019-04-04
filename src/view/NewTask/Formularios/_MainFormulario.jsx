@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 
 //ComponentsCore
-import { Grow } from '../../../components/Transitions';
 import { GridContainer, GridItem } from '../../../components/Grids';
 
 //Redux

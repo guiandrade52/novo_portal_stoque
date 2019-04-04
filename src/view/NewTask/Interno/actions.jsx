@@ -52,7 +52,6 @@ class Actions extends Component {
 
     render() {
         const { classes, activeStep, disabled, hidden, isFetching, btnNew } = this.props
-        console.log(this.props)
         return (
             <div className={classes.actionsContainer}>
                 {!isFetching && !btnNew &&

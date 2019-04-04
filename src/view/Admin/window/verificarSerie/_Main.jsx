@@ -59,7 +59,7 @@ class VerificarSerie extends Component {
                                 label="Serie"
                                 placeholder='Selecione a série'
                                 options={series.map(item => ({ label: `${item.Serie} - ${item.Produto}`, value: item.Serie }))}
-                                onInputChange={e => fetchSerieParcCon(e)}
+                                onKeyDown={e => fetchSerieParcCon(e)}
                                 onChange={e => this.handleChangeSelected(e)}
                             />
                         </form>

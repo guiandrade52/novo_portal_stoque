@@ -173,13 +173,29 @@ const components = {
 
 class SelectAuto extends React.Component {
 
+    state = {
+        await: false
+    }
+
     handleChange = value => {
         this.props.input.onChange(value)
-
     };
 
+    handleOnKeyDown= e => {
+        
+        if(e.target.value !== '')
+        this.setState({await: false})
+
+        if(!this.state.await)
+        this.props.onKeyDown(e.target.value)
+
+        if(e.target.value === '')
+        this.setState({await: true})
+
+    }
+
     render() {
-        const { classes, theme, options, isMulti, placeholder, label, input: { value }, onInputChange } = this.props;
+        const { classes, theme, options, isMulti, placeholder, label, input: { value } } = this.props;
 
         const selectStyles = {
             input: base => ({
@@ -190,6 +206,8 @@ class SelectAuto extends React.Component {
                 },
             }),
         };
+
+
 
         return (
             <div className={classes.root}>
@@ -204,7 +222,7 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isClearable
-                            onInputChange={onInputChange}
+                            onKeyDown={this.handleOnKeyDown}
                             textFieldProps={{
                                 label,
                                 InputLabelProps: {
@@ -230,7 +248,7 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isMulti
-                            onInputChange={onInputChange}
+                            onKeyDown={this.handleOnKeyDown}
                         />
                     }
                 </NoSsr>

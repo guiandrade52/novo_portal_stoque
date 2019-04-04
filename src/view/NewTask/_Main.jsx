@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 //Redux
 import { connect } from 'react-redux'
@@ -10,7 +10,6 @@ import { withStyles } from '@material-ui/core/styles'
 
 //CoreComponents
 import { GridContainer, GridItem } from '../../components/Grids';
-import { MediaCard } from '../../components/Cards';
 import { Externo } from './Externo';
 import { Interno } from './Interno';
 import { Formularios } from './Formularios';

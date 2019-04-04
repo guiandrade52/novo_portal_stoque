@@ -56,7 +56,7 @@ class ClonaUsuarios extends Component {
                                         label="Usuário base"
                                         placeholder='Selecione o usuário a ser cópiado'
                                         options={usuarios.map(item => ({ label: `${item.IdUsuario} - ${item.Nome}`, value: item.IdUsuario }))}
-                                        onInputChange={e => fetchUsuariosPortal(e)}
+                                        onKeyDown={e => fetchUsuariosPortal(e)}
                                         onChange={e => listaContratoPUsuario(e)}
                                     />
                                 </GridItem>
@@ -91,7 +91,7 @@ class ClonaUsuarios extends Component {
                                                 label="Usuários receptores"
                                                 placeholder='Selecione o(s) usuário(s) que receberam as configurações'
                                                 options={usuariosReducers.map(item => ({ label: `${item.IdUsuario} - ${item.Nome}`, value: item.IdUsuario }))}
-                                                onInputChange={e => fetchUsuariosPortal(e)}
+                                                onKeyDown={e => fetchUsuariosPortal(e)}
                                                 isMulti
                                             />
                                         </GridItem>

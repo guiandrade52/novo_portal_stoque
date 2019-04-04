@@ -36,7 +36,7 @@ class ParceiroContrato extends Component {
                     label="Parceiros abertura"
                     placeholder='Selecionar um parceiro'
                     options={parceiroAb.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
-                    onInputChange={e => this.props.fetchParceiroAb(e)}
+                    onKeyDown={e => this.props.fetchParceiroAb(e)}
                 />
                 {isFetching &&
                     <LinearProgress />

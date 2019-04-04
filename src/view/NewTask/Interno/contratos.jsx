@@ -34,7 +34,7 @@ class Contratos extends Component {
           label="Contrato"
           placeholder='Selecionar um contrato'
           options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
-          onInputChange={e => this.handleSearchContrato(e)}
+          onKeyDown={e => this.handleSearchContrato(e)}
         />
         <Actions disabled={this.stateAction()} />
       </form>
