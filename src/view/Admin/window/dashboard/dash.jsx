@@ -1,6 +1,6 @@
 import React from 'react'
-import { GridContainer, GridItem } from '../../../components/Grids';
-import { MediaCard } from '../../../components/Cards';
+import { GridContainer, GridItem } from '../../../../components/Grids';
+import { MediaCard } from '../../../../components/Cards';
 
 const DashAdmin = ({ handleWindow, options }) => {
     return (

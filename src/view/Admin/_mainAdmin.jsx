@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Grow } from '../../components/Transitions/Grow';
 import { GridItem } from '../../components/Grids';
 import { Breadcrumb } from 'semantic-ui-react';
-import DashAdmin from './window/dash';
+import { Dash } from './window/dashboard';
 import { Slide } from '@material-ui/core';
 import { VincularContrato } from './window/vincularContrato';
 import { ClonarUsuario } from './window/clonarUsuario';
@@ -53,7 +53,7 @@ class Admin extends Component {
                         </div>
                     </GridItem>
                     <Slide direction="left" in={dash} mountOnEnter unmountOnExit style={{ transitionDelay: dash ? '400ms' : '0ms' }}>
-                        <DashAdmin handleWindow={this.handleWindow} options={breadCroumbOptions} />
+                        <Dash handleWindow={this.handleWindow} options={breadCroumbOptions} />
                     </Slide>
                     <Slide direction="left" in={contrato} mountOnEnter unmountOnExit style={{ transitionDelay: contrato ? '400ms' : '0ms' }}>
                         <VincularContrato />

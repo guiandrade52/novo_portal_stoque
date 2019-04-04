@@ -9,8 +9,9 @@ import BuildIcon from '@material-ui/icons/Build'
 import Dashboard from '../Dashboard'
 import Tasks from '../Task'
 import About from '../About'
-import NewTask from '../NewTask'
+
 import { Admin } from '../Admin'
+import { MainNewTask } from '../NewTask';
 
 export const SidebarRouter = [
     {
@@ -25,7 +26,7 @@ export const SidebarRouter = [
         path: "/NewTask",
         name: "Nova Tarefa",
         icon: IconAdd,
-        component: NewTask,
+        component: MainNewTask,
         enable: true
     },
     {

@@ -71,52 +71,50 @@ class Externo extends React.Component {
         const { classes, activeStep, home, isFetching, ocorrencia } = this.props
         const steps = getSteps(this.props)
         return (
-            <Grow in={true} style={{ transformOrigin: '0 0 0' }} {...({ timeout: 1000 })}>
-                <GridContainer spacing={8}>
-                    <GridItem xs={12} sm={12} md={12}>
-                        <div style={{ marginBottom: 10 }}>
-                            <Grow>
-                                <Breadcrumb>
-                                    <Breadcrumb.Section onClick={() => home(0)} link >Dash</Breadcrumb.Section>
-                                    <Breadcrumb.Divider icon='right angle' />
-                                    <Breadcrumb.Section active >Série/Licença</Breadcrumb.Section>
-                                </Breadcrumb>
-                            </Grow>
-                        </div>
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={activeStep === steps.length || activeStep === steps.length + 1 ? 4 : 12}>
-                        <Paper>
-                            <Stepper activeStep={activeStep} orientation="vertical">
-                                {steps.map(item => {
-                                    return (
-                                        <Step key={item.index}>
-                                            <StepLabel>{item.label}</StepLabel>
-                                            <StepContent>
-                                                {getStepContent(item.index)}
-                                            </StepContent>
-                                        </Step>
-                                    )
-                                })}
-                            </Stepper>
+            <GridContainer spacing={8}>
+                <GridItem xs={12} sm={12} md={12}>
+                    <div style={{ marginBottom: 10 }}>
+                        <Grow>
+                            <Breadcrumb>
+                                <Breadcrumb.Section onClick={() => home(0)} link >Dash</Breadcrumb.Section>
+                                <Breadcrumb.Divider icon='right angle' />
+                                <Breadcrumb.Section active >Série/Licença</Breadcrumb.Section>
+                            </Breadcrumb>
+                        </Grow>
+                    </div>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={activeStep === steps.length || activeStep === steps.length + 1 ? 4 : 12}>
+                    <Paper>
+                        <Stepper activeStep={activeStep} orientation="vertical">
+                            {steps.map(item => {
+                                return (
+                                    <Step key={item.index}>
+                                        <StepLabel>{item.label}</StepLabel>
+                                        <StepContent>
+                                            {getStepContent(item.index)}
+                                        </StepContent>
+                                    </Step>
+                                )
+                            })}
+                        </Stepper>
 
-                            {activeStep === steps.length && (
-                                <Paper square elevation={0} className={classes.resetContainer}>
-                                    {!isFetching && !ocorrencia && < Typography >* Confirme as informações no resumo, caso estejam corretas finalize a requisição</Typography>}
-                                    {!isFetching && ocorrencia && <Typography variant='subtitle2'>Ocorrência registrada com sucesso, número: {ocorrencia}</Typography>}
-                                    <Actions hidden={false} handleBack={() => this.props.reset('resumo')} />
-                                </Paper>
-                            )}
+                        {activeStep === steps.length && (
+                            <Paper square elevation={0} className={classes.resetContainer}>
+                                {!isFetching && !ocorrencia && < Typography >* Confirme as informações no resumo, caso estejam corretas finalize a requisição</Typography>}
+                                {!isFetching && ocorrencia && <Typography variant='subtitle2'>Ocorrência registrada com sucesso, número: {ocorrencia}</Typography>}
+                                <Actions hidden={false} handleBack={() => this.props.reset('resumo')} />
+                            </Paper>
+                        )}
+                    </Paper>
+                </GridItem>
+                {activeStep === steps.length &&
+                    < GridItem xs={12} sm={12} md={8}>
+                        <Paper square elevation={1} className={classes.resetContainer}>
+                            <Resumo />
                         </Paper>
                     </GridItem>
-                    {activeStep === steps.length &&
-                        < GridItem xs={12} sm={12} md={8}>
-                            <Paper square elevation={1} className={classes.resetContainer}>
-                                <Resumo />
-                            </Paper>
-                        </GridItem>
-                    }
-                </GridContainer>
-            </Grow >
+                }
+            </GridContainer>
         )
     }
 }

@@ -93,53 +93,49 @@ class Interno extends React.Component {
         const steps = getSteps(this.props)
         return (
             <GridContainer spacing={8}>
-                <Grow>
-                    <GridContainer>
-                        <GridItem xs={12} sm={12} md={12}>
-                            <div style={{ marginBottom: 10 }}>
-                                <Grow>
-                                    <Breadcrumb>
-                                        <Breadcrumb.Section onClick={() => home(0)} link >Dash</Breadcrumb.Section>
-                                        <Breadcrumb.Divider icon='right angle' />
-                                        <Breadcrumb.Section active >Serviços Internos</Breadcrumb.Section>
-                                    </Breadcrumb>
-                                </Grow>
-                            </div>
-                        </GridItem>
-                    </GridContainer>
-                </Grow>
+                <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                        <div style={{ marginBottom: 10 }}>
+                            <Grow>
+                                <Breadcrumb>
+                                    <Breadcrumb.Section onClick={() => home(0)} link >Dash</Breadcrumb.Section>
+                                    <Breadcrumb.Divider icon='right angle' />
+                                    <Breadcrumb.Section active >Serviços Internos</Breadcrumb.Section>
+                                </Breadcrumb>
+                            </Grow>
+                        </div>
+                    </GridItem>
+                </GridContainer>
 
                 <GridItem xs={12} sm={12} md={activeStep === steps.length || activeStep === steps.length + 1 ? 4 : 12}>
-                    <Grow>
-                        <Paper>
-                            <Stepper activeStep={activeStep} orientation="vertical">
-                                {steps.map(item => {
-                                    return (
-                                        <Step key={item.index}>
-                                            <StepLabel>{item.label}</StepLabel>
-                                            <StepContent>
-                                                {getStepContent(item.index)}
-                                            </StepContent>
-                                        </Step>
-                                    )
-                                })}
-                            </Stepper>
+                    <Paper>
+                        <Stepper activeStep={activeStep} orientation="vertical">
+                            {steps.map(item => {
+                                return (
+                                    <Step key={item.index}>
+                                        <StepLabel>{item.label}</StepLabel>
+                                        <StepContent>
+                                            {getStepContent(item.index)}
+                                        </StepContent>
+                                    </Step>
+                                )
+                            })}
+                        </Stepper>
 
-                            {activeStep === steps.length && (
-                                <Paper square elevation={0} className={classes.resetContainer}>
-                                    {!sending &&
-                                        <div>
-                                            <Typography>*Confirme as informações no resumo, caso estejam corretas finalize a requisição</Typography>
-                                            <Actions hidden={false} handleBack={() => this.props.dispatch(reset('resumo'))} />
-                                        </div>
-                                    }
-                                    {sending &&
-                                        <LinearProgress />
-                                    }
-                                </Paper>
-                            )}
-                        </Paper>
-                    </Grow>
+                        {activeStep === steps.length && (
+                            <Paper square elevation={0} className={classes.resetContainer}>
+                                {!sending &&
+                                    <div>
+                                        <Typography>*Confirme as informações no resumo, caso estejam corretas finalize a requisição</Typography>
+                                        <Actions hidden={false} handleBack={() => this.props.dispatch(reset('resumo'))} />
+                                    </div>
+                                }
+                                {sending &&
+                                    <LinearProgress />
+                                }
+                            </Paper>
+                        )}
+                    </Paper>
                 </GridItem>
                 {activeStep === steps.length &&
                     < GridItem xs={12} sm={12} md={8}>
