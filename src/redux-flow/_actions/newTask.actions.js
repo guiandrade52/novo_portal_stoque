@@ -6,6 +6,7 @@ import { stepActions } from "./step.actions";
 import axios from 'axios'
 import { reset as resetForm } from 'redux-form'
 import { appConfig } from "../../appConfig";
+import { inputFileActions } from "./inputFile.actions";
 
 const request = () => ({ type: newTaskConstants.REQUEST })
 const success = ocorrencia => ({ type: newTaskConstants.SUCCESS, payload: ocorrencia })
@@ -30,6 +31,7 @@ const save = data => dispatch => {
             data.files.length > 0 && dispatch(uploadFile(data.files, resp.data))
             dispatch(toastrActions.success(`Sua ocorrência foi criada com sucesso, N°: ${resp.data}`))
             dispatch(success(resp.data))
+            dispatch(inputFileActions.removeAll())
         })
         .catch(error => {
             dispatch(failure())
@@ -46,6 +48,7 @@ const resetNewTask = () => dispatch => {
     dispatch(updateDataResumo(undefined))
     dispatch(stepActions.reset())
     dispatch(failure())
+    dispatch(inputFileActions.removeAll())
 }
 
 export const newTaskActions = {

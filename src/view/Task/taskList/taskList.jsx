@@ -57,9 +57,9 @@ class TaskList extends Component {
         this.props.fetchTasks(this.props.filter)
     }
 
-    handleResetFilter = () => {
-        this.props.resetFilter()
-        this.props.fetchTasks(this.props.filter)
+    handleResetFilter = async () => {
+        await this.props.resetFilter()
+        await this.props.fetchTasks(this.props.filter)
         this.props.reset('formFilter')
     }
 
@@ -72,7 +72,7 @@ class TaskList extends Component {
         return (
             <Paper className={classes.paper} elevation={1}>
                 <Fragment>
-                    {!isFetching && tasks.length > 0 &&
+                    {!isFetching &&
                         <GridContainer >
                             <GridItem xs={2} sm={2} md={2}>
                                 <IconButton style={{ padding: 3 }} onClick={e => this.handleFetchTask(e, activePage)}>
@@ -108,13 +108,6 @@ class TaskList extends Component {
                     }
                     {tasks.length === 0 && !isFetching &&
                         <Fragment>
-                            {ativo &&
-                                <Tooltip title='Limpar Filtro'>
-                                    <IconButton className={classes.buttonOnFilter} onClick={this.clearAllFilter} >
-                                        <FilterListIcon color='error' />
-                                    </IconButton>
-                                </Tooltip>
-                            }
                             <Message
                                 icon='info'
                                 header='Desculpe'

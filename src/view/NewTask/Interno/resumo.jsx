@@ -33,7 +33,6 @@ class Resumo extends Component {
     componentDidMount() {
         const { serieDetails, contratoDetails, descricao, contato, contatos, produto } = this.props
         const contatoData = contatos.find(item => item.CodContato === contato.value)
-        debugger
         const data = serieDetails
             ? {
                 produto: serieDetails.DescrProd,

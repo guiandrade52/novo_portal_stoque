@@ -11,6 +11,7 @@ import imgError from '../../../../assets/img/404.jpg'
 import { GridItem, GridContainer } from '../../../../components/Grids'
 import { Card } from '../../../../components/Cards'
 import { appConfig } from '../../../../appConfig';
+import { Message } from 'semantic-ui-react';
 
 
 class Ocorrencia extends Component {
@@ -137,6 +138,16 @@ class Ocorrencia extends Component {
                         }}
                     />
                 </GridItem>
+                {task.Solucao &&
+                    < GridItem xs={12} sm={12} md={12}>
+                        <Message
+                            success
+                            header='Solução aplicada:'
+                            content={task.Solucao.SolucaoAplicada}
+                        />
+                    </GridItem>
+
+                }
                 {
                     task.Anexos.length > 0 &&
                     <GridItem xs={12} sm={12} md={12}>

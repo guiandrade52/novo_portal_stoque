@@ -181,16 +181,18 @@ class SelectAuto extends React.Component {
         this.props.input.onChange(value)
     };
 
-    handleOnKeyDown= e => {
-        
-        if(e.target.value !== '')
-        this.setState({await: false})
+    handleOnKeyDown = e => {
+        if (!this.props.onKeyDown)
+            return
 
-        if(!this.state.await)
-        this.props.onKeyDown(e.target.value)
+        if (e.target.value !== '')
+            this.setState({ await: false })
 
-        if(e.target.value === '')
-        this.setState({await: true})
+        if (!this.state.await)
+            this.props.onKeyDown(e.target.value)
+
+        if (e.target.value === '')
+            this.setState({ await: true })
 
     }
 

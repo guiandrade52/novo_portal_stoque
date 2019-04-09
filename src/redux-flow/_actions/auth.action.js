@@ -13,6 +13,7 @@ const login = (username, password) => dispatch => {
     authService.login(username, password)
         .then(token => {
             dispatch(success({ token, username: cryptoServices.crypt(username), password: cryptoServices.crypt(password) }))
+            dispatch(toastrActions.close())
         },
             error => {
                 dispatch(failure(error))
