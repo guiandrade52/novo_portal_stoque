@@ -13,7 +13,7 @@ import Slide from '@material-ui/core/Slide';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { usuarioActions } from '../../redux-flow/_actions';
-import FormUsuario from './formUsuario';
+import FormUsuario from './informations/formUsuario';
 
 const styles = {
     appBar: {
@@ -55,6 +55,7 @@ class UsuarioDetails extends React.Component {
                             </Button>
                         </Toolbar>
                     </AppBar>
+
                     <FormUsuario />
                 </Dialog>
             </div>

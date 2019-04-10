@@ -4,6 +4,7 @@ import { appConfig } from "../../appConfig";
 import { helpersActions } from "../_helpers";
 import { reset } from 'redux-form'
 import { toastrActions } from "./toastr.actions";
+import { loginActions } from "./login.actions";
 
 const request = () => ({ type: usuarioConstants.REQUEST })
 const success = produtos => ({ type: usuarioConstants.SUCCESS, payload: produtos })
@@ -14,6 +15,8 @@ const fetchUsuario = () => dispatch => {
     axios.get(`${appConfig.URL_BASE}/api/Usuario`)
         .then(resp => {
             dispatch(success(serialize(resp.data)))
+            if (resp.data.Permissoes.AltPassword === 'S')
+                dispatch(loginActions.resetPassword(true))
         })
         .catch(error => {
             dispatch(failure())
@@ -59,8 +62,8 @@ function serialize(data) {
         data.Permissoes.Perfil = 'Técnico'
     else if (data.Permissoes.Perfil === 'CO')
         data.Permissoes.Perfil = 'Consulta'
-
     return {
+        ...data.Permissoes,
         ...data.Usuario,
         perfil: data.Permissoes.Perfil,
         registraOcor: data.Permissoes.RgtOcorrencia === 'S' ? true : false,

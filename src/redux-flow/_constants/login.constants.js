@@ -12,5 +12,6 @@ export const loginConstants = {
     FAILURE_COD: 'login::FAILURE_COD',
 
     CANCELL: 'login::CANCELL',
-    CHANGE_WINDOW: 'login::CHANGE_WINDOW'
+    CHANGE_WINDOW: 'login::CHANGE_WINDOW',
+    SHOW_RESET_PASSWORD: 'login::SHOW_RESET_PASSWORD'
 }

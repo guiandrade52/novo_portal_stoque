@@ -36,5 +36,5 @@ export const rootReducers = combineReducers({
     login,
     cronometro,
     admin,
-    relatorio
+    relatorio,
 })

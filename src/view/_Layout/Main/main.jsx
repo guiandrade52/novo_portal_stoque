@@ -10,6 +10,7 @@ import Drawer from '../Drawer';
 import { Usuario } from '../../Usuario';
 import { Modal } from '../../../components/Dialogs';
 import Reconnect from '../../Login/reconnect';
+import { RestPassword } from '../../Password'
 
 const styles = theme => ({
     toolbar: theme.mixins.toolbar,
@@ -50,6 +51,7 @@ class Main extends Component {
                 <Usuario />
                 <Modal />
                 <Reconnect />
+                <RestPassword />
             </Fragment>
         )
     }

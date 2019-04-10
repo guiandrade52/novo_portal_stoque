@@ -19,6 +19,7 @@ const request_mail = () => ({ type: loginConstants.REQUEST_MAIL })
 const success_mail = email => ({ type: loginConstants.SUCCESS_MAIL, payload: email })
 const failure_mail = () => ({ type: loginConstants.FAILURE_MAIL })
 
+const resetPassword = boolean => ({ type: loginConstants.SHOW_RESET_PASSWORD, payload: boolean })
 
 const validaCodigo = values => dispatch => {
     dispatch(request_cod())
@@ -65,6 +66,7 @@ const changePassword = values => dispatch => {
             dispatch(success_pass(resp.data))
             dispatch(cronometroActions.stopCronometro())
             dispatch(toastrActions.success('A senha foi alterada com sucesso.'))
+            dispatch(resetPassword(false))
         })
         .catch(error => {
             dispatch(failure_pass())
@@ -75,11 +77,13 @@ const changePassword = values => dispatch => {
 const changeWindow = window => ({ type: loginConstants.CHANGE_WINDOW, payload: window })
 
 
+
 export const loginActions = {
     validaLogin,
     failure_mail,
     validaCodigo,
     cancellReset,
     changePassword,
-    changeWindow
+    changeWindow,
+    resetPassword
 }

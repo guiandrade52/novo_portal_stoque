@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 
 //Material UI
 import { withStyles } from '@material-ui/core/styles';
-import { Chip, Typography, Paper, Avatar } from '@material-ui/core';
+import { Chip, Typography, Avatar, Button } from '@material-ui/core';
 
 //CoreComponents
-import { TextField, Checkbox } from '../../components/Fields';
-import { GridContainer, GridItem } from '../../components/Grids';
-import { normalizePhone } from '../../components/NormalizeReduxForm';
+import { TextField, Checkbox } from '../../../components/Fields';
+import { GridContainer, GridItem } from '../../../components/Grids';
+import { normalizePhone } from '../../../components/NormalizeReduxForm';
 
 const styles = theme => ({
     root: { margin: 10 },
@@ -31,7 +31,7 @@ class FormUsuario extends Component {
         return (
             <div className={classes.root}>
                 <form onSubmit={handleSubmit}>
-                    <GridContainer spacing={24}>
+                    <GridContainer spacing={24} justify='center' align='center'>
                         <GridItem xs={12} sm={12} md={5} >
                             <Field
                                 name="Nome"
@@ -70,7 +70,7 @@ class FormUsuario extends Component {
                                 label="Perfil"
                                 placeholder='Perfil'
                                 fullWidth
-                                disabled={!edit}
+                                disabled={true}
                             />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={2} >
@@ -78,27 +78,26 @@ class FormUsuario extends Component {
                                 name="registraOcor"
                                 component={Checkbox}
                                 label="Registra Ocorrência"
-                                disabled={!edit}
+                                disabled={true}
                             />
                         </GridItem>
                         <GridItem xs={12} sm={12} md={12} >
                             <Typography variant='subtitle1'>
                                 Contratos
                             </Typography>
-                            <Paper className={classes.paper} elevation={2}>
-                                {this.props.contratos.map(contrato =>
-                                    <Chip
-                                        avatar={<Avatar>{contrato.Contrato}</Avatar>}
-                                        label={`${contrato.CodParc} - ${contrato.Nome}`}
-                                        className={classes.chip}
-                                    />
-                                )}
-                                {this.props.contratos.length === 0 &&
-                                    <Typography>
-                                        Não encontramos nenhum contrato cadastrado para este usuário.
+                            {this.props.contratos.map((contrato, key) =>
+                                <Chip
+                                    key={key}
+                                    avatar={<Avatar>{contrato.Contrato}</Avatar>}
+                                    label={`${contrato.CodParc} - ${contrato.Nome}`}
+                                    className={classes.chip}
+                                />
+                            )}
+                            {this.props.contratos.length === 0 &&
+                                <Typography>
+                                    Não encontramos nenhum contrato cadastrado para este usuário.
                                     </Typography>
-                                }
-                            </Paper>
+                            }
                         </GridItem>
                     </GridContainer>
                 </form>

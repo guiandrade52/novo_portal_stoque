@@ -44,7 +44,7 @@ class Reconnect extends Component {
 
     handleSim = async () => {
         const user = JSON.parse(localStorage.getItem(localStorageKey))
-        this.props.login(cryptoServices.decrypt(user.username), cryptoServices.decrypt(user.password))
+        await this.props.login(cryptoServices.decrypt(user.username), cryptoServices.decrypt(user.password))
         await this.props.sectionExpired()
         setTimeout(() => {
             window.location.reload()

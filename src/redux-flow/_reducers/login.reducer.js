@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     checkCodigo: undefined,
     checkPassword: undefined,
     register: undefined,
+    passExpired: false
 }
 
 export const loginReducer = createReducer(INITIAL_STATE, {
@@ -27,4 +28,5 @@ export const loginReducer = createReducer(INITIAL_STATE, {
     [loginConstants.FAILURE_PASSWORD]: (state) => ({ ...state, isFetching: false, checkCodigo: false, checkPassword: true }),
 
     [loginConstants.CANCELL]: () => ({ ...INITIAL_STATE }),
+    [loginConstants.SHOW_RESET_PASSWORD]: (state, action) => ({ ...state, passExpired: action.payload }),
 })
