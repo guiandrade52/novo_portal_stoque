@@ -80,7 +80,7 @@ class WindowPassword extends Component {
                                 </GridItem>
                             </GridContainer>
                             <div align='right' className={classes.contentButton}>
-                                <Button onClick={() => resetPassword(false)} disabled={usuario.AltPassword === 'S' ? true : false} style={{ float: 'left' }} className={classes.buttons} >Cancelar</Button>
+                                <Button onClick={() => resetPassword(false)} disabled={(usuario.AltPassword === 'S' || usuario.PassCript === 0) ? true : false} style={{ float: 'left' }} className={classes.buttons} >Cancelar</Button>
                                 <Button type='submit' className={classes.buttons} color='primary' variant='outlined' >Salvar</Button>
                             </div>
                         </form>

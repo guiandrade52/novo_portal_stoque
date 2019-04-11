@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 //Material UI
 import { withStyles } from '@material-ui/core/styles';
-import { Chip, Typography, Avatar, Button } from '@material-ui/core';
+import { Chip, Typography, Avatar } from '@material-ui/core';
 
 //CoreComponents
 import { TextField, Checkbox } from '../../../components/Fields';

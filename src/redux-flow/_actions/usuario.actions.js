@@ -15,7 +15,7 @@ const fetchUsuario = () => dispatch => {
     axios.get(`${appConfig.URL_BASE}/api/Usuario`)
         .then(resp => {
             dispatch(success(serialize(resp.data)))
-            if (resp.data.Permissoes.AltPassword === 'S')
+            if (resp.data.Permissoes.AltPassword === 'S' || resp.data.Permissoes.PassCript === 0)
                 dispatch(loginActions.resetPassword(true))
         })
         .catch(error => {

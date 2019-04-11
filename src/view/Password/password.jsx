@@ -24,13 +24,13 @@ const styles = {
     }
 }
 
-let RestPassword = ({ classes, usuario, open, resetPassword }) =>
-    <Dialog fullScreen={usuario.AltPassword === 'S' ? true : false} open={open} TransitionComponent={Transition}>
-        <div className={usuario.AltPassword === 'S' ? classes.expired : ''}>
+let RestPassword = ({ classes, usuario, open }) =>
+    <Dialog fullScreen={((usuario.AltPassword === 'S' || usuario.PassCript === 0) || usuario.PassCript === 0) ? true : false} open={open} TransitionComponent={Transition}>
+        <div className={(usuario.AltPassword === 'S' || usuario.PassCript === 0) ? classes.expired : ''}>
             <GridContainer justify='center'>
-                {usuario.AltPassword === 'S' &&
+                {(usuario.AltPassword === 'S' || usuario.PassCript === 0) &&
                     <GridItem md={12}>
-                        <Typography align='center' variant='h6'>
+                        <Typography align='center' variant='h5'>
                             Sua senha deve ser alterada por questões de segurança.
                     </Typography>
                         <br />
