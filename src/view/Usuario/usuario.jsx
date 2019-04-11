@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,6 +14,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { usuarioActions } from '../../redux-flow/_actions';
 import FormUsuario from './informations/formUsuario';
+import { submit } from 'redux-form'
+import {  LinearProgress } from '@material-ui/core';
 
 const styles = {
     appBar: {
@@ -30,35 +32,52 @@ function Transition(props) {
 
 class UsuarioDetails extends React.Component {
 
-
+    handleUpdate = (values) => {
+        const usuario = {
+            Nome: values.Nome,
+            Telefone: values.Telefone,
+            Email: values.Email,
+            CodContato: values.CodContato,
+            CodParc: values.CodParc
+        }
+        this.props.sendUpdateUsuario(usuario)
+    }
 
     render() {
-        const { classes, openDetails, closeDetailsUsuario, editUsuario, edit } = this.props;
+        const { classes, openDetails, closeDetailsUsuario, editUsuario, edit, submit, isFetch } = this.props;
         return (
             <div>
                 <Dialog fullScreen open={openDetails} onClose={closeDetailsUsuario} TransitionComponent={Transition}>
                     <AppBar className={classes.appBar}>
                         <Toolbar>
-                            <IconButton color="inherit" onClick={closeDetailsUsuario} aria-label="Close">
-                                <CloseIcon />
-                            </IconButton>
+                            {!isFetch &&
+                                < IconButton color="inherit" onClick={closeDetailsUsuario} aria-label="Close">
+                                    <CloseIcon />
+                                </IconButton>
+                            }
                             <Typography variant="h6" color="inherit" className={classes.flex}>
                                 Meus dados
                             </Typography>
-                            {edit &&
-                                <Button color="inherit" onClick={editUsuario}>
-                                    Cancelar
-                                </Button>
+                            {!isFetch &&
+                                <Fragment>
+                                    <Button style={{ marginRight: 10 }} color="inherit" variant='outlined' onClick={edit ? editUsuario : closeDetailsUsuario}>
+                                        {edit ? 'Cancelar' : 'Fechar'}
+                                    </Button>
+
+                                    <Button color="inherit" variant='outlined' onClick={edit ? () => submit('formUsuario') : editUsuario}>
+                                        {edit ? 'Salvar' : 'Editar'}
+                                    </Button>
+                                </Fragment>
                             }
-                            <Button color="inherit" onClick={editUsuario}>
-                                {edit ? 'Salvar' : 'Editar'}
-                            </Button>
                         </Toolbar>
+                        {isFetch &&
+                            <LinearProgress />
+                        }
                     </AppBar>
 
-                    <FormUsuario />
+                    <FormUsuario onSubmit={this.handleUpdate} />
                 </Dialog>
-            </div>
+            </div >
         );
     }
 }
@@ -67,6 +86,6 @@ const mapStateToProps = state => ({
     ...state.usuario
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(usuarioActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...usuarioActions, submit }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(UsuarioDetails))

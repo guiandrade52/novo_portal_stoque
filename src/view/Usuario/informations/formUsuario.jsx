@@ -11,7 +11,7 @@ import { Chip, Typography, Avatar } from '@material-ui/core';
 //CoreComponents
 import { TextField, Checkbox } from '../../../components/Fields';
 import { GridContainer, GridItem } from '../../../components/Grids';
-import { normalizePhone } from '../../../components/NormalizeReduxForm';
+import { numbers } from '../../../components/NormalizeReduxForm';
 
 const styles = theme => ({
     root: { margin: 10 },
@@ -49,7 +49,7 @@ class FormUsuario extends Component {
                                 label="Telefone"
                                 placeholder='Telefone'
                                 fullWidth
-                                normalize={normalizePhone}
+                                normalize={numbers}
                                 disabled={!edit}
                             />
                         </GridItem>

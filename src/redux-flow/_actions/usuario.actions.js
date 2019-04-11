@@ -10,6 +10,10 @@ const request = () => ({ type: usuarioConstants.REQUEST })
 const success = produtos => ({ type: usuarioConstants.SUCCESS, payload: produtos })
 const failure = () => ({ type: usuarioConstants.FAILURE })
 
+const request_update = () => ({ type: usuarioConstants.REQUEST_UPDATE })
+const success_update = produtos => ({ type: usuarioConstants.SUCCESS_UPDATE, payload: produtos })
+const failure_update = () => ({ type: usuarioConstants.FAILURE_UPDATE })
+
 const fetchUsuario = () => dispatch => {
     dispatch(request())
     axios.get(`${appConfig.URL_BASE}/api/Usuario`)
@@ -24,11 +28,26 @@ const fetchUsuario = () => dispatch => {
         })
 }
 
+const editUsuario = () => ({ type: usuarioConstants.EDIT })
+
+const sendUpdateUsuario = usuario => dispatch => {
+    dispatch(request_update())
+    axios.post(`${appConfig.URL_BASE}/api/Usuario`, usuario)
+        .then(resp => {
+            dispatch(success_update())
+            dispatch(toastrActions.success("Dados atualizados com sucesso."))
+            dispatch(editUsuario())
+        })
+        .catch(error => {
+            dispatch(failure_update())
+            helpersActions.checkErrorResponse(error, dispatch)
+        })
+}
+
 const openDetailsUsuario = () => ({ type: usuarioConstants.OPEN_DETAILS, payload: true });
 
 const closeDetailsUsuario = () => ({ type: usuarioConstants.OPEN_DETAILS, payload: false });
 
-const editUsuario = () => ({ type: usuarioConstants.EDIT })
 
 const sendMail = values => dispatch => {
     dispatch({ type: usuarioConstants.SEND_MAIL, payload: true })
@@ -50,7 +69,8 @@ export const usuarioActions = {
     openDetailsUsuario,
     closeDetailsUsuario,
     editUsuario,
-    sendMail
+    sendMail,
+    sendUpdateUsuario
 }
 
 function serialize(data) {
