@@ -1,4 +1,4 @@
-const URL_BASE = 'http://10.10.11.61:8092'
+const URL_BASE = 'http://devportal.stoque.com.br/Aplicacao'
 // const URL_BASE = 'http://localhost:64966'
 
 const EXTENSIONS = {

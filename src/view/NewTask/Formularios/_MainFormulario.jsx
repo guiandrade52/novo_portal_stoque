@@ -13,11 +13,19 @@ import { Breadcrumb } from 'semantic-ui-react';
 import { MediaCard } from '../../../components/Cards';
 import { NovoColaborador } from './novoColaborador';
 import { Slide } from '@material-ui/core';
+import { SolicitacaoEquipamento } from './solicitacaoEquipamento';
+import SolicitacaoWiFi from './solicitacaoWiFi/solicitacaoWiFi';
+import { AcessosConvidados } from './AcessosConvidados';
 
 
 class Formularios extends Component {
     state = {
-        tab: 'formularios'
+        tab: 'formularios',
+        options: [
+            { id: 1, label: 'Solicitação de acessos', style: { nameIcon: 'clipboard check', color: '#633eb39e' } },
+            { id: 2, label: 'Solicitação de equipamento', style: { nameIcon: 'tv', color: 'rgba(179, 157, 62, 0.62)' } },
+            { id: 3, label: 'Solicitação de WI-FI', style: { nameIcon: 'wi-fi', color: 'rgba(0, 0, 0, 0.62)' } },
+            { id: 3, label: 'Acessos Convidados/Terceiros', style: { nameIcon: 'address card', color: 'rgba(181, 174, 174, 0.62)' } }]
     }
 
     handleTab = value => {
@@ -26,8 +34,7 @@ class Formularios extends Component {
 
     render() {
         const { home, postNewColaborador } = this.props
-        const options = { id: 1, label: 'Serviços internos', nameIcon: 'user plus', color: '#633eb39e' };
-        const { tab } = this.state
+        const { tab, options } = this.state
         return (
             <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
@@ -46,16 +53,33 @@ class Formularios extends Component {
                     </div>
                 </GridItem>
                 <Slide direction="left" in={tab === 'formularios'} mountOnEnter unmountOnExit style={{ transitionDelay: tab === 'formularios' ? '400ms' : '0ms' }}>
-                    < GridItem >
-                        <MediaCard
-                            title='Novo Colaborador'
-                            icon={options}
-                            onClick={() => this.handleTab('Novo Colaborador')}
-                        />
-                    </GridItem>
+                    <GridContainer justify='center' spacing={24}>
+                        <Fragment>
+                            {
+                                options.map(item =>
+                                    <GridItem key={item.id}>
+                                        <MediaCard
+                                            title={item.label}
+                                            icon={item.style}
+                                            onClick={() => this.handleTab(item.label)}
+                                        />
+                                    </GridItem>
+                                )
+                            }
+                        </Fragment>
+                    </GridContainer>
                 </Slide>
-                <Slide direction="left" in={tab === 'Novo Colaborador'} mountOnEnter unmountOnExit style={{ transitionDelay: tab === 'Novo Colaborador' ? '400ms' : '0ms' }}>
+                <Slide direction="left" in={tab === options[0].label} mountOnEnter unmountOnExit style={{ transitionDelay: tab === options[0].label ? '400ms' : '0ms' }}>
                     <NovoColaborador onSubmit={postNewColaborador} />
+                </Slide>
+                <Slide direction="left" in={tab === options[1].label} mountOnEnter unmountOnExit style={{ transitionDelay: tab === options[1].label ? '400ms' : '0ms' }}>
+                    <SolicitacaoEquipamento onSubmit={postNewColaborador} />
+                </Slide>
+                <Slide direction="left" in={tab === options[2].label} mountOnEnter unmountOnExit style={{ transitionDelay: tab === options[2].label ? '400ms' : '0ms' }}>
+                    <SolicitacaoWiFi onSubmit={postNewColaborador} />
+                </Slide>
+                <Slide direction="left" in={tab === options[3].label} mountOnEnter unmountOnExit style={{ transitionDelay: tab === options[3].label ? '400ms' : '0ms' }}>
+                    <AcessosConvidados onSubmit={postNewColaborador} />
                 </Slide>
 
             </GridContainer>
