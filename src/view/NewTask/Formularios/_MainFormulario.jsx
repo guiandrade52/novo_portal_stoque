@@ -25,7 +25,7 @@ class Formularios extends Component {
             { id: 1, label: 'Solicitação de acessos', style: { nameIcon: 'clipboard check', color: '#633eb39e' } },
             { id: 2, label: 'Solicitação de equipamento', style: { nameIcon: 'tv', color: 'rgba(179, 157, 62, 0.62)' } },
             { id: 3, label: 'Solicitação de WI-FI', style: { nameIcon: 'wi-fi', color: 'rgba(0, 0, 0, 0.62)' } },
-            { id: 3, label: 'Acessos Convidados/Terceiros', style: { nameIcon: 'address card', color: 'rgba(181, 174, 174, 0.62)' } }]
+            { id: 4, label: 'Acessos Convidados/Terceiros', style: { nameIcon: 'address card', color: 'rgba(181, 174, 174, 0.62)' } }]
     }
 
     handleTab = value => {
