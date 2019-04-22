@@ -1,21 +1,25 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const nodemailer = require('nodemailer')
+const fs = require('fs')
 const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/api/form', (req, res) => {
-    console.log(req.body)
+app.post('/api/mail', (req, res) => {
     nodemailer.createTestAccount((err, account) => {
 
-        let trasporter = nodemailer.createTransport({
+        const trasporter = nodemailer.createTransport({
             host: 'smtp.office365.com',
             port: '587',
+            secure: false,
             auth: {
                 user: 'portal@stoque.com.br',
                 pass: 'P0rt@1$t0qu3'
+            },
+            tls: {
+                ciphers: 'SSLv3'
             }
         })
 
@@ -23,21 +27,23 @@ app.post('/api/form', (req, res) => {
             from: 'portal@stoque.com.br',
             to: 'fagner.gomes@stoque.com.br',
             replyTo: 'fagner.gomes@stoque.com.br',
-            subject: 'New Message',
+            subject: req.body.subject,
             text: req.body.message,
-            html: req.body.mail
+            html: req.body.html
         }
 
         trasporter.sendMail(mailoptions, (err, info) => {
             if (err) {
-                return console.log(err)
+                fs.appendFileSync("log.txt", logFormat(err))
+                res.status(500);
+                res.json({
+                    Message: `Encontramos um erro ao tentar enviar sua mensagem, caso não compreende-la entre em contato com suporte. "${err}"`
+                })
             }
 
             res.json({
                 msg: 'success'
             })
-            console.log('Message sent: %s', info.messageId)
-            console.log('message URL: %s', nodemailer.getTestMessageUrl(info))
         })
     })
 })
@@ -51,3 +57,7 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`)
 })
+
+function logFormat(err) {
+    return `####### EROR - ${Date(Date.now())} ####### \nMessage: ${err}\n\n`
+}

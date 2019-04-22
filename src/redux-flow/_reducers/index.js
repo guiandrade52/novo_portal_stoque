@@ -18,6 +18,7 @@ import { loginReducer as login } from './login.reducer'
 import { cronometroReducer as cronometro } from './cronometro.reducer'
 import { adminReducer as admin } from './admin.reducer'
 import { relatorioReducer as relatorio } from './relatorio.reducer'
+import { mailReducer as mail } from './mail.reducer'
 
 export const rootReducers = combineReducers({
     app,
@@ -37,4 +38,5 @@ export const rootReducers = combineReducers({
     cronometro,
     admin,
     relatorio,
+    mail
 })

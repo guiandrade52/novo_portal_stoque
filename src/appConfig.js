@@ -44,3 +44,10 @@ export const appConfig = {
     statusSituacao
 };
 
+
+export const configMail = {
+    html: undefined,
+    subject: undefined,
+    empresa: 1,
+    formreset: undefined
+}

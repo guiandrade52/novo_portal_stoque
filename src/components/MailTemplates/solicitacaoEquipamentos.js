@@ -1,6 +1,7 @@
 function getHardwares(values) {
     const resp = []
     let index = 0
+
     for (var key in values) {
         if (values[key] === true) {
             resp[index] = key
@@ -155,14 +156,14 @@ export const Sol_Equip_Mail = values =>
                                     ${getHardwares(values)}
 
                                     
-
-                                    <div>
-
-                                        <strong>Observação: </strong>
-
-                                        <span>${values.Observacao}</span>
-
-                                    </div>
+                                    ${values.Observacao !== undefined  
+                                        ?`<div>
+                                            <strong>Observação: </strong>
+                                                <span>${values.Observacao}</span>
+                                            </div>`
+                                        : ''
+                                    }
+                                    
 
                                     </span></div>
 

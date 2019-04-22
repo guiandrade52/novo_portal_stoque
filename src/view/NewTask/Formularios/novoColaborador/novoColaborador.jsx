@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 //Redux-form
 import { reduxForm, Field } from 'redux-form'
+import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux'
 
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Typography, Button } from '@material-ui/core';
@@ -15,6 +17,9 @@ import { validate } from './validate'
 //CoreComponents
 import { GridItem, GridContainer } from '../../../../components/Grids';
 import { TextField, Checkbox } from '../../../../components/Fields';
+import { configMail } from '../../../../appConfig';
+import { Novo_Colaborador_template } from '../../../../components/MailTemplates/novoColaborador';
+import { mailActions } from '../../../../redux-flow/_actions/mail.actions';
 
 
 const styles = theme => ({
@@ -36,11 +41,19 @@ class NovoColaborador extends Component {
         this.props.reset()
     }
 
+    handleSubmit = values => {
+        configMail.html = Novo_Colaborador_template(values)
+        configMail.subject = 'Solicitação de novo colaborador'
+        configMail.formreset = 'formNovoColaborador'
+
+        this.props.sendMail(configMail)
+    }
+
     render() {
         const { handleSubmit, classes, submitting, pristine, submitFailed } = this.props
         return (
             <GridItem xs={12} sm={12} md={12}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(this.handleSubmit)}>
                     <Paper className={classes.root} elevation={1}>
                         <GridContainer spacing={16}>
 
@@ -239,7 +252,7 @@ class NovoColaborador extends Component {
                                     fullWidth
                                     multiline
                                 />
-                            </GridItem>                           
+                            </GridItem>
 
                             <GridItem xs={12} sm={12} md={12} >
                                 <Typography variant='h6' align='center'>
@@ -314,8 +327,13 @@ class NovoColaborador extends Component {
 
 NovoColaborador = reduxForm({
     form: 'formNovoColaborador',
-    destroyOnUnmount: false,
-    validate
+    //validate
 })(NovoColaborador)
 
-export default withStyles(styles)(NovoColaborador)
+const mapDispatchToProps = dispatch => bindActionCreators(mailActions, dispatch)
+
+const mapStatetoProps = state => ({
+    isFetching: state.mail.isFetching
+})
+
+export default connect(mapStatetoProps, mapDispatchToProps)(withStyles(styles)(NovoColaborador))
