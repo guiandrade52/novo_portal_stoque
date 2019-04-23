@@ -1,4 +1,4 @@
-function getHardwares(values) {
+export function getHardwares(values) {
     const resp = []
     let index = 0
 
@@ -31,7 +31,7 @@ export const Sol_Equip_Mail = values =>
 
                             <tbody><tr>
 
-                                <td valign="top" align="left" style="display: inline-block; padding: 0px; margin: 0px; border-radius: 0px;" class="tdBlock responsive-cell"><img src="https://multimedia.getresponse.com/getresponse-GVoe5/photos/fc447799-228c-4959-8cba-0060bfac4924.png?img1555503862887" alt="" width="600" border="0" data-src="https://multimedia.getresponse.com/getresponse-GVoe5/photos/fc447799-228c-4959-8cba-0060bfac4924.png|600|272|600|400|0|0|1" data-origsrc="https://app.getresponse.com/images/common/templates/messages/1414/1/img/1414_02.png" class="mobile-image-stretch-enabled" style="border-width: 0px; border-style: none; border-color: transparent; font-size: 12px; display: block; width: 100%; max-width: 100% !important;"></td>
+                                <td valign="top" align="left" style="display: inline-block; padding: 0px; margin: 0px; border-radius: 0px;" class="tdBlock responsive-cell"><img src="https://multimedia.getresponse.com/getresponse-GVoe5/photos/fc447799-228c-4959-8cba-0060bfac4924.png?img1556045271543" alt="" width="600" border="0" data-src="https://multimedia.getresponse.com/getresponse-GVoe5/photos/fc447799-228c-4959-8cba-0060bfac4924.png|600|272|600|400|0|0|1" data-origsrc="https://app.getresponse.com/images/common/templates/messages/1414/1/img/1414_02.png" class="mobile-image-stretch-enabled" style="border-width: 0px; border-style: none; border-color: transparent; font-size: 12px; display: block; width: 100%; max-width: 100% !important;"></td>
 
                             </tr>
 
@@ -77,11 +77,11 @@ export const Sol_Equip_Mail = values =>
 
                 <tr>
 
-                    <td align="center" valign="top" style="margin: 0; padding: 0;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td valign="top" align="left" width="56%" style="padding: 0px; margin: 0px;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
+                    <td align="center" valign="top" style="margin: 0; padding: 0;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td valign="top" align="left" width="46%" style="padding: 0px; margin: 0px;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
 
                             <tbody><tr>
 
-                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Nome:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.nome_sol}</span></div></td>
+                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Nome:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.Nome}</span></div></td>
 
                             </tr>
 
@@ -89,31 +89,15 @@ export const Sol_Equip_Mail = values =>
 
                             <tbody><tr>
 
-                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Telefone:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.telefone_sol}</span></div></td>
+                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Telefone:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.Telefone}</span></div></td>
 
                             </tr>
 
-                        </tbody></table></td></tr><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
+                        </tbody></table></td></tr></tbody></table></td><td valign="top" align="left" width="54%" style="padding: 0px; margin: 0px;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
 
                             <tbody><tr>
 
-                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Email:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.email_sol}</span></div></td>
-
-                            </tr>
-
-                        </tbody></table></td></tr></tbody></table></td><td valign="top" align="left" width="44%" style="padding: 0px; margin: 0px;" class="responsive-cell"><table cellpadding="0" cellspacing="0" border="0" width="100%"><tbody><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
-
-                            <tbody><tr>
-
-                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Setor:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.setor_sol}</span></div></td>
-
-                            </tr>
-
-                        </tbody></table></td></tr><tr><td style="margin: 0px; padding: 0px;" align="center" valign="top" class="responsive-cell"><table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" data-editable="text" class="text-block">
-
-                            <tbody><tr>
-
-                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: Arial,'Helvetica Neue', Helvetica, sans-serif; line-height: 2.05;"><div style="text-align: left;"><span style="font-weight: bold;">Cargo:</span> ${values.cargo_sol}</div></td>
+                                <td align="left" valign="top" class="lh-0" style="margin: 0px; padding: 4px; background-color: rgb(255, 255, 255); font-size: 16px; font-family: 'Times New Roman', Times, serif; line-height: 2.05;"><div style="text-align: left;"><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif; font-weight: bold;">Email:</span><span style="color: rgb(43, 67, 70); font-family: Arial, Helvetica, sans-serif;"> ${values.Email}</span></div></td>
 
                             </tr>
 
@@ -156,13 +140,21 @@ export const Sol_Equip_Mail = values =>
                                     ${getHardwares(values)}
 
                                     
-                                    ${values.Observacao !== undefined  
-                                        ?`<div>
+
+                                    ${values.Observacao !== undefined
+
+        ? `<div>
+
                                             <strong>Observação: </strong>
+
                                                 <span>${values.Observacao}</span>
+
                                             </div>`
-                                        : ''
-                                    }
+
+        : ''
+
+    }
+
                                     
 
                                     </span></div>
@@ -180,4 +172,5 @@ export const Sol_Equip_Mail = values =>
     </tr>
 
 </tbody></table>
+
     `

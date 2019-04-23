@@ -10,7 +10,7 @@ const failure = () => ({ type: mailConstants.FAILURE })
 
 const sendMail = mail => dispatch => {
     dispatch(request())
-    axios.post('/api/mail', mail)
+    axios.post('/api/SendMail', mail)
         .then(res => {
             dispatch(success())
             dispatch(toastrActions.success("E-mail enviado com sucesso"))

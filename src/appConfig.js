@@ -1,5 +1,5 @@
-const URL_BASE = 'http://devportal.stoque.com.br/Aplicacao'
-// const URL_BASE = 'http://localhost:64966'
+// const URL_BASE = 'http://devportal.stoque.com.br/Aplicacao'
+const URL_BASE = 'http://localhost:64966'
 
 const EXTENSIONS = {
     embed: ['jpg', 'jpeg', 'png', 'pdf', 'txt'],
@@ -47,7 +47,26 @@ export const appConfig = {
 
 export const configMail = {
     html: undefined,
-    subject: undefined,
+    assunto: undefined,
     empresa: 1,
     formreset: undefined
+}
+
+export const Ocor_Template = values => {
+    debugger
+    return {
+        contrato: 96,
+        CodParcCon: 1,
+        CodParc: values.CodParc,
+        CodContato: values.CodContato,
+        Email: values.Email,
+        Telefone: values.Telefone,
+        Cep: 30240380,
+        CodEndereco: 122156,
+        Numero: 168,
+        CodBairro: 1,
+        CodCidade: 2754,
+        Descricao: undefined,
+        CodProduto: 21701
+    }
 }

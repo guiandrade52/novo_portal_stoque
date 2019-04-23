@@ -26,9 +26,9 @@ const uploadFile = (files, ocorrencia) => dispatch => {
 
 const save = data => dispatch => {
     dispatch(request())
-    requestServices.post('Task', data)
+    axios.post('/api/Task', data)
         .then(resp => {
-            data.files.length > 0 && dispatch(uploadFile(data.files, resp.data))
+            data.files && data.files.length > 0 && dispatch(uploadFile(data.files, resp.data))
             dispatch(toastrActions.success(`Sua ocorrência foi criada com sucesso, N°: ${resp.data}`))
             dispatch(success(resp.data))
             dispatch(inputFileActions.removeAll())

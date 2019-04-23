@@ -14,8 +14,10 @@ import { TextField, Checkbox } from '../../../../components/Fields';
 import { Divider } from 'semantic-ui-react';
 import { bindActionCreators } from '../../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.4.3/node_modules/redux';
 import { mailActions } from '../../../../redux-flow/_actions/mail.actions';
-import { configMail } from '../../../../appConfig';
+import { configMail, Ocor_Template } from '../../../../appConfig';
 import { Sol_Acessos_Mail } from '../../../../components/MailTemplates/solicitacaoAcessos';
+import { newTaskActions } from '../../../../redux-flow/_actions/newTask.actions';
+import { normalizePhone } from '../../../../components/NormalizeReduxForm';
 
 const styles = theme => ({
     paper: {
@@ -28,11 +30,20 @@ const styles = theme => ({
 class AcessosConvidado extends Component {
 
     handleSubmit = (values) => {
-        configMail.html = Sol_Acessos_Mail(values)
-        configMail.subject = 'Solicitação de WI-FI'
+        configMail.html = Sol_Acessos_Mail({ ...values, ...this.props.usuario })
+        configMail.assunto = 'Solicitação de Acessos internos'
         configMail.formreset = 'formAcessosConvidado'
 
         this.props.sendMail(configMail)
+
+        const objeto = Ocor_Template({ ...values, ...this.props.usuario })
+        objeto.Descricao = `Eu ${this.props.usuario.Nome.trim()}, solicito acesso interno para o usuário ${values.nome_usuario}, telefone ${values.telefone_usuario}, E-mail ${values.email_usuario}.
+O mesmo irá utilizar: ${values.Abaris ? 'Abaris ' : ''}, ${values.PortalStoque ? 'PortalStoque ' : ''}, ${values.Sankhya ? 'Sankhya ' : ''}, ${values.Rede ? 'Rede ' : ''}.
+                
+Observação: ${values.observacoes}
+
+Ocorrência gerada automaticamente pelo portal.`
+        this.props.save(objeto)
     }
 
     render() {
@@ -45,39 +56,6 @@ class AcessosConvidado extends Component {
                             <GridContainer spacing={16} justify='center'>
                                 {!isFetching &&
                                     <Fragment>
-                                        <GridItem xs={12} sm={12} md={12} >
-                                            <Typography variant='h6' align='center'>
-                                                Dados do solicitante
-                                            </Typography>
-                                            <Divider />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={5} >
-                                            < Field
-                                                name="nome_sol"
-                                                component={TextField}
-                                                label="Nome Completo"
-                                                placeholder='Nome do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={4} >
-                                            < Field
-                                                name="setor_sol"
-                                                component={TextField}
-                                                label="Setor"
-                                                placeholder='Setor do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={3} >
-                                            < Field
-                                                name="telefone_sol"
-                                                component={TextField}
-                                                label="Telefone"
-                                                placeholder='Telefone do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
 
                                         <GridItem xs={12} sm={12} md={12} >
                                             <Typography variant='h6' align='center'>
@@ -90,7 +68,7 @@ class AcessosConvidado extends Component {
                                             < Field
                                                 name="nome_usuario"
                                                 component={TextField}
-                                                label="Nome Usuário"
+                                                label="Nome do Usuário"
                                                 placeholder='Nome do Usuário'
                                                 fullWidth
                                             />
@@ -113,7 +91,7 @@ class AcessosConvidado extends Component {
                                                 label="Telefone"
                                                 placeholder='Telefone do usuário'
                                                 fullWidth
-                                                type='number'
+                                                normalize={normalizePhone}
                                             />
                                         </GridItem>
 
@@ -174,7 +152,7 @@ class AcessosConvidado extends Component {
 
                                         <GridItem xs={12} sm={12} md={12}>
                                             <Divider />
-                                            <Button style={{ float: 'right' }} variant='outlined' color='primary' type='submit'>Enviar</Button>
+                                            <Button style={{ float: 'right' }} variant='contained' color='primary' type='submit'>Enviar</Button>
                                         </GridItem>
                                     </Fragment>
                                 }
@@ -195,12 +173,9 @@ class AcessosConvidado extends Component {
 const validate = values => {
     const errors = {}
     const requiredFields = [
-        'nome_sol',
-        'setor_sol',
-        'telefone_sol',
         'nome_usuario',
         'email_usuario',
-        'telefone__usuario'
+        'telefone_usuario'
     ]
     requiredFields.forEach(field => {
         if (!values[field]) {
@@ -218,10 +193,11 @@ AcessosConvidado = reduxForm({
     validate
 })(AcessosConvidado)
 
-const mapDispatchToProps = dispatch => bindActionCreators(mailActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...mailActions, ...newTaskActions }, dispatch)
 
 const mapStateToProps = state => ({
-    isFetching: state.mail.isFetching
+    isFetching: state.mail.isFetching,
+    usuario: state.usuario.dados
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AcessosConvidado))

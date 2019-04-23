@@ -1,11 +1,6 @@
 export const validate = values => {
     const errors = {}
     const requiredFields = [
-        'Sol_Solicitante',
-        'Sol_Setor',
-        'Sol_Cargo',
-        'Sol_Telefone',
-        'Sol_Email',
         'Fun_Nome',
         'Fun_Alocado',
         'Fun_CPF',

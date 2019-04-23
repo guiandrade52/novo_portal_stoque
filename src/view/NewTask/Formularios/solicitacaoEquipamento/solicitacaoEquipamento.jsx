@@ -14,8 +14,9 @@ import { TextField, Checkbox } from '../../../../components/Fields';
 import { Divider } from 'semantic-ui-react';
 import { bindActionCreators } from '../../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.4.3/node_modules/redux';
 import { mailActions } from '../../../../redux-flow/_actions/mail.actions';
-import { Sol_Equip_Mail } from '../../../../components/MailTemplates/solicitacaoEquipamentos';
-import { configMail } from '../../../../appConfig';
+import { Sol_Equip_Mail, getHardwares } from '../../../../components/MailTemplates/solicitacaoEquipamentos';
+import { configMail, Ocor_Template } from '../../../../appConfig';
+import { newTaskActions } from '../../../../redux-flow/_actions/newTask.actions';
 
 const styles = theme => ({
     paper: {
@@ -28,11 +29,20 @@ const styles = theme => ({
 class SolicitacaoEquipamento extends Component {
 
     handleSubmit = (values) => {
-        configMail.html = Sol_Equip_Mail(values)
-        configMail.subject = 'Solicitação de equipamentos'
+        configMail.html = Sol_Equip_Mail({ ...values, ...this.props.usuario })
+        configMail.assunto = 'Solicitação de equipamentos'
         configMail.formreset = 'formSolicitacaoEquipamento'
 
         this.props.sendMail(configMail)
+
+        const objeto = Ocor_Template({ ...values, ...this.props.usuario })
+        objeto.Descricao = `Eu ${this.props.usuario.Nome.trim()}, solicito os seguintes equipamentos:
+${getHardwares(values)}
+                
+Observação: ${values.observacoes ? values.observacoes : 'Não possui'}
+
+Ocorrência gerada automaticamente pelo portal.`
+        this.props.save(objeto)
     }
 
     render() {
@@ -47,66 +57,15 @@ class SolicitacaoEquipamento extends Component {
                                     <Fragment>
                                         <GridItem xs={12} sm={12} md={12} >
                                             <Typography variant='h6' align='center'>
-                                                Dados do solicitante
-                                    </Typography>
-                                            <Divider />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={5} >
-                                            < Field
-                                                name="nome_sol"
-                                                component={TextField}
-                                                label="Nome Completo"
-                                                placeholder='Nome do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={4} >
-                                            < Field
-                                                name="setor_sol"
-                                                component={TextField}
-                                                label="Setor"
-                                                placeholder='Setor do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={3} >
-                                            < Field
-                                                name="telefone_sol"
-                                                component={TextField}
-                                                label="Telefone"
-                                                placeholder='Telefone do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={6} >
-                                            < Field
-                                                name="email_sol"
-                                                component={TextField}
-                                                label="Email"
-                                                placeholder='Email do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={6} >
-                                            < Field
-                                                name="cargo_sol"
-                                                component={TextField}
-                                                label="Cargo"
-                                                placeholder='Cargo do Solicitante'
-                                                fullWidth
-                                            />
-                                        </GridItem>
-                                        <GridItem xs={12} sm={12} md={12} >
-                                            <Typography variant='h6' align='center'>
                                                 Hardware e Periféricos
-                                    </Typography>
+                                            </Typography>
                                             <Divider />
                                         </GridItem>
 
                                         <GridItem xs={12} sm={12} md={12}>
                                             <Typography variant='subtitle1'>
                                                 Selecione quais equipamentos o usuário necessitará
-                                </Typography>
+                                            </Typography>
                                         </GridItem>
                                         <GridItem xs={12} sm={12} md={2} >
                                             <Field
@@ -222,10 +181,11 @@ SolicitacaoEquipamento = reduxForm({
     validate
 })(SolicitacaoEquipamento)
 
-const mapDispatchToProps = dispatch => bindActionCreators(mailActions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ ...mailActions, ...newTaskActions }, dispatch)
 
 const mapStatetoProps = state => ({
-    isFetching: state.mail.isFetching
+    isFetching: state.mail.isFetching,
+    usuario: state.usuario.dados
 })
 
 export default connect(mapStatetoProps, mapDispatchToProps)(withStyles(styles)(SolicitacaoEquipamento))
