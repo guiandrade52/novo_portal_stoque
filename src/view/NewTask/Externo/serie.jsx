@@ -22,12 +22,10 @@ class Serie extends Component {
     }
 
     handleSearchSerie = search => {
-        if (search % 2 !== 0)
-            this.props.fetchSeries(search)
+        this.props.fetchSeries(search)
     }
 
     handleBack = () => {
-        debugger
         this.props.dispatch(change('formExterno', 'serie', ''))
     }
 
@@ -43,10 +41,7 @@ class Serie extends Component {
                     component={Select}
                     label="Serie"
                     placeholder='Selecione a Serie/Licença'
-                    options={
-                        series
-                            ? series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))
-                            : undefined}
+                    options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle} `, value: item.Controle }))}
                     onKeyDown={e => this.handleSearchSerie(e)}
                 />
                 {isFetching &&

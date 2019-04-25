@@ -40,11 +40,8 @@ class Contatos extends Component {
                     component={Select}
                     label="Contato"
                     placeholder='Selecione o Contato'
-                    options={
-                        contatos
-                            ? contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato }))
-                            : undefined
-                    }
+                    options={contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato }))}
+                    onKeyDown={() => { }}
                 />
 
                 {isFetching &&

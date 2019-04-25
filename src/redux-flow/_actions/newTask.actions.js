@@ -1,5 +1,4 @@
 import { newTaskConstants } from "../_constants/newTask.constants";
-import { requestServices } from "../_services";
 import { helpersActions } from "../_helpers";
 import { toastrActions } from "./toastr.actions";
 import { stepActions } from "./step.actions";
@@ -26,7 +25,7 @@ const uploadFile = (files, ocorrencia) => dispatch => {
 
 const save = data => dispatch => {
     dispatch(request())
-    axios.post('/api/Task', data)
+    axios.post(`${appConfig.URL_BASE}/api/Task`, data)
         .then(resp => {
             data.files && data.files.length > 0 && dispatch(uploadFile(data.files, resp.data))
             dispatch(toastrActions.success(`Sua ocorrência foi criada com sucesso, N°: ${resp.data}`))

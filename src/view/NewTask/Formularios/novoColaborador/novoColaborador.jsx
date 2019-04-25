@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 //Redux-form
 import { reduxForm, Field } from 'redux-form'

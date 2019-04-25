@@ -173,27 +173,34 @@ const components = {
 
 class SelectAuto extends React.Component {
 
-    state = {
-        await: false
-    }
+    search = false;
+    count = 0;
 
     handleChange = value => {
         this.props.input.onChange(value)
     };
 
-    handleOnKeyDown = e => {
-        if (!this.props.onKeyDown)
-            return
+    handleFocus = () => {
+        this.search = true
+    }
 
-        if (e.target.value !== '')
-            this.setState({ await: false })
+    handleBlur = () => {
+        this.search = false
+    }
 
-        if (!this.state.await)
-            this.props.onKeyDown(e.target.value)
-
-        if (e.target.value === '')
-            this.setState({ await: true })
-
+    onInputChange = value => {
+        if (value === '' && this.count === 0 && this.search) {
+            this.count = 1
+            this.props.onKeyDown(value)
+        }
+        else if (this.search && this.count === 0) {
+            this.count = 0
+            this.props.onKeyDown(value)
+        }
+        else if (this.search && value !== '') {
+            this.props.onKeyDown(value)
+            this.count = 0
+        }
     }
 
     render() {
@@ -209,8 +216,6 @@ class SelectAuto extends React.Component {
             }),
         };
 
-
-
         return (
             <div className={classes.root}>
                 <NoSsr>
@@ -224,7 +229,9 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isClearable
-                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleFocus}
+                            onBlur={this.handleBlur}
+                            onInputChange={this.onInputChange}
                             textFieldProps={{
                                 label,
                                 InputLabelProps: {
@@ -250,7 +257,7 @@ class SelectAuto extends React.Component {
                             onChange={this.handleChange}
                             placeholder={placeholder}
                             isMulti
-                            onKeyDown={this.handleOnKeyDown}
+                            onInputChange={this.onInputChange}
                         />
                     }
                 </NoSsr>
@@ -262,6 +269,7 @@ class SelectAuto extends React.Component {
 SelectAuto.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
+    onKeyDown: PropTypes.func.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(SelectAuto)
