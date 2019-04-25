@@ -216,8 +216,9 @@ class SelectAuto extends React.Component {
             }),
         };
 
+        console.log(value)
         return (
-            <div className={classes.root}>
+            < div className={classes.root} >
                 <NoSsr>
                     {!isMulti &&
                         <Select
@@ -261,7 +262,7 @@ class SelectAuto extends React.Component {
                         />
                     }
                 </NoSsr>
-            </div>
+            </div >
         );
     }
 }

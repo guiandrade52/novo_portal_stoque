@@ -35,6 +35,7 @@ class Produto extends Component {
                     label="Produto"
                     placeholder='Selecione o Produto'
                     options={produtos.map(item => ({ label: `${item.DescProd}`, value: item.CodProd }))}
+                    onKeyDown={() => { }}
                 />
                 <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
             </form>

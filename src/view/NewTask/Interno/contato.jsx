@@ -20,14 +20,13 @@ import { Message } from 'semantic-ui-react';
 class Contatos extends Component {
 
     componentWillMount() {
-        const { fetchContatoComSerie, fetchSerieDetails, serie, contrato, fetchContatoSemSerie, contratos, fetchContratoDetails } = this.props
+        const { fetchContatoComSerie, fetchSerieDetails, serie, contrato, fetchContatoSemSerie, fetchContratoDetails } = this.props
         if (serie && serie.value) {
             fetchContatoComSerie(serie.value)
             fetchSerieDetails(serie.value)
         }
         else {
-            const parceiro = contratos.find(item => item.CodContrato === contrato.value)
-            fetchContatoSemSerie(contrato.value, parceiro.CodParc)
+            fetchContatoSemSerie(contrato.value, contrato.CodParc)
             fetchContratoDetails(contrato.value)
         }
     }
@@ -39,9 +38,8 @@ class Contatos extends Component {
     }
 
     handleSearchContato = search => {
-        const { contratos, contrato, fetchContatoSemSerie } = this.props
-        const parceiro = contratos.find(item => item.CodContrato === contrato.value)
-        fetchContatoSemSerie(contrato.value, parceiro.CodParc, search)
+        const { contrato, fetchContatoSemSerie } = this.props
+        fetchContatoSemSerie(contrato.value, contrato.CodParc, search)
     }
 
     render() {
@@ -53,11 +51,7 @@ class Contatos extends Component {
                     component={Select}
                     label="Contato"
                     placeholder='Selecione o Contato'
-                    options={
-                        contatos
-                            ? contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato }))
-                            : undefined
-                    }
+                    options={contatos.map(item => ({ label: `${item.Nome}`, value: item.CodContato, nome: item.Nome, telefone: item.Telefone, email: item.Email }))}
                     onKeyDown={e => this.handleSearchContato(e)}
                 />
 
@@ -90,7 +84,6 @@ const mapStateToProps = state => ({
     selected: selector(state, 'contato'),
     contrato: selector(state, 'contrato'),
     contatos: state.repository.contatos,
-    contratos: state.repository.contratos,
     isFetching: state.repository.isFetching,
 
 })

@@ -33,7 +33,7 @@ class Contratos extends Component {
           component={Select}
           label="Contrato"
           placeholder='Selecionar um contrato'
-          options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
+          options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato, CodParc: item.CodParc }))}
           onKeyDown={e => this.handleSearchContrato(e)}
         />
         <Actions disabled={this.stateAction()} />

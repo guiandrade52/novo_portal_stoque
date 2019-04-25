@@ -32,6 +32,7 @@ class GrupoProduto extends Component {
                     label="Serviço"
                     placeholder='Selecione o Serviço'
                     options={grupoProdutos.map(item => ({ label: `${item.DescGrupo}`, value: item.CodGrupo }))}
+                    onKeyDown={() => { }}
                 />
                 <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
             </form>

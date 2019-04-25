@@ -31,8 +31,7 @@ const styles = theme => ({
 class Resumo extends Component {
 
     componentDidMount() {
-        const { serieDetails, contratoDetails, descricao, contato, contatos, produto } = this.props
-        const contatoData = contatos.find(item => item.CodContato === contato.value)
+        const { serieDetails, contratoDetails, descricao, contato, produto } = this.props
         const data = serieDetails
             ? {
                 produto: serieDetails.DescrProd,
@@ -40,9 +39,9 @@ class Resumo extends Component {
                 cliente: serieDetails.Parceiro,
                 contrato: serieDetails.Contrato,
                 descrServico: serieDetails.DescrNat,
-                contato: contatoData.Nome,
-                telefone: contatoData.Telefone,
-                email: contatoData.Email,
+                contato: contato.nome,
+                telefone: contato.telefone,
+                email: contato.email,
                 endereco: serieDetails.Endereco,
                 numero: serieDetails.Numero,
                 complemento: serieDetails.Complemento,
@@ -57,9 +56,9 @@ class Resumo extends Component {
                 cliente: contratoDetails.RazaoSocial,
                 contrato: contratoDetails.Contrato,
                 descrServico: contratoDetails.DescrNat,
-                contato: contatoData.Nome,
-                telefone: contatoData.Telefone,
-                email: contatoData.Email,
+                contato: contato.nome,
+                telefone: contato.telefone,
+                email: contato.email,
                 endereco: contratoDetails.Endereco,
                 numero: contratoDetails.Numero,
                 complemento: contratoDetails.Complemento,
