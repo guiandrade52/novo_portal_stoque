@@ -35,7 +35,7 @@ class ParceiroContrato extends Component {
                     component={Select}
                     label="Parceiros abertura"
                     placeholder='Selecionar um parceiro'
-                    options={parceiroAb.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
+                    options={parceiroAb.map(item => ({ label: `${item.CodParc} ➤ ${item.Nome}`, value: item.CodParc }))}
                     onKeyDown={e => this.props.fetchParceiroAb(e)}
                 />
                 {isFetching &&

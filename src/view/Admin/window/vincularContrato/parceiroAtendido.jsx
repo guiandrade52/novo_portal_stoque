@@ -35,7 +35,8 @@ class ParceiroAtendido extends Component {
                     component={Select}
                     label="Parceiros atendidos"
                     placeholder='Selecionar um parceiro'
-                    options={usuarios.map(item => ({ label: `${item.CodParc} - ${item.Nome}`, value: item.CodParc }))}
+                    options={usuarios.map(item => ({ label: `${item.CodParc} ➤ ${item.Nome}`, value: item.CodParc }))}
+                    onKeyDown={() => {}}
                     isMulti
                 />
                 {isFetching &&

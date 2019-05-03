@@ -1,5 +1,5 @@
-// const URL_BASE = 'http://devportal.stoque.com.br/Aplicacao'
-const URL_BASE = 'http://localhost:64966'
+const URL_BASE = 'http://devportal.stoque.com.br/Aplicacao'
+// const URL_BASE = 'http://localhost:64966'
 
 const EXTENSIONS = {
     embed: ['jpg', 'jpeg', 'png', 'pdf', 'txt'],

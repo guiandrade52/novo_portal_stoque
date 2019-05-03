@@ -31,7 +31,7 @@ class Contratos extends Component {
           component={Select}
           label="Contrato"
           placeholder='Selecione um contrato'
-          options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
+          options={contratos.map(item => ({ label: `${item.CodContrato} ➤ ${item.Nome}`, value: item.CodContrato }))}
           onKeyDown={e => {
             if (e === '')
               return

@@ -90,7 +90,7 @@ class ClonaUsuarios extends Component {
                                                 component={Select}
                                                 label="Usuários receptores"
                                                 placeholder='Selecione o(s) usuário(s) que receberam as configurações'
-                                                options={usuariosReducers.map(item => ({ label: `${item.IdUsuario} - ${item.Nome}`, value: item.IdUsuario }))}
+                                                options={usuariosReducers.map(item => ({ label: `${item.IdUsuario} ➤ ${item.Nome}`, value: item.IdUsuario }))}
                                                 onKeyDown={e => fetchUsuariosPortal(e)}
                                                 isMulti
                                             />
