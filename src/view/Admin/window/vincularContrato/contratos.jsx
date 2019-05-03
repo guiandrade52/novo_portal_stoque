@@ -32,7 +32,11 @@ class Contratos extends Component {
           label="Contrato"
           placeholder='Selecione um contrato'
           options={contratos.map(item => ({ label: `${item.CodContrato} - ${item.Nome}`, value: item.CodContrato }))}
-          onKeyDown={e => this.props.fetchContratoPParceiro(e)}
+          onKeyDown={e => {
+            if (e === '')
+              return
+            this.props.fetchContratoPParceiro(e)
+          }}
         />
         <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
       </form>

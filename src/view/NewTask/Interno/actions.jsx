@@ -29,8 +29,9 @@ class Actions extends Component {
     }
 
     handleBack = () => {
-        const { activeStep, back } = this.props
-        back(activeStep)
+        const { activeStep, back, serie, noSerie } = this.props
+        let step = !serie && noSerie ? activeStep - 1 : activeStep
+        back(step)
         this.props.handleBack()
     }
 
@@ -39,10 +40,10 @@ class Actions extends Component {
     }
 
     handleSave = () => {
-        const { serieDetails, produto, contato, descricao, contatos, files, contratoDetails } = this.props
+        const { serieDetails, produto, contato, descricao, contatos, files, contratoDetails, servico } = this.props
         const filterContato = contatos.find(item => item.CodContato === contato.value)
         const data = serieDetails ? serieDetails : contratoDetails
-        this.props.save({ ...data, CodProduto: produto.value, ...filterContato, descricao, files })
+        this.props.save({ ...data, CodProduto: produto.value, ...filterContato, descricao, files, CodServico: servico ? servico.value : '' })
     }
 
     handleCreateNewTask = () => {
@@ -55,7 +56,7 @@ class Actions extends Component {
         return (
             <div className={classes.actionsContainer}>
                 {!isFetching && !btnNew &&
-                    < div >
+                    <div>
                         {
                             !hidden &&
                             <Button onClick={this.handleReset} className={classes.button}>
@@ -94,6 +95,7 @@ const mapStateToProps = state => ({
     contatos: state.repository.contatos,
     serie: selector(state, 'serie'),
     contato: selector(state, 'contato'),
+    servico: selector(state, 'servico'),
     descricao: selector(state, 'descricao'),
     produto: selector(state, 'produto'),
     ...state.newTask,

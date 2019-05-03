@@ -37,7 +37,7 @@ class Serie extends Component {
                     component={Select}
                     label="Serie"
                     placeholder='Selecione a Serie/Licença'
-                    options={series.map(item => ({ label: `${item.Controle} - ${item.DescrProd}`, value: item.Controle }))}
+                    options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle}`, value: item.Controle }))}
                     onKeyDown={() => { }}
                 />
 

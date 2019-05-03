@@ -55,7 +55,7 @@ class ClonaUsuarios extends Component {
                                         component={Select}
                                         label="Usuário base"
                                         placeholder='Selecione o usuário a ser cópiado'
-                                        options={usuarios.map(item => ({ label: `${item.IdUsuario} - ${item.Nome}`, value: item.IdUsuario }))}
+                                        options={usuarios.map(item => ({ label: `${item.IdUsuario} ➤ ${item.Nome}`, value: item.IdUsuario }))}
                                         onKeyDown={e => fetchUsuariosPortal(e)}
                                         onChange={e => listaContratoPUsuario(e)}
                                     />

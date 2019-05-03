@@ -66,7 +66,7 @@ class Contatos extends Component {
                         content='Está série não possui nenhum contato cadastrado, entre em cotato com suporte e solicite o cadastro.'
                     />
                 }
-                <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
+                <Actions disabled={this.stateAction()} handleBack={this.handleBack} noSerie={true} />
             </form>
         )
     }

@@ -35,7 +35,7 @@ class UsuarioPortal extends Component {
                         component={Select}
                         label="Usuário Portal"
                         placeholder='Selecionar um Usuário'
-                        options={usuarios.map(item => ({ label: `${item.Nome}`, value: item.IdUsuario }))}
+                        options={usuarios.map(item => ({ label: `${item.IdUsuario} ➤ ${item.Nome}`, value: item.IdUsuario }))}
                         onKeyDown={e => fetchUsuariosPortal(e)}
                         onChange={e => listaContratoPUsuario(e)}
                     />
@@ -50,7 +50,7 @@ class UsuarioPortal extends Component {
                                         <Chip
                                             key={key}
                                             avatar={<Avatar>{item.Contrato}</Avatar>}
-                                            label={`${item.CodParc} - ${item.Nome}`}
+                                            label={`${item.CodParc} ➤ ${item.Nome}`}
                                             style={{ margin: 5 }}
                                             onDelete={() => deleteContrato({ idUsuario: item.IdUsuario, contrato: item.Contrato, codParc: item.CodParc })}
                                         />

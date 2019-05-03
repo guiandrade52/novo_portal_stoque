@@ -257,6 +257,8 @@ class SelectAuto extends React.Component {
                             value={value}
                             onChange={this.handleChange}
                             placeholder={placeholder}
+                            onFocus={this.handleFocus}
+                            onBlur={this.handleBlur}
                             isMulti
                             onInputChange={this.onInputChange}
                         />

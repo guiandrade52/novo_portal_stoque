@@ -19,6 +19,19 @@ const fetchServicos = () => dispatch => {
         })
 }
 
+const fetchServicoPContrato = contrato => dispatch => {
+    dispatch(request())
+    axios.get(`${appConfig.URL_BASE}/api/Servico`, { params: { contrato } })
+        .then(resp => {
+            dispatch(success(resp.data))
+        })
+        .catch(error => {
+            helpersActions.checkErrorResponse(error, dispatch)
+            dispatch(failure())
+        })
+}
+
 export const servicoActions = {
-    fetchServicos
+    fetchServicos,
+    fetchServicoPContrato
 }
