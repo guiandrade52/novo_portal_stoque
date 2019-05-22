@@ -31,7 +31,7 @@ const styles = theme => ({
 class Resumo extends Component {
 
     componentDidMount() {
-        const { serie, serieDetails, contratosDetails, descricao, contato, contatos } = this.props
+        const { serie, serieDetails, processoRelacionado, contratosDetails, descricao, contato, contatos } = this.props
         const contatoData = contatos.find(item => item.CodContato === contato.value)
         const data = serie
             ? {
@@ -49,7 +49,8 @@ class Resumo extends Component {
                 cep: serieDetails.Cep,
                 bairro: serieDetails.Bairro,
                 cidade: serieDetails.Cidade,
-                descricao: descricao
+                descricao: descricao,
+                processoRelacionado
             }
             : {
                 produto: contratosDetails.DescrProd,
@@ -66,7 +67,8 @@ class Resumo extends Component {
                 cep: contratosDetails.Cep,
                 bairro: contratosDetails.Bairro,
                 cidade: contratosDetails.Cidade,
-                descricao: descricao
+                descricao: descricao,
+                processoRelacionado
             }
         this.props.dispatch(newTaskActions.updateDataResumo(data))
     }
@@ -105,6 +107,17 @@ class Resumo extends Component {
                                         name="serie"
                                         component={TextField}
                                         label="Série"
+                                        fullWidth
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                    />
+                                </GridItem>
+                                <GridItem xs={6} sm={6} md={3}>
+                                    <Field
+                                        name="processoRelacionado"
+                                        component={TextField}
+                                        label="Processo Relacionado"
                                         fullWidth
                                         InputProps={{
                                             readOnly: true,
@@ -293,6 +306,7 @@ const mapStateToProps = state => ({
     contato: selector(state, 'contato'),
     serie: selector(state, 'serie'),
     descricao: selector(state, 'descricao'),
+    processoRelacionado: selector(state, 'processoRelacionado'),
     serieDetails: state.repository.serieDetails,
     initialValues: state.newTask.data
 })

@@ -9,11 +9,13 @@ import { serieActions } from '../../../redux-flow/_actions/serie.actions';
 import { bindActionCreators } from 'redux'
 
 //coreComponents
-import { Select } from '../../../components/Fields'
+import { Select, TextField } from '../../../components/Fields'
 import Actions from './actions';
 
 //Materia UI
 import { LinearProgress } from '@material-ui/core';
+import { GridItem } from '../../../components/Grids';
+import { Button } from 'semantic-ui-react';
 
 class Serie extends Component {
 
@@ -44,6 +46,16 @@ class Serie extends Component {
                     options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle} `, value: item.Controle }))}
                     onKeyDown={e => this.handleSearchSerie(e)}
                 />
+                {!this.stateAction() &&
+                    <GridItem >
+                        <Field
+                            name="processoRelacionado"
+                            component={TextField}
+                            label="Processo Relacionado"
+                            type='number'
+                        />
+                    </GridItem>
+                }
                 {isFetching &&
                     <LinearProgress />
                 }

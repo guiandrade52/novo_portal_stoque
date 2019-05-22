@@ -1,6 +1,9 @@
 import { appConstants } from '../_constants'
 
-const changeTitle = title => ({ type: appConstants.CHANGE_TITLE, payload: title })
+function changeTitle(title) {
+    document.title = title
+    return ({ type: appConstants.CHANGE_TITLE, payload: title })
+}
 
 export const appActions = {
     changeTitle
