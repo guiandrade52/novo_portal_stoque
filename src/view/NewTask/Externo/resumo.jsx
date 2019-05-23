@@ -31,7 +31,7 @@ const styles = theme => ({
 class Resumo extends Component {
 
     componentDidMount() {
-        const { serie, serieDetails, processoRelacionado, contratosDetails, descricao, contato, contatos } = this.props
+        const { serie, serieDetails, processoRelacionado, ocorTerceiro, contratosDetails, descricao, contato, contatos } = this.props
         const contatoData = contatos.find(item => item.CodContato === contato.value)
         const data = serie
             ? {
@@ -50,7 +50,8 @@ class Resumo extends Component {
                 bairro: serieDetails.Bairro,
                 cidade: serieDetails.Cidade,
                 descricao: descricao,
-                processoRelacionado
+                processoRelacionado,
+                ocorTerceiro
             }
             : {
                 produto: contratosDetails.DescrProd,
@@ -68,7 +69,8 @@ class Resumo extends Component {
                 bairro: contratosDetails.Bairro,
                 cidade: contratosDetails.Cidade,
                 descricao: descricao,
-                processoRelacionado
+                processoRelacionado,
+                ocorTerceiro
             }
         this.props.dispatch(newTaskActions.updateDataResumo(data))
     }
@@ -118,6 +120,17 @@ class Resumo extends Component {
                                         name="processoRelacionado"
                                         component={TextField}
                                         label="Processo Relacionado"
+                                        fullWidth
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                    />
+                                </GridItem>
+                                <GridItem xs={6} sm={6} md={3}>
+                                    <Field
+                                        name="ocorTerceiro"
+                                        component={TextField}
+                                        label="Ocorrência de terceiros"
                                         fullWidth
                                         InputProps={{
                                             readOnly: true,
@@ -307,6 +320,7 @@ const mapStateToProps = state => ({
     serie: selector(state, 'serie'),
     descricao: selector(state, 'descricao'),
     processoRelacionado: selector(state, 'processoRelacionado'),
+    ocorTerceiro: selector(state, 'ocorTerceiro'),
     serieDetails: state.repository.serieDetails,
     initialValues: state.newTask.data
 })

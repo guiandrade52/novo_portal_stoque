@@ -14,8 +14,7 @@ import Actions from './actions';
 
 //Materia UI
 import { LinearProgress } from '@material-ui/core';
-import { GridItem } from '../../../components/Grids';
-import { Button } from 'semantic-ui-react';
+import { GridItem, GridContainer } from '../../../components/Grids';
 
 class Serie extends Component {
 
@@ -46,19 +45,34 @@ class Serie extends Component {
                     options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle} `, value: item.Controle }))}
                     onKeyDown={e => this.handleSearchSerie(e)}
                 />
-                {!this.stateAction() &&
-                    <GridItem >
-                        <Field
-                            name="processoRelacionado"
-                            component={TextField}
-                            label="Processo Relacionado"
-                            type='number'
-                        />
-                    </GridItem>
-                }
                 {isFetching &&
                     <LinearProgress />
                 }
+                {!this.stateAction() &&
+                    <GridContainer spacing={16}>
+                        <GridItem md={3} sm={3} xs={3}>
+                            <Field
+                                name="processoRelacionado"
+                                component={TextField}
+                                label="Processo Relacionado"
+                                type='number'
+                                fullWidth
+                            />
+
+                        </GridItem>
+                        <GridItem md={3} sm={3} xs={3}>
+                            <Field
+                                name="ocorTerceiro"
+                                component={TextField}
+                                label="Ocorrência de terceiros"
+                                type='number'
+                                fullWidth
+                            />
+                        </GridItem>
+
+                    </GridContainer>
+                }
+                
                 <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
 
             </form>
