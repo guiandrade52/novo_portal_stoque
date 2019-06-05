@@ -73,7 +73,7 @@ class Actions extends Component {
                             Voltar
                         </Button>
                         <Button variant="contained" color="primary" disabled={disabled} onClick={hidden ? this.handleNext : this.handleSave} className={classes.button}>
-                            {hidden ? 'Proxmo' : 'Finalizar'}
+                            {hidden ? 'Próximo' : 'Finalizar'}
                         </Button>
                     </div>
                 }

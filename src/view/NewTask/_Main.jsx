@@ -32,7 +32,7 @@ class Main extends Component {
         options: [
             { id: 1, label: 'Serviços internos', nameIcon: 'settings', color: 'rgba(39, 108, 191, 0.44)' },
             { id: 2, label: 'Tenho uma Série/Licença', nameIcon: 'handshake outline', color: '#C6C6C6' },
-            { id: 3, label: 'Formulários', nameIcon: 'file alternate outline', color: 'rgba(6, 144, 136, 0.59)' }
+            { id: 3, label: 'Solicitação de Acessos/Equipamentos', nameIcon: 'file alternate outline', color: 'rgba(6, 144, 136, 0.59)' }
         ],
         id: 0
     }

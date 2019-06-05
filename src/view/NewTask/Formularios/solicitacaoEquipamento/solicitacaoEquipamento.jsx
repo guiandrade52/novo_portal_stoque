@@ -30,7 +30,7 @@ class SolicitacaoEquipamento extends Component {
 
     handleSubmit = (values) => {
         configMail.html = Sol_Equip_Mail({ ...values, ...this.props.usuario })
-        configMail.assunto = 'Solicitação de equipamentos'
+        configMail.assunto = 'Equipamentos de TI'
         configMail.formreset = 'formSolicitacaoEquipamento'
 
         this.props.sendMail(configMail)

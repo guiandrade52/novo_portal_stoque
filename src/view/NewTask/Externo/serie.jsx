@@ -15,8 +15,13 @@ import Actions from './actions';
 //Materia UI
 import { LinearProgress } from '@material-ui/core';
 import { GridItem, GridContainer } from '../../../components/Grids';
+import { Button } from 'semantic-ui-react';
 
 class Serie extends Component {
+
+    state = {
+        enableService: false
+    }
 
     componentWillMount() {
         this.props.fetchSeries()
@@ -32,49 +37,63 @@ class Serie extends Component {
 
     stateAction = () => this.props.selected ? false : true
 
+    handleChangeService = () => {
+        this.setState({ enableService: !this.state.enableService })
+    }
+
+
     render() {
         const { series, isFetching } = this.props
 
         return (
             <form onSubmit={e => { e.preventDefault() }}>
-                <Field
-                    name="serie"
-                    component={Select}
-                    label="Serie"
-                    placeholder='Selecione a Serie/Licença'
-                    options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle} `, value: item.Controle }))}
-                    onKeyDown={e => this.handleSearchSerie(e)}
-                />
-                {isFetching &&
-                    <LinearProgress />
-                }
-                {!this.stateAction() &&
-                    <GridContainer spacing={16}>
-                        <GridItem md={3} sm={3} xs={3}>
+                <div style={{ width: '100%' }}>
+                    <GridContainer>
+                        <GridItem md={this.stateAction() ? 12 : 11}>
                             <Field
-                                name="processoRelacionado"
-                                component={TextField}
-                                label="Processo Relacionado"
-                                type='number'
-                                fullWidth
+                                name="serie"
+                                component={Select}
+                                label="Serie"
+                                placeholder='Selecione a Serie/Licença'
+                                options={series.map(item => ({ label: `${item.ControleFab} ➤ ${item.DescrProd} ➤ ${item.Controle} `, value: item.Controle }))}
+                                onKeyDown={e => this.handleSearchSerie(e)}
                             />
-
+                            {isFetching &&
+                                <LinearProgress />
+                            }
                         </GridItem>
-                        <GridItem md={3} sm={3} xs={3}>
-                            <Field
-                                name="ocorTerceiro"
-                                component={TextField}
-                                label="Ocorrência de terceiros"
-                                type='number'
-                                fullWidth
-                            />
-                        </GridItem>
+                        {!this.stateAction() &&
+                            <GridItem md={1}>
+                                <Button onClick={this.handleChangeService} circular icon='settings' type='button' />
+                            </GridItem>
+                        }
+                        {this.state.enableService &&
+                            <GridContainer spacing={16}>
+                                <GridItem md={3} sm={3} xs={3}>
+                                    <Field
+                                        name="processoRelacionado"
+                                        component={TextField}
+                                        label="Ocorrência Relacionada"
+                                        type='number'
+                                        fullWidth
+                                    />
 
+                                </GridItem>
+                                <GridItem md={3} sm={3} xs={3}>
+                                    <Field
+                                        name="ocorTerceiro"
+                                        component={TextField}
+                                        label="Ocorrência de terceiros"
+                                        type='number'
+                                        fullWidth
+                                    />
+                                </GridItem>
+                            </GridContainer>
+                        }
+
+                        <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
                     </GridContainer>
-                }
-                
-                <Actions disabled={this.stateAction()} handleBack={this.handleBack} />
-
+                </div>
             </form>
         )
     }

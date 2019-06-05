@@ -41,10 +41,10 @@ class Actions extends Component {
     }
 
     handleSave = () => {
-        const { serieDetails, contato, descricao, contatos, files, processoRel,ocorTerceiro } = this.props
+        const { serieDetails, contato, descricao, contatos, files, processoRel, ocorTerceiro } = this.props
         const filterContato = contatos.find(item => item.CodContato === contato.value)
 
-        this.props.save({ ...serieDetails, ...filterContato, descricao, processoRel,ocorTerceiro, files })
+        this.props.save({ ...serieDetails, ...filterContato, descricao, processoRel, ocorTerceiro, files })
     }
 
     handleCreateNewTask = () => {
@@ -68,7 +68,7 @@ class Actions extends Component {
                             Voltar
                         </Button>
                         <Button variant="contained" color="primary" disabled={disabled} onClick={hidden ? this.handleNext : this.handleSave} className={classes.button}>
-                            {hidden ? 'Proxmo' : 'Finalizar'}
+                            {hidden ? 'Próximo' : 'Finalizar'}
                         </Button>
                     </div>
                 }

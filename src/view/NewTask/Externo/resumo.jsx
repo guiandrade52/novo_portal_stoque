@@ -119,7 +119,7 @@ class Resumo extends Component {
                                     <Field
                                         name="processoRelacionado"
                                         component={TextField}
-                                        label="Processo Relacionado"
+                                        label="Ocorrência Relacionada"
                                         fullWidth
                                         InputProps={{
                                             readOnly: true,
