@@ -15,11 +15,7 @@ import Actions from './actions';
 class Contratos extends Component {
 
   componentWillMount() {
-    this.props.fetchContratos()
-  }
-
-  handleSearchContrato = value => {
-    this.props.fetchContratos(value)
+    this.props.fetchContratoPParceiro(1)
   }
 
   stateAction = () => this.props.selected ? false : true
@@ -34,7 +30,7 @@ class Contratos extends Component {
           label="Contrato"
           placeholder='Selecionar um contrato'
           options={contratos.map(item => ({ label: `${item.CodContrato} ➤ ${item.Nome}`, value: item.CodContrato, CodParc: item.CodParc }))}
-          onKeyDown={e => this.handleSearchContrato(e)}
+          onKeyDown={e => {}}
         />
         <Actions disabled={this.stateAction()} />
       </form>

@@ -21,7 +21,6 @@ import { reset } from 'redux-form'
 import Contratos from './contratos';
 import Produtos from './produtos';
 import GrupoProduto from './grupoProduto';
-import Serie from './serie';
 import Contato from './contato';
 import Actions from './actions';
 import Resumo from './resumo';
@@ -53,9 +52,8 @@ function getSteps(props) {
         { index: 0, label: 'Me informe qual contrato' },
         { index: 1, label: 'Agora qual serviço desejado' },
         { index: 2, label: 'Diga-me o produto' },
-        { index: 3, label: 'Está tentando registrar pra alguma destas séries' },
-        { index: 4, label: 'Quem será o contato reponsável' },
-        { index: 5, label: 'Me informe detalhadamente o problema' }
+        { index: 3, label: 'Quem será o contato reponsável' },
+        { index: 4, label: 'Me informe detalhadamente o problema' }
     ]
 
     if (props.series && props.series.length === 1 && props.series[0].Controle === null) {
@@ -73,12 +71,10 @@ function getStepContent(step) {
         case 2:
             return <Produtos />
         case 3:
-            return <Serie />
-        case 4:
             return <Contato />
-        case 5:
+        case 4:
             return <Descricao />
-        case 6:
+        case 5:
             return <InternoSystem />
         default:
             return 'Error'
