@@ -3,8 +3,7 @@ import { dialogConstants } from '../_constants/dialog.constants';
 
 const INITIAL_STATE = {
     notify: [
-        { id: 1, title: 'Novidades do sistema', enable: true },
-        { id: 2, title: 'Atenção Sistema parado', enable: true },
+        { id: 1, title: 'Novidades do sistema', enable: true }
     ], open: false,
     selected: {}
 }
