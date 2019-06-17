@@ -13,7 +13,7 @@ import { Divider } from 'semantic-ui-react';
 import { GridContainer, GridItem } from '../../components/Grids';
 import { TextField } from '../../components/Fields';
 import { normalizePhone, cnpj_cpfNormalise } from '../../components/NormalizeReduxForm';
-import { bindActionCreators } from '../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { loginActions } from '../../redux-flow/_actions';
 
 const styles = theme => ({

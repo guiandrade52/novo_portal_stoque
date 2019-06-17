@@ -12,7 +12,7 @@ import { Paper, Typography, Button, CircularProgress } from '@material-ui/core';
 import { GridItem, GridContainer } from '../../../../components/Grids';
 import { TextField } from '../../../../components/Fields';
 import { Divider } from 'semantic-ui-react';
-import { bindActionCreators } from '../../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.4.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { mailActions } from '../../../../redux-flow/_actions/mail.actions';
 import { configMail, Ocor_Template } from '../../../../appConfig';
 import { Sol_WiFi_Mail } from '../../../../components/MailTemplates/solicitacaoWiFi';

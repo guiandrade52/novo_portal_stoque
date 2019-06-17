@@ -5,7 +5,7 @@ import { reduxForm, Field, change, formValueSelector } from 'redux-form'
 
 //Redux
 import { connect } from 'react-redux'
-import { bindActionCreators } from '../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { produtosActions } from '../../../redux-flow/_actions/produto.actions';
 
 //CoreComponents

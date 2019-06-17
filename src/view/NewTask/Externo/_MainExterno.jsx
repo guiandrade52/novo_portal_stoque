@@ -24,7 +24,7 @@ import Resumo from './resumo';
 import Descricao from './descricao';
 import { Grow } from '../../../components/Transitions';
 import { Breadcrumb } from 'semantic-ui-react';
-import { bindActionCreators } from '../../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 
 
 

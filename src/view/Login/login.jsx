@@ -17,7 +17,7 @@ import { Divider } from 'semantic-ui-react';
 // Redux
 import { connect } from 'react-redux'
 import { authActions } from '../../redux-flow/_actions/auth.action';
-import { bindActionCreators } from '../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { loginActions } from '../../redux-flow/_actions';
 
 const styles = theme => ({

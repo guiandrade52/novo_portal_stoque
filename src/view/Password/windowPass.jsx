@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { GridContainer, GridItem } from '../../components/Grids';
 import { Paper, CircularProgress, Typography, Button } from '@material-ui/core';
 import { TextField } from '../../components/Fields';
-import { bindActionCreators } from '../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.4/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { usuarioActions, loginActions } from '../../redux-flow/_actions';
 
 const styles = theme => ({

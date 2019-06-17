@@ -14,7 +14,7 @@ import { Divider } from 'semantic-ui-react';
 //CoreComponents
 import { GridContainer, GridItem } from '../../components/Grids';
 import { TextField } from '../../components/Fields';
-import { bindActionCreators } from '../../../../../../../../Users/fagner.gomes/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { loginActions } from '../../redux-flow/_actions';
 import { cronometroActions } from '../../redux-flow/_actions/cronometro.actions';
 
