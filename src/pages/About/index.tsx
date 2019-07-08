@@ -2,8 +2,6 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function About() {
-  return (
-    <h1>About</h1>
-  );
-}
+const About = () => <h2>About</h2>;
+
+export default About;

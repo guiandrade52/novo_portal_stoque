@@ -1,13 +1,13 @@
 <p align="left">
   <img src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png" alt="drawing" width="65"/>
   <img src="https://raw.githubusercontent.com/remojansen/logo.ts/master/ts.png" alt="drawing" width="65" height="65"/>
-  <img src="https://cdn-images-1.medium.com/max/2600/1*-Ijet6kVJqGgul6adezDLQ.png" alt="drawing" height="65"/>
   <img src="https://www.styled-components.com/static/atom.png" alt="drawing" width="65" height="65"/>
+  <img src="https://miro.medium.com/max/614/1*zcK3vvoVjsqkqB0oja8RWw.png" alt="drawing" width="85" height="65"/>
 </p>
 
-# FaleMais React Hooks Typescript
+# Simple example React, Typescript Styled-Component, Redux-saga
 
-a simpler project
+A simply example typescript using redux-saga
 
 ## Setting Up
 
@@ -22,13 +22,13 @@ Yarn(Optional): [click here to download](https://yarnpkg.com/lang/en/docs/instal
 first clone the project:
 
 ```bash
-https://github.com/Fagneregomes/fale-mais.git
+https://github.com/Fagneregomes/tsreact.git
 ```
 
 then, go to the project folder:
 
 ```bash
-cd fale-mais
+cd tsreact
 ```
 
 follow one of the steps below according to your node dependency manager to set up the project

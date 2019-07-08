@@ -14,7 +14,7 @@ export default function Header() {
       <Logo>Default Template</Logo>
       <ItemContainer>
         <Link to="/">
-          <Items>Dash</Items>
+          <Items>Repositorios</Items>
         </Link>
 
         <Link to="/About">
