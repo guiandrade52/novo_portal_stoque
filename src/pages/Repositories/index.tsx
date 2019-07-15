@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ApplicationState } from '~/store/index';
@@ -12,7 +12,9 @@ export default function Repositories() {
 
   const dispatch = useDispatch();
 
-  dispatch(loadRequest());
+  useEffect(() => {
+    dispatch(loadRequest());
+  }, [dispatch]);
 
   return (
     <ul>{repositories.map(rep => <RepositoryItem key={rep.id} repository={rep} />)}</ul>
