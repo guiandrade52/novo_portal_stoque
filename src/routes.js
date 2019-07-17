@@ -1,8 +1,14 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Repositories from '~/pages/Repositories';
+// Custom components
+import Dashboard from '~/pages/Dashboard';
+import Task from '~/pages/Task';
+import ListTasks from '~/pages/ListTasks';
+import Admin from '~/pages/Admin';
 import About from '~/pages/About';
+
+// Autenticação
 import { isAutenticated } from '~/services/auth';
 
 const PrivateRouter = ({ component: Component, ...rest }) => (
@@ -22,7 +28,10 @@ const PrivateRouter = ({ component: Component, ...rest }) => (
 function Routes() {
   return (
     <Switch>
-      <PrivateRouter path="/" exact component={Repositories} />
+      <PrivateRouter path="/" exact component={Dashboard} />
+      <PrivateRouter path="/Task" exact component={Task} />
+      <PrivateRouter path="/listTask" exact component={ListTasks} />
+      <PrivateRouter path="/admin" exact component={Admin} />
       <PrivateRouter path="/about" component={About} />
     </Switch>
   );

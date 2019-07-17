@@ -3,10 +3,10 @@ import React from 'react';
 // Custom components
 import { Dashboard as DashboardLayout } from '~/layouts';
 
-export default function About() {
+export default function Dashboard() {
   return (
     <DashboardLayout>
-      <h1>About</h1>
+      <h1>New Task</h1>
     </DashboardLayout>
   );
 }
