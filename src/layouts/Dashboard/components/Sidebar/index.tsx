@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 // Material components
 import {
@@ -35,12 +36,13 @@ interface OwnProps extends WithStyles<typeof styles>{
 
 function Sidebar({ isOpen, classes, handleDrawerClose }:OwnProps) {
   const theme = useTheme();
+  const { location } = createBrowserHistory();
 
   const links = [
     { icon: <DashboardIcon color="primary" />, text: 'Dashboard', link: '/' },
     { icon: <LibraryAddIcon color="primary" />, text: 'Nova Tarefa', link: '/task' },
     { icon: <FormatListBulletedIcon color="primary" />, text: 'Listar Tarefas', link: '/listTask' },
-    { icon: <BuildIcon color="primary" />, text: 'Administrador', link: '/admin' },
+    { icon: <BuildIcon color="primary" />, text: 'Configurador', link: '/configs' },
   ];
 
   return (
@@ -67,7 +69,7 @@ function Sidebar({ isOpen, classes, handleDrawerClose }:OwnProps) {
       <List>
         {links.map(item => (
           <Link to={item.link} key={item.text} className={classes.links}>
-            <ListItem button>
+            <ListItem button className={location.pathname === item.link ? classes.linkSelected : ''}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
@@ -75,9 +77,10 @@ function Sidebar({ isOpen, classes, handleDrawerClose }:OwnProps) {
             </ListItem>
           </Link>
           ))}
-
+      </List>
+      <List>
         <Link to="/about" className={classes.links}>
-          <ListItem button>
+          <ListItem button className={location.pathname === '/about' ? classes.linkSelected : ''}>
             <ListItemIcon>
               <HelpIcon color="primary" />
             </ListItemIcon>

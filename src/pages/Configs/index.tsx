@@ -2,11 +2,12 @@ import React from 'react';
 
 // Custom components
 import { Dashboard as DashboardLayout } from '~/layouts';
+import { SubHeader } from '~/components/Common';
 
-export default function Admin() {
+export default function Config() {
   return (
     <DashboardLayout>
-      <h1>Administrador</h1>
+      <SubHeader title="Configurador" Links={[]} />
     </DashboardLayout>
   );
 }

@@ -37,4 +37,7 @@ export const styles = (theme: Theme) => createStyles({
     color: 'green',
     textDecoration: 'none',
   },
+  linkSelected: {
+    background: '#eee',
+  },
   });

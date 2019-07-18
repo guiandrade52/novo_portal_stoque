@@ -29,6 +29,7 @@ function Topbar({
 }:OwnProps) {
   return (
     <AppBar
+      elevation={1}
       position="fixed"
       className={clsx(classes.appBar, {
           [classes.appBarShift]: isOpen,

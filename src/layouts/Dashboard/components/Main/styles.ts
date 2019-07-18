@@ -12,5 +12,6 @@ export const styles = (theme: Theme) => createStyles({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    marginTop: '-8px',
   },
 });

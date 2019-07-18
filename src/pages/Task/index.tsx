@@ -2,11 +2,12 @@ import React from 'react';
 
 // Custom components
 import { Dashboard as DashboardLayout } from '~/layouts';
+import { SubHeader } from '~/components/Common';
 
 export default function Dashboard() {
   return (
     <DashboardLayout>
-      <h1>New Task</h1>
+      <SubHeader title="Nova Tarefa" Links={[]} />
     </DashboardLayout>
   );
 }
