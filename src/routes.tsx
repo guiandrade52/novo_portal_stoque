@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // Custom components
 import Dashboard from '~/pages/Dashboard';
 import Task from '~/pages/Task';
+import Forms from '~/pages/Forms';
 import ListTasks from '~/pages/ListTasks';
 import Config from '~/pages/Configs';
 import About from '~/pages/About';
@@ -51,7 +52,8 @@ function Routes() {
     <Switch>
       {/* Private routes */}
       <PrivateRouter path="/" exact Component={Dashboard} />
-      <PrivateRouter path="/Task" exact Component={Task} />
+      <PrivateRouter path="/new/task" exact Component={Task} />
+      <PrivateRouter path="/new/form" exact Component={Forms} />
       <PrivateRouter path="/listTask" exact Component={ListTasks} />
       <PrivateRouter path="/about" exact Component={About} />
 

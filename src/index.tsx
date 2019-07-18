@@ -9,6 +9,7 @@ import App from './App';
 // Theme
 import theme from './theme';
 import './assets/css/global.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

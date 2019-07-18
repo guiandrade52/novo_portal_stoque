@@ -18,10 +18,6 @@ import {
 import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
-  Dashboard as DashboardIcon,
-  LibraryAdd as LibraryAddIcon,
-  FormatListBulleted as FormatListBulletedIcon,
-  Build as BuildIcon,
   Help as HelpIcon,
  } from '@material-ui/icons';
 
@@ -29,23 +25,27 @@ import {
 import { WithStyles, withStyles, useTheme } from '@material-ui/core/styles';
 import { styles } from './styles';
 
+// Custom components
+import { links } from './dataLinks';
+import { ButtonSidebar, ButtonCollapseSidebar } from './components';
+
 interface OwnProps extends WithStyles<typeof styles>{
   isOpen: boolean
   handleDrawerClose: () => void
 }
 
-function Sidebar({ isOpen, classes, handleDrawerClose }:OwnProps) {
+function Sidebar(props:OwnProps) {
+  const {
+    isOpen,
+    classes,
+    handleDrawerClose,
+  } = props;
+
   const theme = useTheme();
   const { location } = createBrowserHistory();
 
-  const links = [
-    { icon: <DashboardIcon color="primary" />, text: 'Dashboard', link: '/' },
-    { icon: <LibraryAddIcon color="primary" />, text: 'Nova Tarefa', link: '/task' },
-    { icon: <FormatListBulletedIcon color="primary" />, text: 'Listar Tarefas', link: '/listTask' },
-    { icon: <BuildIcon color="primary" />, text: 'Configurador', link: '/configs' },
-  ];
-
   return (
+
     <Drawer
       variant="permanent"
       className={clsx(classes.drawer, {
@@ -66,18 +66,41 @@ function Sidebar({ isOpen, classes, handleDrawerClose }:OwnProps) {
         </IconButton>
       </div>
       <Divider />
-      <List>
+      <List
+        component="nav"
+        aria-labelledby="Sidebar"
+      >
+        {/* Button sidebar simples */}
         {links.map(item => (
-          <Link to={item.link} key={item.text} className={classes.links}>
-            <ListItem button className={location.pathname === item.link ? classes.linkSelected : ''}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText secondary={item.text} />
-            </ListItem>
-          </Link>
+          <React.Fragment key={item.title}>
+            {item.subLink.length === 0
+            && (
+              <ButtonSidebar
+                title={item.title}
+                link={item.link}
+                classes={classes}
+                selected={location.pathname === item.link}
+                drawerOpen={isOpen}
+                icon={item.icon}
+              />
+            )}
+
+            {/* Button sidebar dropdown */}
+            {item.subLink.length > 0
+            && (
+              <ButtonCollapseSidebar
+                classes={classes}
+                dropDownLink={item}
+                selected={location.pathname.split('/')[1] === item.link.split('/')[1]}
+                drawerOpen={isOpen}
+                pathname={location.pathname}
+              />
+            )}
+
+          </React.Fragment>
           ))}
       </List>
+
       <List>
         <Link to="/about" className={classes.links}>
           <ListItem button className={location.pathname === '/about' ? classes.linkSelected : ''}>

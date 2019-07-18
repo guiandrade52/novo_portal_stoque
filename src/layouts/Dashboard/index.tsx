@@ -14,6 +14,7 @@ interface OwnProps extends WithStyles<typeof styles>{
 function Layout({ children, classes }: OwnProps) {
   const [open, setOpen] = React.useState(false);
 
+
   function handleDrawerOpen() {
     setOpen(true);
   }
