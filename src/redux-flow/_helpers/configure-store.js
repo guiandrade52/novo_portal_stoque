@@ -7,10 +7,10 @@ import { rootReducers } from '../_reducers'
 //const loggerMiddleware = createLogger();
 
 export default (INITIAL_STATE = {}) => {
-    const enhacer = compose(applyMiddleware(thunk, promise), logger())
+    const enhacer = compose(applyMiddleware(thunk, promise))
     const store = createStore(rootReducers, INITIAL_STATE, enhacer)
 
     return store
 }
 
-const logger = () => window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//const logger = () => window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
