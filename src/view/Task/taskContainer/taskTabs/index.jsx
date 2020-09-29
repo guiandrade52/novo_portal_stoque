@@ -78,7 +78,7 @@ class TaskTabs extends React.Component {
                     <Tab label="Solicitante" />
                     <Tab label="Endereço" />
                     <Tab label="Classificação" />
-                    {selected.Rat[0] !== undefined && <Tab label="RAT/CIT" />}
+                    { selected.Rat && selected.Rat[0] !== undefined && <Tab label="RAT/CIT" />}
                 </Tabs>
                 <Divider />
                 <div className={classes.container}>

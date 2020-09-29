@@ -90,7 +90,7 @@ class TaskItem extends Component {
                         <span className={classes.spanStatus} style={{ background: this.handleColorStatus(task.idSituacao) }}></span>
                     </Tooltip>
                     <span className={classes.spanDate}><i>{task.DataCr}</i></span>
-                    {task.Rat.length > 0 &&
+                    {task.Rat && task.Rat.length > 0 &&
                         <Tooltip title='Rat' placement="top">
                             <BeenhereIcon className={classes.rat} />
                         </Tooltip>
