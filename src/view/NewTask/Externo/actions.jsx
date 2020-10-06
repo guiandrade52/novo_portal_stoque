@@ -41,10 +41,9 @@ class Actions extends Component {
     }
 
     handleSave = () => {
-        const { serieDetails, contato, descricao, contatos, files, processoRel, ocorTerceiro } = this.props
+        const { serieDetails, contato, descricao, contatos, files, processoRel, ocorTerceiro, severidade } = this.props
         const filterContato = contatos.find(item => item.CodContato === contato.value)
-
-        this.props.save({ ...serieDetails, ...filterContato, descricao, processoRel, ocorTerceiro, files })
+        this.props.save({ ...serieDetails, ...filterContato, descricao, processoRel, ocorTerceiro, files, severidade:severidade ? severidade.value : 'N' })
     }
 
     handleCreateNewTask = () => {
@@ -93,6 +92,7 @@ const mapStateToProps = state => ({
     activeStep: state.step.activeStep,
     serieDetails: state.repository.serieDetails,
     contatos: state.repository.contatos,
+    severidade: selector(state,'severidade'),
     serie: selector(state, 'serie'),
     contato: selector(state, 'contato'),
     descricao: selector(state, 'descricao'),

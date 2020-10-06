@@ -1,5 +1,5 @@
-//const URL_BASE = 'http://187.72.1.17/Aplicacao'
- const URL_BASE = 'http://localhost:64966'
+const URL_BASE = 'http://187.72.1.17/Aplicacao'
+//const URL_BASE = 'http://localhost:64966'
 
 const EXTENSIONS = {
     embed: ['jpg', 'jpeg', 'png', 'pdf', 'txt'],

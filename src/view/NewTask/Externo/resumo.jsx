@@ -31,8 +31,9 @@ const styles = theme => ({
 class Resumo extends Component {
 
     componentDidMount() {
-        const { serie, serieDetails, processoRelacionado, ocorTerceiro, contratosDetails, descricao, contato, contatos } = this.props
+        const { serie, serieDetails, processoRelacionado, ocorTerceiro, contratosDetails, descricao, contato, contatos, severidade} = this.props
         const contatoData = contatos.find(item => item.CodContato === contato.value)
+        
         const data = serie
             ? {
                 produto: serieDetails.DescrProd,
@@ -51,7 +52,8 @@ class Resumo extends Component {
                 cidade: serieDetails.Cidade,
                 descricao: descricao,
                 processoRelacionado,
-                ocorTerceiro
+                ocorTerceiro,
+                severidade:severidade ? severidade.label: 'Normal'
             }
             : {
                 produto: contratosDetails.DescrProd,
@@ -131,6 +133,18 @@ class Resumo extends Component {
                                         name="ocorTerceiro"
                                         component={TextField}
                                         label="Ocorrência de terceiros"
+                                        fullWidth
+                                        InputProps={{
+                                            readOnly: true,
+                                        }}
+                                    />
+                                </GridItem>
+
+                                <GridItem xs={6} sm={6} md={3}>
+                                    <Field
+                                        name="severidade"
+                                        component={TextField}
+                                        label="Severidade"
                                         fullWidth
                                         InputProps={{
                                             readOnly: true,
@@ -318,6 +332,7 @@ const mapStateToProps = state => ({
     contatos: state.repository.contatos,
     contato: selector(state, 'contato'),
     serie: selector(state, 'serie'),
+    severidade: selector(state, 'severidade'),
     descricao: selector(state, 'descricao'),
     processoRelacionado: selector(state, 'processoRelacionado'),
     ocorTerceiro: selector(state, 'ocorTerceiro'),

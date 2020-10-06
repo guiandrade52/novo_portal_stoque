@@ -43,7 +43,7 @@ class Actions extends Component {
         const { serieDetails, produto, contato, descricao, contatos, files, contratoDetails, servico } = this.props
         const filterContato = contatos.find(item => item.CodContato === contato.value)
         const data = serieDetails ? serieDetails : contratoDetails
-        this.props.save({ ...data, CodProduto: produto.value, ...filterContato, descricao, files, CodServico: servico ? servico.value : '' })
+        this.props.save({ ...data, CodProduto: produto.value, CodContato:contato.value, descricao, files, CodServico: servico ? servico.value : '' })
     }
 
     handleCreateNewTask = () => {

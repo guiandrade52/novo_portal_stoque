@@ -19,6 +19,7 @@ import { reset } from 'redux-form'
 import { GridContainer, GridItem } from '../../../components/Grids';
 import Serie from './serie';
 import Contato from './contato';
+import Severidade from './severidade';
 import Actions from './actions';
 import Resumo from './resumo';
 import Descricao from './descricao';
@@ -48,7 +49,8 @@ function getSteps() {
     return [
         { index: 0, label: 'Diga-me qual a Série/Licença para iniciarmos' },
         { index: 1, label: 'Agora quem é o contato responsável para acompanhamento' },
-        { index: 2, label: 'Me informe o problema detalhadamente.' },
+        { index: 2, label: 'Informe a severidade.' },
+        { index: 3, label: 'Me informe o problema detalhadamente.' },
     ]
 }
 
@@ -59,6 +61,8 @@ function getStepContent(step) {
         case 1:
             return <Contato />
         case 2:
+            return <Severidade />
+        case 3:
             return <Descricao />
         default:
             return ''
