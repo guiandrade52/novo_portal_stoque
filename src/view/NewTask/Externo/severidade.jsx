@@ -30,7 +30,7 @@ class Severidade extends Component {
     }
 
     render() {
-        const { contatos, isFetching } = this.props
+        const { isFetching } = this.props
 
         const Severidade = [
             {id: "B", label: "Baixo"},

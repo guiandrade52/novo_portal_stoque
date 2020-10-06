@@ -45,13 +45,16 @@ const styles = theme => ({
     },
 })
 
-function getSteps() {
-    return [
-        { index: 0, label: 'Diga-me qual a Série/Licença para iniciarmos' },
-        { index: 1, label: 'Agora quem é o contato responsável para acompanhamento' },
-        { index: 2, label: 'Informe a severidade.' },
-        { index: 3, label: 'Me informe o problema detalhadamente.' },
-    ]
+function getSteps(severidade) {
+    console.log('severidade', severidade)
+    const array = [];
+
+    array.push({ index: 0, label: 'Diga-me qual a Série/Licença para iniciarmos' })
+    array.push({ index: 1, label: 'Agora quem é o contato responsável para acompanhamento' })
+    if(severidade) array.push({ index: 2, label: 'Informe a severidade.' })
+    array.push({ index: 3, label: 'Me informe o problema detalhadamente.' })
+
+    return array
 }
 
 function getStepContent(step) {
@@ -71,9 +74,14 @@ function getStepContent(step) {
 }
 
 class Externo extends React.Component {
+
     render() {
-        const { classes, activeStep, home, isFetching, ocorrencia,interno } = this.props
-        const steps = getSteps(this.props)
+        const { classes, activeStep, home, isFetching, ocorrencia,interno, clienteAb } = this.props      
+        let cliente =  clienteAb.split(',')
+        console.log(cliente)
+        
+        const steps = getSteps(Boolean(cliente.find(item => item * 1 === 7948)))
+
         return (
             <GridContainer spacing={8}>
                 {interno === 'S' &&
@@ -132,7 +140,8 @@ Externo.propTypes = {
 const mapStateToProps = state => ({
     activeStep: state.step.activeStep,
     interno: state.usuario.dados.ClienteInterno,
-    ...state.newTask
+    ...state.newTask,
+    clienteAb: state.usuario.dados.ClienteAb !== undefined ? state.usuario.dados.ClienteAb : ""
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({ reset }, dispatch)
