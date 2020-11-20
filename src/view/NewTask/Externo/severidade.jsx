@@ -33,10 +33,10 @@ class Severidade extends Component {
         const { isFetching } = this.props
 
         const Severidade = [
-            {id: "B", label: "Baixo"},
-            {id: "N", label: "Normal"},
-            {id: "A", label: "Alta"},
-            {id: "M", label: "Média"},
+            {id: "B", label: "Severidade 3 - TS: 32Hs"},
+            {id: "N", label: "Severidade 2 - TS: 16Hs"},
+            {id: "A", label: "Severidade 1 - TS:  8Hs"},
+            {id: "M", label: "Severidade 4 - TS: 24Hs"},
         ]  
 
         return (
